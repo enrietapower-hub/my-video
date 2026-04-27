@@ -649,7 +649,7 @@ footer {
   <div class="step" id="step-11">
     <p class="step-counter">Domanda 11 di 12</p>
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:91.66%;"></div></div>
-    <h2>Come preferisci essere contattata da Carolina dopo il quiz?</h2>
+    <h2>Come preferisci essere contattata dal Wonders Team?</h2>
     <div class="opts">
       <button class="opt-btn" onclick="scegli(this,'q11','whatsapp')">WhatsApp &mdash; veloce e informale, preferisco messaggi</button>
       <button class="opt-btn" onclick="scegli(this,'q11','call')">Telefonata o videocall &mdash; voglio parlare direttamente</button>
@@ -675,7 +675,7 @@ footer {
       <input class="field-input" type="tel" id="inp-tel" placeholder="+39 333 000 0000">
     </div>
     <div class="form-block">
-      <label for="inp-email">Email (facoltativa)</label>
+      <label for="inp-email">Email *</label>
       <input class="field-input" type="email" id="inp-email" placeholder="La tua email">
     </div>
     <div class="step-nav">
@@ -767,6 +767,12 @@ function mostraRisultato() {
   if (!tel) {
     document.getElementById('inp-tel').style.borderColor = '#e05555';
     document.getElementById('inp-tel').focus();
+    return;
+  }
+  var email = document.getElementById('inp-email').value.trim();
+  if (!email) {
+    document.getElementById('inp-email').style.borderColor = '#e05555';
+    document.getElementById('inp-email').focus();
     return;
   }
   var focus = answers['q1'] || '';
