@@ -484,8 +484,6 @@ footer {
     <div class="dachi-block">
       <label class="dachi-label" for="inp-dachi">Da chi stai vedendo questo QUIZ?</label>
       <input class="field-input" type="text" id="inp-dachi" placeholder="Da chi stai vedendo questo QUIZ">
-      <p class="dachi-required">&#9888;&#65039; OBBLIGATORIO</p>
-      <div id="dachi-error" class="error-msg" style="display:none;">&#10060; Questo campo &egrave; obbligatorio per continuare</div>
     </div>
     <button class="btn-gold" onclick="startQuiz()">INIZIA ORA &#10022;</button>
   </div>
@@ -722,13 +720,6 @@ var answers = {};
 var currentProfilo = '';
 
 function startQuiz() {
-  var v = document.getElementById('inp-dachi').value.trim();
-  if (!v) {
-    document.getElementById('inp-dachi').style.borderColor = '#e05555';
-    document.getElementById('dachi-error').style.display = 'block';
-    document.getElementById('inp-dachi').focus();
-    return;
-  }
   document.getElementById('hero').style.display = 'none';
   document.getElementById('quiz').style.display = 'block';
   document.getElementById('step-1').style.display = 'block';
