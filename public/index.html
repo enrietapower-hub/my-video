@@ -501,9 +501,9 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:8.33%;"></div></div>
     <h2>Cosa ti incuriosisce di pi&ugrave; di questo progetto?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q1','cliente')">Conoscere i prodotti e usarli per me &mdash; mi interessa la beauty routine e i vantaggi personali</button>
-      <button class="opt-btn" onclick="select(this,'q1','business')">Avere il mio shop online e gestire un&apos;attivit&agrave; &mdash; voglio costruire qualcosa di mio e guadagnare</button>
-      <button class="opt-btn" onclick="select(this,'q1','entrambi')">Entrambe le cose &mdash; amo i prodotti e l&apos;idea di un business digitale mi affascina</button>
+      <button class="opt-btn" onclick="scegli(this,'q1','cliente')">Conoscere i prodotti e usarli per me &mdash; mi interessa la beauty routine e i vantaggi personali</button>
+      <button class="opt-btn" onclick="scegli(this,'q1','business')">Avere il mio shop online e gestire un&apos;attivit&agrave; &mdash; voglio costruire qualcosa di mio e guadagnare</button>
+      <button class="opt-btn" onclick="scegli(this,'q1','entrambi')">Entrambe le cose &mdash; amo i prodotti e l&apos;idea di un business digitale mi affascina</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-1" onclick="nextQ(1)" disabled>AVANTI &#10022;</button>
@@ -515,9 +515,9 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:16.66%;"></div></div>
     <h2>Come descriveresti il tuo rapporto con i prodotti beauty?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q2','appassionata')">Sono appassionata &mdash; amo scoprire nuovi brand e ho una routine skincare/makeup definita</button>
-      <button class="opt-btn" onclick="select(this,'q2','selettiva')">Sono selettiva &mdash; compro pochi prodotti ma di qualit&agrave;, mi informo prima di acquistare</button>
-      <button class="opt-btn" onclick="select(this,'q2','pratica')">Sono pratica &mdash; cerco prodotti che funzionino senza troppa ricerca</button>
+      <button class="opt-btn" onclick="scegli(this,'q2','appassionata')">Sono appassionata &mdash; amo scoprire nuovi brand e ho una routine skincare/makeup definita</button>
+      <button class="opt-btn" onclick="scegli(this,'q2','selettiva')">Sono selettiva &mdash; compro pochi prodotti ma di qualit&agrave;, mi informo prima di acquistare</button>
+      <button class="opt-btn" onclick="scegli(this,'q2','pratica')">Sono pratica &mdash; cerco prodotti che funzionino senza troppa ricerca</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-2" onclick="nextQ(2)" disabled>AVANTI &#10022;</button>
@@ -530,9 +530,9 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:25%;"></div></div>
     <h2>Hai mai condiviso un prodotto o servizio con amici o familiari?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q3','spesso')">S&igrave;, spesso &mdash; quando trovo qualcosa che funziona lo consiglio naturalmente</button>
-      <button class="opt-btn" onclick="select(this,'q3','qualchetimes')">Qualche volta &mdash; se qualcuno me lo chiede o se il prodotto mi ha davvero sorpreso</button>
-      <button class="opt-btn" onclick="select(this,'q3','raramente')">Raramente &mdash; non sono il tipo che consiglia cose agli altri</button>
+      <button class="opt-btn" onclick="scegli(this,'q3','spesso')">S&igrave;, spesso &mdash; quando trovo qualcosa che funziona lo consiglio naturalmente</button>
+      <button class="opt-btn" onclick="scegli(this,'q3','qualchetimes')">Qualche volta &mdash; se qualcuno me lo chiede o se il prodotto mi ha davvero sorpreso</button>
+      <button class="opt-btn" onclick="scegli(this,'q3','raramente')">Raramente &mdash; non sono il tipo che consiglia cose agli altri</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-3" onclick="nextQ(3)" disabled>AVANTI &#10022;</button>
@@ -545,9 +545,9 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:33.33%;"></div></div>
     <h2>Come ti senti all&apos;idea di parlare di un prodotto che ami sui social?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q4','naturale')">Mi viene naturale &mdash; sono gi&agrave; attiva sui social e mi piace condividere</button>
-      <button class="opt-btn" onclick="select(this,'q4','curioso')">Ci penserei &mdash; non l&apos;ho mai fatto ma l&apos;idea mi incuriosisce</button>
-      <button class="opt-btn" onclick="select(this,'q4','imbarazzo')">Non fa per me &mdash; preferisco la riservatezza</button>
+      <button class="opt-btn" onclick="scegli(this,'q4','naturale')">Mi viene naturale &mdash; sono gi&agrave; attiva sui social e mi piace condividere</button>
+      <button class="opt-btn" onclick="scegli(this,'q4','curioso')">Ci penserei &mdash; non l&apos;ho mai fatto ma l&apos;idea mi incuriosisce</button>
+      <button class="opt-btn" onclick="scegli(this,'q4','imbarazzo')">Non fa per me &mdash; preferisco la riservatezza</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-4" onclick="nextQ(4)" disabled>AVANTI &#10022;</button>
@@ -560,9 +560,9 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:41.66%;"></div></div>
     <h2>Quante ore a settimana potresti dedicare a questo progetto?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q5','poco')">Qualche ora &mdash; massimo 5 ore/settimana, voglio qualcosa di flessibile</button>
-      <button class="opt-btn" onclick="select(this,'q5','medio')">10-15 ore/settimana &mdash; ho spazio nella mia agenda se il progetto vale</button>
-      <button class="opt-btn" onclick="select(this,'q5','full')">Sono disposta a impegnarmi seriamente &mdash; oltre 15 ore/settimana</button>
+      <button class="opt-btn" onclick="scegli(this,'q5','poco')">Qualche ora &mdash; massimo 5 ore/settimana, voglio qualcosa di flessibile</button>
+      <button class="opt-btn" onclick="scegli(this,'q5','medio')">10-15 ore/settimana &mdash; ho spazio nella mia agenda se il progetto vale</button>
+      <button class="opt-btn" onclick="scegli(this,'q5','full')">Sono disposta a impegnarmi seriamente &mdash; oltre 15 ore/settimana</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-5" onclick="nextQ(5)" disabled>AVANTI &#10022;</button>
@@ -575,9 +575,9 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:50%;"></div></div>
     <h2>Come gestisci i tuoi acquisti beauty di solito?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q6','online')">Prevalentemente online &mdash; cerco recensioni, comparo prezzi, compro da casa</button>
-      <button class="opt-btn" onclick="select(this,'q6','negozio')">In negozio fisico &mdash; mi piace toccare e provare prima di comprare</button>
-      <button class="opt-btn" onclick="select(this,'q6','entrambi2')">Entrambi &mdash; dipende dal prodotto e dall&apos;umore</button>
+      <button class="opt-btn" onclick="scegli(this,'q6','online')">Prevalentemente online &mdash; cerco recensioni, comparo prezzi, compro da casa</button>
+      <button class="opt-btn" onclick="scegli(this,'q6','negozio')">In negozio fisico &mdash; mi piace toccare e provare prima di comprare</button>
+      <button class="opt-btn" onclick="scegli(this,'q6','entrambi2')">Entrambi &mdash; dipende dal prodotto e dall&apos;umore</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-6" onclick="nextQ(6)" disabled>AVANTI &#10022;</button>
@@ -590,9 +590,9 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:58.33%;"></div></div>
     <h2>Hai una presenza sui social media?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q7','si_attiva')">S&igrave;, sono abbastanza attiva &mdash; ho un profilo curato e pubblico regolarmente</button>
-      <button class="opt-btn" onclick="select(this,'q7','si_poco')">Ho i social ma li uso poco &mdash; potrei svilupparli se avessi un motivo</button>
-      <button class="opt-btn" onclick="select(this,'q7','no_imparo')">Non molto, ma sono pronta a imparare &mdash; parto da zero ma sono motivata</button>
+      <button class="opt-btn" onclick="scegli(this,'q7','si_attiva')">S&igrave;, sono abbastanza attiva &mdash; ho un profilo curato e pubblico regolarmente</button>
+      <button class="opt-btn" onclick="scegli(this,'q7','si_poco')">Ho i social ma li uso poco &mdash; potrei svilupparli se avessi un motivo</button>
+      <button class="opt-btn" onclick="scegli(this,'q7','no_imparo')">Non molto, ma sono pronta a imparare &mdash; parto da zero ma sono motivata</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-7" onclick="nextQ(7)" disabled>AVANTI &#10022;</button>
@@ -605,9 +605,9 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:66.66%;"></div></div>
     <h2>Qual &egrave; il tuo obiettivo economico con questo progetto?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q8','extra')">Un extra mensile di 200-500&euro; &mdash; per arrotondare o coprire spese personali</button>
-      <button class="opt-btn" onclick="select(this,'q8','medio_ec')">Un reddito di 500-1.500&euro;/mese &mdash; che mi dia vera indipendenza</button>
-      <button class="opt-btn" onclick="select(this,'q8','alto')">Oltre 1.500&euro;/mese &mdash; voglio che diventi una fonte di reddito principale</button>
+      <button class="opt-btn" onclick="scegli(this,'q8','extra')">Un extra mensile di 200-500&euro; &mdash; per arrotondare o coprire spese personali</button>
+      <button class="opt-btn" onclick="scegli(this,'q8','medio_ec')">Un reddito di 500-1.500&euro;/mese &mdash; che mi dia vera indipendenza</button>
+      <button class="opt-btn" onclick="scegli(this,'q8','alto')">Oltre 1.500&euro;/mese &mdash; voglio che diventi una fonte di reddito principale</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-8" onclick="nextQ(8)" disabled>AVANTI &#10022;</button>
@@ -620,10 +620,10 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:75%;"></div></div>
     <h2>Cosa ti frena di pi&ugrave; quando valuti qualcosa di nuovo?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q9','tempo')">Il tempo &mdash; ho gi&agrave; molti impegni e fatico ad aggiungere cose</button>
-      <button class="opt-btn" onclick="select(this,'q9','fiducia')">La fiducia &mdash; ho bisogno di capire bene prima di impegnarmi</button>
-      <button class="opt-btn" onclick="select(this,'q9','giudizio')">Il giudizio degli altri &mdash; mi preoccupa cosa potrebbero pensare</button>
-      <button class="opt-btn" onclick="select(this,'q9','niente')">Poco o niente &mdash; quando qualcosa mi convince, mi lancio</button>
+      <button class="opt-btn" onclick="scegli(this,'q9','tempo')">Il tempo &mdash; ho gi&agrave; molti impegni e fatico ad aggiungere cose</button>
+      <button class="opt-btn" onclick="scegli(this,'q9','fiducia')">La fiducia &mdash; ho bisogno di capire bene prima di impegnarmi</button>
+      <button class="opt-btn" onclick="scegli(this,'q9','giudizio')">Il giudizio degli altri &mdash; mi preoccupa cosa potrebbero pensare</button>
+      <button class="opt-btn" onclick="scegli(this,'q9','niente')">Poco o niente &mdash; quando qualcosa mi convince, mi lancio</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-9" onclick="nextQ(9)" disabled>AVANTI &#10022;</button>
@@ -636,9 +636,9 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:83.33%;"></div></div>
     <h2>Hai gi&agrave; avuto esperienze con il network marketing o vendita diretta?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q10','si_bene')">S&igrave;, con risultati positivi &mdash; ho gi&agrave; capito come funziona il meccanismo</button>
-      <button class="opt-btn" onclick="select(this,'q10','si_male')">S&igrave;, ma non &egrave; andata bene &mdash; ho avuto un&apos;esperienza negativa</button>
-      <button class="opt-btn" onclick="select(this,'q10','no')">No, sarebbe la prima volta &mdash; parto completamente da zero</button>
+      <button class="opt-btn" onclick="scegli(this,'q10','si_bene')">S&igrave;, con risultati positivi &mdash; ho gi&agrave; capito come funziona il meccanismo</button>
+      <button class="opt-btn" onclick="scegli(this,'q10','si_male')">S&igrave;, ma non &egrave; andata bene &mdash; ho avuto un&apos;esperienza negativa</button>
+      <button class="opt-btn" onclick="scegli(this,'q10','no')">No, sarebbe la prima volta &mdash; parto completamente da zero</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-10" onclick="nextQ(10)" disabled>AVANTI &#10022;</button>
@@ -651,9 +651,9 @@ footer {
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:91.66%;"></div></div>
     <h2>Come preferisci essere contattata da Carolina dopo il quiz?</h2>
     <div class="opts">
-      <button class="opt-btn" onclick="select(this,'q11','whatsapp')">WhatsApp &mdash; veloce e informale, preferisco messaggi</button>
-      <button class="opt-btn" onclick="select(this,'q11','call')">Telefonata o videocall &mdash; voglio parlare direttamente</button>
-      <button class="opt-btn" onclick="select(this,'q11','email')">Email &mdash; preferisco avere tutto per iscritto</button>
+      <button class="opt-btn" onclick="scegli(this,'q11','whatsapp')">WhatsApp &mdash; veloce e informale, preferisco messaggi</button>
+      <button class="opt-btn" onclick="scegli(this,'q11','call')">Telefonata o videocall &mdash; voglio parlare direttamente</button>
+      <button class="opt-btn" onclick="scegli(this,'q11','email')">Email &mdash; preferisco avere tutto per iscritto</button>
     </div>
     <div class="step-nav">
       <button class="btn-gold" id="next-11" onclick="nextQ(11)" disabled>AVANTI &#10022;</button>
@@ -732,7 +732,7 @@ function startQuiz() {
   window.scrollTo(0, 0);
 }
 
-function select(el, qId, val) {
+function scegli(el, qId, val) {
   answers[qId] = val;
   var opts = el.parentNode.getElementsByClassName('opt-btn');
   for (var i = 0; i < opts.length; i++) {
