@@ -1,0 +1,331 @@
+{
+  "name": "Animarinata - Post Automatico Instagram",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 8
+            }
+          ]
+        }
+      },
+      "id": "6b503b91-cee9-42fb-88c0-a2cc8e13b8e2",
+      "name": "Trigger di pianificazione",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "field-001",
+              "name": "brand_name",
+              "value": "Anima Rinata",
+              "type": "string"
+            },
+            {
+              "id": "field-002",
+              "name": "topic",
+              "value": "rinascita dopo il postpartum, matrice del destino, codici karmici, human design",
+              "type": "string"
+            },
+            {
+              "id": "field-003",
+              "name": "tone",
+              "value": "empatico, motivazionale, trasformativo e professionale",
+              "type": "string"
+            },
+            {
+              "id": "field-004",
+              "name": "cta",
+              "value": "scrivimi RINASCITA in DM",
+              "type": "string"
+            },
+            {
+              "id": "field-005",
+              "name": "platform",
+              "value": "instagram",
+              "type": "string"
+            },
+            {
+              "id": "field-006",
+              "name": "language",
+              "value": "italiano",
+              "type": "string"
+            },
+            {
+              "id": "field-007",
+              "name": "image_url",
+              "value": "https://TUO-LINK-IMMAGINE-QUI.jpg",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8cb507a6-6566-4834-af61-4a3494361135",
+      "name": "Configurazione Contenuto",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Recupera e parsa la risposta dal modello Gemini\nconst geminiItem = $('Message a model').first();\n\nconst text = geminiItem.json.text || geminiItem.json.content || geminiItem.json.output || '';\n\nif (!text) {\n  throw new Error('Nessuna risposta ricevuta dal modello AI. Controlla le credenziali Gemini.');\n}\n\n// Rimuovi blocchi markdown se Gemini li aggiunge\nconst cleanText = text.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\n\nlet parsed;\ntry {\n  parsed = JSON.parse(cleanText);\n} catch (e) {\n  throw new Error('Errore parsing JSON: ' + e.message + ' - Risposta: ' + cleanText.substring(0, 200));\n}\n\nconst title    = parsed.title    || '';\nconst caption  = parsed.caption  || '';\nconst hashtags = parsed.hashtags || '';\nconst fullCaption = caption + '\\n\\n' + hashtags;\nconst imageUrl = $('Configurazione Contenuto').first().json.image_url || '';\n\nreturn [{\n  json: { title, caption, hashtags, full_caption: fullCaption, image_url: imageUrl }\n}];"
+      },
+      "id": "9baf8754-0b7d-486e-b109-da2411a083c8",
+      "name": "Elabora Risposta AI",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://upload-post.com/api/v1/post",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "options": {},
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"caption\": {{ JSON.stringify($json.full_caption) }},\n  \"title\": {{ JSON.stringify($json.title) }},\n  \"media_type\": {{ JSON.stringify($json.media_type) }},\n  \"file_base64\": {{ JSON.stringify($json.file_base64) }},\n  \"mime_type\": {{ JSON.stringify($json.mime_type) }},\n  \"platform\": \"instagram\"\n}"
+      },
+      "id": "2ab983d3-7e3a-478a-9241-7cc43456d46d",
+      "name": "Pubblica su Instagram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1232,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "gdozZJ3xnRC7PujK",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Sei un social media strategist esperto e spiritual coach per il brand \"Anima Rinata\" di Enrieta.\n\nIl tuo pubblico sono donne italiane tra 25-45 anni che stanno attraversando una rinascita personale dopo il postpartum, cercano risposte attraverso il Human Design, i Codici Karmici e la Matrice del Destino.\n\nScrivi UNA caption Instagram originale, autentica e coinvolgente su uno di questi temi:\n- rinascita e trasformazione dopo il postpartum\n- scoperta del proprio tipo di Human Design\n- codici karmici e missione di vita\n- shadow work e guarigione interiore\n- matrice del destino e scopo dell'anima\n\nTono: empatico, trasformativo, professionale ma vicino, come una sorella maggiore spirituale.\nCTA da includere: scrivimi RINASCITA in DM\nLingua: italiano\nUsa emoji con moderazione ed eleganza.\n\nRispondi SOLO con questo JSON senza markdown:\n{\"title\":\"titolo breve\",\"caption\":\"caption completa con emoji e a capo\",\"hashtags\":\"#animarinata #postpartum #humandesign #codicikarmici #rinascita #crescitapersonale #shadowwork #matricedeldestino #donneitalia #trasformazione #mamme #rinasce #consapevolezza #animarinata #spiritualita\"}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        672,
+        0
+      ],
+      "id": "4dc69a44-40fd-4fae-90e4-d9816260bcc1",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "t4yfB0HP9c7VIdVe",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "id": "aaf11111-aaaa-bbbb-cccc-aaf111111111",
+      "name": "Leggi File da Pubblicare",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst path = require('path');\n\nconst daPublicarePath = 'C:\\\\Users\\\\enrie\\\\Desktop\\\\Animarinata\\\\da pubblicare';\nconst supportedExts = /\\.(jpg|jpeg|png|webp|gif|mp4|mov|m4v)$/i;\n\nif (!fs.existsSync(daPublicarePath)) {\n  throw new Error('Cartella non trovata: ' + daPublicarePath);\n}\n\nconst files = fs.readdirSync(daPublicarePath)\n  .filter(f => {\n    const fullPath = path.join(daPublicarePath, f);\n    return fs.statSync(fullPath).isFile() && supportedExts.test(f);\n  })\n  .sort();\n\nif (files.length === 0) {\n  throw new Error('Nessun file da pubblicare in: ' + daPublicarePath);\n}\n\nconst fileName = files[0];\nconst fullPath  = path.join(daPublicarePath, fileName);\nconst ext       = path.extname(fileName).toLowerCase();\nconst isVideo   = /\\.(mp4|mov|m4v)$/i.test(ext);\n\nconst mimeMap = {\n  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',\n  '.png': 'image/png',  '.webp': 'image/webp',\n  '.gif': 'image/gif',  '.mp4': 'video/mp4',\n  '.mov': 'video/quicktime', '.m4v': 'video/mp4'\n};\n\nreturn [{\n  json: {\n    file_path:       fullPath,\n    file_name:       fileName,\n    extension:       ext,\n    media_type:      isVideo ? 'video' : 'image',\n    mime_type:       mimeMap[ext] || 'application/octet-stream',\n    files_remaining: files.length - 1\n  }\n}];"
+      }
+    },
+    {
+      "id": "bbf22222-bbbb-cccc-dddd-bbf222222222",
+      "name": "Sposta File Pubblicato",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1456,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const fs   = require('fs');\nconst path = require('path');\n\nconst fileInfo       = $('Leggi File da Pubblicare').first().json;\nconst filePath       = fileInfo.file_path;\nconst fileName       = fileInfo.file_name;\nconst pubblicatiPath = 'C:\\\\Users\\\\enrie\\\\Desktop\\\\Animarinata\\\\pubblicati';\n\n// Crea la cartella 'pubblicati' se non esiste\nif (!fs.existsSync(pubblicatiPath)) {\n  fs.mkdirSync(pubblicatiPath, { recursive: true });\n}\n\n// Aggiungi data/ora al nome per evitare duplicati\nconst now       = new Date();\nconst timestamp = now.toISOString().replace(/[T:.Z]/g, '-').substring(0, 19);\nconst ext       = path.extname(fileName);\nconst baseName  = path.basename(fileName, ext);\nconst newName   = baseName + '_pubblicato_' + timestamp + ext;\nconst destPath  = path.join(pubblicatiPath, newName);\n\n// Sposta il file\nfs.renameSync(filePath, destPath);\n\nreturn [{\n  json: {\n    success:        true,\n    file_originale: fileName,\n    spostato_in:    destPath,\n    pubblicato_il:  now.toLocaleString('it-IT')\n  }\n}];"
+      }
+    },
+    {
+      "id": "ccf33333-cccc-dddd-eeee-ccf333333333",
+      "name": "Notifica Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1680,
+        0
+      ],
+      "parameters": {
+        "chatId": "1185850602",
+        "text": "=✅ *Post Animarinata pubblicato!*\n\n📄 *Titolo:* {{ $('Elabora Risposta AI').first().json.title }}\n\n📁 *File:* {{ $('Sposta File Pubblicato').first().json.file_originale }}\n📂 *Spostato in:* pubblicati\n🕐 *Pubblicato il:* {{ $('Sposta File Pubblicato').first().json.pubblicato_il }}\n\n📝 *Caption preview:*\n{{ $('Elabora Risposta AI').first().json.caption.substring(0, 200) }}...",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot Animarinata"
+        }
+      }
+    },
+    {
+      "id": "ddf44444-dddd-eeee-ffff-ddf444444444",
+      "name": "Converti in Base64",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1008,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const fs = require('fs');\n\n// Recupera il percorso del file dal nodo precedente\nconst fileInfo = $('Leggi File da Pubblicare').first().json;\nconst filePath = fileInfo.file_path;\n\n// Leggi e converti in base64\nconst fileBuffer = fs.readFileSync(filePath);\nconst base64     = fileBuffer.toString('base64');\n\n// Recupera anche i dati della caption da Elabora Risposta AI\nconst aiData = $json;\n\nreturn [{\n  json: {\n    // Dati AI\n    title:        aiData.title,\n    caption:      aiData.caption,\n    hashtags:     aiData.hashtags,\n    full_caption: aiData.full_caption,\n    // Dati file\n    file_path:    fileInfo.file_path,\n    file_name:    fileInfo.file_name,\n    media_type:   fileInfo.media_type,\n    mime_type:    fileInfo.mime_type,\n    file_base64:  base64\n  }\n}];"
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Trigger di pianificazione": {
+      "main": [
+        [
+          {
+            "node": "Configurazione Contenuto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Elabora Risposta AI": {
+      "main": [
+        [
+          {
+            "node": "Converti in Base64",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configurazione Contenuto": {
+      "main": [
+        [
+          {
+            "node": "Leggi File da Pubblicare",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Elabora Risposta AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leggi File da Pubblicare": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pubblica su Instagram": {
+      "main": [
+        [
+          {
+            "node": "Sposta File Pubblicato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sposta File Pubblicato": {
+      "main": [
+        [
+          {
+            "node": "Notifica Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Converti in Base64": {
+      "main": [
+        [
+          {
+            "node": "Pubblica su Instagram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "91ee2bae-7acd-4840-86a6-a49130ac1de1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9528ca59775ec5ce7306d0645562984816cdaff22e5109866326b99b512940ab"
+  },
+  "id": "VIEgEa6f4LHbHarP",
+  "tags": []
+}

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Wonders Team by Carolina</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #e0c06e;
+      --black: #000000;
+      --dark: #0a0a0a;
+      --white: #ffffff;
+      --gray: rgba(255,255,255,0.55);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+      background: radial-gradient(ellipse at center, #111 0%, #000 70%);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, var(--black) 100%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 8vw, 80px);
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .hero-title span {
+      display: block;
+      font-size: clamp(20px, 4vw, 36px);
+      color: var(--gold);
+      letter-spacing: 14px;
+      margin-top: 10px;
+    }
+
+    .divider {
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      margin: 36px auto;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 56px;
+    }
+
+    /* ── BUTTON ── */
+    .btn-inizia {
+      display: inline-block;
+      padding: 18px 56px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 13px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-inizia:hover {
+      background: var(--gold);
+      color: var(--black);
+      box-shadow: 0 0 40px rgba(201,168,76,0.3);
+    }
+
+    /* ── COLLECTION ── */
+    #collection {
+      padding: 100px 40px;
+      background: var(--dark);
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(24px, 4vw, 42px);
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 60px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .grid-item {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+
+    .grid-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .grid-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .grid-item:hover .grid-item-overlay {
+      opacity: 1;
+    }
+
+    .grid-item-brand {
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .grid-item-label {
+      font-size: 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: var(--white);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 60px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(201,168,76,0.2);
+      background: var(--black);
+    }
+
+    footer p {
+      font-size: 11px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    footer .footer-brand {
+      font-size: 18px;
+      letter-spacing: 8px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      #collection { padding: 60px 16px; }
+    }
+
+    /* ── QUIZ MODAL ── */
+    .quiz-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .quiz-overlay.active {
+      display: flex;
+    }
+
+    .quiz-box {
+      background: #0d0d0d;
+      border: 1px solid rgba(201,168,76,0.3);
+      max-width: 580px;
+      width: 100%;
+      padding: 56px 48px;
+      position: relative;
+      animation: fadeUp 0.4s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .quiz-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .quiz-close:hover { color: var(--gold); }
+
+    .quiz-eyebrow {
+      font-size: 10px;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .quiz-progress-bar {
+      width: 100%;
+      height: 1px;
+      background: rgba(201,168,76,0.15);
+      margin-bottom: 40px;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--gold);
+      transition: width 0.4s ease;
+    }
+
+    .quiz-question {
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: var(--white);
+      line-height: 1.5;
+      margin-bottom: 36px;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent;
+      color: var(--white);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s, color 0.25s;
+      text-align: left;
+      width: 100%;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.05);
+      color: var(--gold);
+    }
+
+    .quiz-option-letter {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      min-width: 18px;
+    }
+
+    /* ── RESULT ── */
+    .quiz-result {
+      display: none;
+      text-align: center;
+    }
+
+    .quiz-result.active { display: block; }
+
+    .quiz-result-icon {
+      font-size: 48px;
+      margin-bottom: 24px;
+    }
+
+    .quiz-result-label {
+      font-size: 10px;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .quiz-result-title {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .quiz-result-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--gray);
+      margin-bottom: 40px;
+    }
+
+    .quiz-result-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 40px;
+    }
+
+    .btn-restart {
+      display: inline-block;
+      padding: 14px 40px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .btn-restart:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    @media (max-width: 560px) {
+      .quiz-box { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Luxury Boutique</p>
+    <h1 class="hero-title">
+      The Wonders Team
+      <span>by Carolina</span>
+    </h1>
+    <div class="divider"></div>
+    <p class="hero-sub">Gucci &middot; Louis Vuitton &middot; Exclusive Collection</p>
+    <button class="btn-inizia" onclick="openQuiz()">Inizia Ora</button>
+  </section>
+
+  <!-- COLLECTION -->
+  <section id="collection">
+    <p class="section-label">Esplora</p>
+    <h2 class="section-title">La Collezione</h2>
+    <div class="grid">
+      <div class="grid-item">
+        <img src="borsa%20gg1.jpg" alt="Borsa GG" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Gucci</p>
+          <p class="grid-item-label">Borsa GG</p>
+        </div>
+      </div>
+      <div class="grid-item">
+        <img src="diante%2C%20b%20gucci%201.png" alt="Bag Collection" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Gucci</p>
+          <p class="grid-item-label">Bag Collection</p>
+        </div>
+      </div>
+      <div class="grid-item">
+        <img src="diamante%2C%20b%20gucci%202.png" alt="Bag Collection" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Gucci</p>
+          <p class="grid-item-label">Bag Collection</p>
+        </div>
+      </div>
+      <div class="grid-item">
+        <img src="diamante%20b%20gucci%203.png" alt="Bag Collection" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Gucci</p>
+          <p class="grid-item-label">Bag Collection</p>
+        </div>
+      </div>
+      <div class="grid-item">
+        <img src="diamante%20%2C%20b%20gucci%204.png" alt="Bag Collection" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Gucci</p>
+          <p class="grid-item-label">Bag Collection</p>
+        </div>
+      </div>
+      <div class="grid-item">
+        <img src="diamante%2C%20camicia%20gucci.png" alt="Camicia Gucci" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Gucci</p>
+          <p class="grid-item-label">Camicia</p>
+        </div>
+      </div>
+      <div class="grid-item">
+        <img src="diamante%2C%20camicia%20gucci%202.png" alt="Camicia Gucci 2" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Gucci</p>
+          <p class="grid-item-label">Camicia</p>
+        </div>
+      </div>
+      <div class="grid-item">
+        <img src="diamante%2C%20lv%202.png" alt="LV Collection" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Louis Vuitton</p>
+          <p class="grid-item-label">LV Collection</p>
+        </div>
+      </div>
+      <div class="grid-item">
+        <img src="diamante.%20lv%203.png" alt="LV Collection" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Louis Vuitton</p>
+          <p class="grid-item-label">LV Collection</p>
+        </div>
+      </div>
+      <div class="grid-item">
+        <img src="diamante%2C%20scarpe%20lv.png" alt="Scarpe LV" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Louis Vuitton</p>
+          <p class="grid-item-label">Scarpe LV</p>
+        </div>
+      </div>
+      <div class="grid-item">
+        <img src="diamante%2C%20scarpe%20lv%201.png" alt="Scarpe LV 1" loading="lazy" />
+        <div class="grid-item-overlay">
+          <p class="grid-item-brand">Louis Vuitton</p>
+          <p class="grid-item-label">Scarpe LV</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-brand">The Wonders Team</p>
+    <p>&copy; 2025 by Carolina &middot; All rights reserved</p>
+  </footer>
+
+  <!-- QUIZ MODAL -->
+  <div class="quiz-overlay" id="quizOverlay" onclick="handleOverlayClick(event)">
+    <div class="quiz-box" id="quizBox">
+      <button class="quiz-close" onclick="closeQuiz()" aria-label="Chiudi">&times;</button>
+
+      <div id="quizContent">
+        <p class="quiz-eyebrow">Scopri il tuo stile</p>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+        <p class="quiz-question" id="quizQuestion"></p>
+        <div class="quiz-options" id="quizOptions"></div>
+      </div>
+
+      <div class="quiz-result" id="quizResult">
+        <div class="quiz-result-icon" id="resultIcon"></div>
+        <p class="quiz-result-label">Il tuo stile è</p>
+        <h2 class="quiz-result-title" id="resultTitle"></h2>
+        <div class="quiz-result-divider"></div>
+        <p class="quiz-result-desc" id="resultDesc"></p>
+        <button class="btn-restart" onclick="restartQuiz()">Ricomincia</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "Qual è il tuo accessorio luxury preferito?",
+        options: [
+          { letter: "A", text: "Borsa iconica", score: { gucci: 2, lv: 1 } },
+          { letter: "B", text: "Scarpe da sogno", score: { gucci: 1, lv: 2 } },
+          { letter: "C", text: "Cintura con logo", score: { gucci: 1, lv: 2 } },
+          { letter: "D", text: "Profumo esclusivo", score: { gucci: 2, lv: 1 } }
+        ]
+      },
+      {
+        text: "Come descriveresti il tuo stile?",
+        options: [
+          { letter: "A", text: "Classico ed elegante", score: { gucci: 1, lv: 2 } },
+          { letter: "B", text: "Bold e contemporaneo", score: { gucci: 2, lv: 1 } },
+          { letter: "C", text: "Minimalista e raffinato", score: { gucci: 1, lv: 2 } },
+          { letter: "D", text: "Eccentrico e creativo", score: { gucci: 2, lv: 1 } }
+        ]
+      },
+      {
+        text: "Qual è la tua palette colori preferita?",
+        options: [
+          { letter: "A", text: "Nero & Oro", score: { gucci: 2, lv: 1 } },
+          { letter: "B", text: "Marrone & Beige", score: { gucci: 1, lv: 2 } },
+          { letter: "C", text: "Nude & Crema", score: { gucci: 1, lv: 2 } },
+          { letter: "D", text: "Colori vivaci", score: { gucci: 2, lv: 1 } }
+        ]
+      },
+      {
+        text: "Dove ti immagini con il tuo pezzo luxury?",
+        options: [
+          { letter: "A", text: "A una cena esclusiva", score: { gucci: 2, lv: 1 } },
+          { letter: "B", text: "In viaggio per il mondo", score: { gucci: 1, lv: 2 } },
+          { letter: "C", text: "A uno show di moda", score: { gucci: 2, lv: 1 } },
+          { letter: "D", text: "Nel quotidiano con stile", score: { gucci: 1, lv: 2 } }
+        ]
+      }
+    ];
+
+    const results = {
+      gucci: {
+        icon: "✦",
+        title: "L'Anima Gucci",
+        desc: "Sei audace, creativa e non temi di fare una dichiarazione. Il tuo spirito rispecchia l'essenza di Gucci: lusso senza regole, bellezza senza tempo. La collezione di borse e capi Gucci è pensata per te."
+      },
+      lv: {
+        icon: "◆",
+        title: "L'Icona Louis Vuitton",
+        desc: "Porti il lusso con naturalezza e visione. Come Louis Vuitton, sai che il vero stile nasce dalla qualità e dalla storia. Ogni viaggio è un'avventura, ogni accessorio un'opera d'arte."
+      },
+      tie: {
+        icon: "✧",
+        title: "La Fashion Connoisseur",
+        desc: "Hai gusto impeccabile e non ti limiti a un solo mondo. Sei capace di mixare Gucci e Louis Vuitton con maestria, creando uno stile unico che racconta la tua personalità straordinaria."
+      }
+    };
+
+    let current = 0;
+    let scores = { gucci: 0, lv: 0 };
+
+    function openQuiz() {
+      current = 0;
+      scores = { gucci: 0, lv: 0 };
+      document.getElementById('quizOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      showQuestion();
+    }
+
+    function closeQuiz() {
+      document.getElementById('quizOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+      document.getElementById('quizResult').classList.remove('active');
+      document.getElementById('quizContent').style.display = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('quizOverlay')) closeQuiz();
+    }
+
+    function showQuestion() {
+      const q = questions[current];
+      const fill = ((current) / questions.length) * 100;
+      document.getElementById('progressFill').style.width = fill + '%';
+      document.getElementById('quizQuestion').textContent = q.text;
+
+      const optContainer = document.getElementById('quizOptions');
+      optContainer.innerHTML = '';
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.innerHTML = `<span class="quiz-option-letter">${opt.letter}</span>${opt.text}`;
+        btn.onclick = () => selectOption(opt.score);
+        optContainer.appendChild(btn);
+      });
+    }
+
+    function selectOption(score) {
+      scores.gucci += score.gucci;
+      scores.lv += score.lv;
+      current++;
+
+      if (current < questions.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.getElementById('progressFill').style.width = '100%';
+      document.getElementById('quizContent').style.display = 'none';
+
+      let key;
+      if (scores.gucci > scores.lv) key = 'gucci';
+      else if (scores.lv > scores.gucci) key = 'lv';
+      else key = 'tie';
+
+      const r = results[key];
+      document.getElementById('resultIcon').textContent = r.icon;
+      document.getElementById('resultTitle').textContent = r.title;
+      document.getElementById('resultDesc').textContent = r.desc;
+      document.getElementById('quizResult').classList.add('active');
+    }
+
+    function restartQuiz() {
+      current = 0;
+      scores = { gucci: 0, lv: 0 };
+      document.getElementById('quizResult').classList.remove('active');
+      document.getElementById('quizContent').style.display = '';
+      showQuestion();
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeQuiz();
+    });
+  </script>
+
+</body>
+</html>
