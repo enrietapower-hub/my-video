@@ -484,6 +484,8 @@ footer {
     <div class="dachi-block">
       <label class="dachi-label" for="inp-dachi">Da chi stai vedendo questo QUIZ?</label>
       <input class="field-input" type="text" id="inp-dachi" placeholder="Da chi stai vedendo questo QUIZ">
+      <p class="dachi-required">&#9888;&#65039; OBBLIGATORIO — per darti il giusto accesso</p>
+      <div id="dachi-error" class="error-msg" style="display:none;">&#10060; Questo campo è obbligatorio per continuare</div>
     </div>
     <button class="btn-gold" onclick="startQuiz()">INIZIA ORA &#10022;</button>
   </div>
@@ -663,10 +665,7 @@ footer {
     <p class="step-counter">Domanda 12 di 12</p>
     <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:100%;"></div></div>
     <h2>Quasi fatto! Inserisci i tuoi dati per ricevere il risultato.</h2>
-    <div class="form-block">
-      <label for="inp-dachi2">&#10022; Da chi stai vedendo questo QUIZ? *</label>
-      <input class="field-input" type="text" id="inp-dachi2" placeholder="Da chi stai vedendo questo QUIZ">
-    </div>
+
     <div class="form-block">
       <label for="inp-nome">Il tuo nome *</label>
       <input class="field-input" type="text" id="inp-nome" placeholder="Come ti chiami?">
@@ -720,6 +719,13 @@ var answers = {};
 var currentProfilo = '';
 
 function startQuiz() {
+  var v = document.getElementById('inp-dachi').value.trim();
+  if (!v) {
+    document.getElementById('inp-dachi').style.borderColor = '#e05555';
+    document.getElementById('dachi-error').style.display = 'block';
+    document.getElementById('inp-dachi').focus();
+    return;
+  }
   document.getElementById('hero').style.display = 'none';
   document.getElementById('quiz').style.display = 'block';
   document.getElementById('step-1').style.display = 'block';
@@ -825,9 +831,7 @@ function inviaNetlify() {
   var nv = document.getElementById('inp-nome').value || '';
   var tv = document.getElementById('inp-tel').value || '';
   var ev = document.getElementById('inp-email').value || '';
-  var d2 = document.getElementById('inp-dachi2').value || '';
-  var d1 = document.getElementById('inp-dachi').value || '';
-  var dv = d2 || d1;
+  var dv = document.getElementById('inp-dachi').value || '';
   var fd = new FormData();
   fd.append('form-name', 'wonders-team-carolina-quiz');
   fd.append('nome', nv);
