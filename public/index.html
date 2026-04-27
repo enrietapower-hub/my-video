@@ -1,674 +1,851 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Wonders Team by Carolina</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wonders Team by Carolina – Quiz di Pre-Screening</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #080705;
+  color: #f0ead8;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+}
+a { color: #c9a45a; text-decoration: none; }
 
-    :root {
-      --gold: #C9A84C;
-      --gold-light: #e0c06e;
-      --black: #000000;
-      --dark: #0a0a0a;
-      --white: #ffffff;
-      --gray: rgba(255,255,255,0.55);
-    }
+.section { display: none; }
 
-    html { scroll-behavior: smooth; }
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 0%, #1a1508 0%, #080705 70%);
+}
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 50%, rgba(201,164,90,0.06) 0%, transparent 70%);
+}
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a45a' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
 
-    body {
-      background-color: var(--black);
-      color: var(--white);
-      font-family: 'Georgia', 'Times New Roman', serif;
-      overflow-x: hidden;
-    }
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  width: 100%;
+}
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 40px 24px;
-      position: relative;
-      background: radial-gradient(ellipse at center, #111 0%, #000 70%);
-    }
+.hero-badge {
+  display: inline-block;
+  color: #c9a45a;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  border: 1px solid rgba(201,164,90,0.35);
+  border-radius: 40px;
+  padding: 7px 20px;
+  margin-bottom: 32px;
+}
 
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 60%, var(--black) 100%);
-      pointer-events: none;
-    }
+.hero-title-top {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a08050;
+  margin-bottom: 8px;
+}
 
-    .hero-eyebrow {
-      font-size: 12px;
-      letter-spacing: 10px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 28px;
-    }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 10vw, 78px);
+  font-weight: 600;
+  font-style: italic;
+  color: #c9a45a;
+  line-height: 1.1;
+  margin-bottom: 28px;
+  text-shadow: 0 0 40px rgba(201,164,90,0.2);
+}
 
-    .hero-title {
-      font-size: clamp(36px, 8vw, 80px);
-      font-weight: 300;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      line-height: 1.1;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
+.hero-subtitle {
+  font-size: 16px;
+  color: #c8b89a;
+  max-width: 560px;
+  margin: 0 auto 16px;
+  line-height: 1.7;
+}
 
-    .hero-title span {
-      display: block;
-      font-size: clamp(20px, 4vw, 36px);
-      color: var(--gold);
-      letter-spacing: 14px;
-      margin-top: 10px;
-    }
+.hero-note {
+  font-size: 13px;
+  color: #6e5f44;
+  font-style: italic;
+  margin-bottom: 28px;
+}
 
-    .divider {
-      width: 80px;
-      height: 1px;
-      background: var(--gold);
-      margin: 36px auto;
-    }
+.hero-info {
+  display: inline-flex;
+  gap: 18px;
+  align-items: center;
+  font-size: 12px;
+  color: #7a6840;
+  letter-spacing: 0.08em;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-    .hero-sub {
-      font-size: 13px;
-      letter-spacing: 8px;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 56px;
-    }
+.hero-info span::before { content: '✦'; color: #c9a45a; margin-right: 6px; }
 
-    /* ── BUTTON ── */
-    .btn-inizia {
-      display: inline-block;
-      padding: 18px 56px;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      background: transparent;
-      cursor: pointer;
-      font-family: 'Georgia', 'Times New Roman', serif;
-      font-size: 13px;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      z-index: 1;
-    }
+.dachi-block {
+  margin-bottom: 28px;
+  text-align: left;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    .btn-inizia:hover {
-      background: var(--gold);
-      color: var(--black);
-      box-shadow: 0 0 40px rgba(201,168,76,0.3);
-    }
+.dachi-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c9a45a;
+  margin-bottom: 8px;
+}
 
-    /* ── COLLECTION ── */
-    #collection {
-      padding: 100px 40px;
-      background: var(--dark);
-    }
+.dachi-required {
+  font-size: 11px;
+  color: #9a7430;
+  margin-top: 6px;
+}
 
-    .section-label {
-      text-align: center;
-      font-size: 11px;
-      letter-spacing: 10px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
+.field-input {
+  width: 100%;
+  background: #100e08;
+  border: 1px solid rgba(201,164,90,0.3);
+  border-radius: 6px;
+  padding: 13px 16px;
+  color: #f0ead8;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
 
-    .section-title {
-      text-align: center;
-      font-size: clamp(24px, 4vw, 42px);
-      font-weight: 300;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 60px;
-    }
+.field-input:focus {
+  border-color: #c9a45a;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+.field-input::placeholder { color: #4a3f2a; }
 
-    .grid-item {
-      position: relative;
-      aspect-ratio: 3/4;
-      overflow: hidden;
-      background: #111;
-    }
+.error-msg {
+  font-size: 12px;
+  color: #e05555;
+  margin-top: 8px;
+}
 
-    .grid-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-      display: block;
-    }
+.btn-gold {
+  display: inline-block;
+  background: linear-gradient(135deg, #9a7430, #c9a45a);
+  color: #000;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
 
-    .grid-item:hover img {
-      transform: scale(1.06);
-    }
+.btn-gold:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-gold:active { transform: translateY(0); }
 
-    .grid-item-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 24px;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
+.btn-gold:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
 
-    .grid-item:hover .grid-item-overlay {
-      opacity: 1;
-    }
+.btn-back {
+  background: transparent;
+  color: #6e5f44;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid rgba(110,95,68,0.4);
+  border-radius: 5px;
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
 
-    .grid-item-brand {
-      font-size: 10px;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
+.btn-back:hover { color: #c9a45a; border-color: rgba(201,164,90,0.4); }
 
-    .grid-item-label {
-      font-size: 18px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: 300;
-      color: var(--white);
-    }
+#quiz {
+  display: none;
+  min-height: 100vh;
+  background: #080705;
+}
 
-    /* ── FOOTER ── */
-    footer {
-      padding: 60px 24px;
-      text-align: center;
-      border-top: 1px solid rgba(201,168,76,0.2);
-      background: var(--black);
-    }
+.quiz-header {
+  background: #0c0a06;
+  border-bottom: 1px solid rgba(201,164,90,0.12);
+  padding: 18px 24px;
+  text-align: center;
+}
 
-    footer p {
-      font-size: 11px;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-    }
+.quiz-brand {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a45a;
+}
 
-    footer .footer-brand {
-      font-size: 18px;
-      letter-spacing: 8px;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
+.step {
+  display: none;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
 
-    @media (max-width: 600px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      #collection { padding: 60px 16px; }
-    }
+.step-counter {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6e5f44;
+  margin-bottom: 16px;
+}
 
-    /* ── QUIZ MODAL ── */
-    .quiz-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.92);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-    }
+.progress-bar-wrap {
+  background: #1a1508;
+  border-radius: 4px;
+  height: 4px;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
 
-    .quiz-overlay.active {
-      display: flex;
-    }
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #9a7430, #c9a45a);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
 
-    .quiz-box {
-      background: #0d0d0d;
-      border: 1px solid rgba(201,168,76,0.3);
-      max-width: 580px;
-      width: 100%;
-      padding: 56px 48px;
-      position: relative;
-      animation: fadeUp 0.4s ease;
-    }
+.step h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 600;
+  color: #e8d8b8;
+  line-height: 1.25;
+  margin-bottom: 32px;
+}
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+.opts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
 
-    .quiz-close {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      background: none;
-      border: none;
-      color: var(--gray);
-      font-size: 22px;
-      cursor: pointer;
-      line-height: 1;
-      transition: color 0.2s;
-    }
+.opt-btn {
+  background: #100e08;
+  border: 1px solid rgba(201,164,90,0.2);
+  border-radius: 8px;
+  padding: 16px 20px;
+  color: #c8b89a;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
 
-    .quiz-close:hover { color: var(--gold); }
+.opt-btn:hover {
+  border-color: rgba(201,164,90,0.5);
+  color: #e8d8b8;
+}
 
-    .quiz-eyebrow {
-      font-size: 10px;
-      letter-spacing: 8px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
+.opt-btn.selected {
+  border-color: #c9a45a;
+  background: rgba(201,164,90,0.08);
+  color: #e8d8b8;
+}
 
-    .quiz-progress-bar {
-      width: 100%;
-      height: 1px;
-      background: rgba(201,168,76,0.15);
-      margin-bottom: 40px;
-    }
+.step-nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-    .quiz-progress-fill {
-      height: 100%;
-      background: var(--gold);
-      transition: width 0.4s ease;
-    }
+.form-block {
+  margin-bottom: 24px;
+}
 
-    .quiz-question {
-      font-size: clamp(18px, 3vw, 24px);
-      font-weight: 300;
-      letter-spacing: 1px;
-      color: var(--white);
-      line-height: 1.5;
-      margin-bottom: 36px;
-    }
+.form-block label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c9a45a;
+  margin-bottom: 8px;
+}
 
-    .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+#risultato {
+  display: none;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% 0%, #1a1508 0%, #080705 70%);
+  padding: 60px 24px 80px;
+}
 
-    .quiz-option {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px 20px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: transparent;
-      color: var(--white);
-      font-family: 'Georgia', 'Times New Roman', serif;
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: border-color 0.25s, background 0.25s, color 0.25s;
-      text-align: left;
-      width: 100%;
-    }
+.risultato-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
 
-    .quiz-option:hover {
-      border-color: var(--gold);
-      background: rgba(201,168,76,0.05);
-      color: var(--gold);
-    }
+.ris-badge-pill {
+  display: inline-block;
+  background: rgba(201,164,90,0.1);
+  border: 1px solid rgba(201,164,90,0.35);
+  border-radius: 40px;
+  padding: 7px 22px;
+  font-size: 14px;
+  color: #c9a45a;
+  margin-bottom: 24px;
+}
 
-    .quiz-option-letter {
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: var(--gold);
-      min-width: 18px;
-    }
+.ris-main-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 8vw, 64px);
+  font-weight: 600;
+  color: #c9a45a;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
 
-    /* ── RESULT ── */
-    .quiz-result {
-      display: none;
-      text-align: center;
-    }
+.ris-desc {
+  font-size: 16px;
+  color: #c8b89a;
+  max-width: 520px;
+  margin: 0 auto 40px;
+  line-height: 1.75;
+}
 
-    .quiz-result.active { display: block; }
+.ris-riepilogo {
+  background: #100e08;
+  border: 1px solid rgba(201,164,90,0.15);
+  border-radius: 10px;
+  padding: 28px 28px;
+  text-align: left;
+  margin-bottom: 40px;
+}
 
-    .quiz-result-icon {
-      font-size: 48px;
-      margin-bottom: 24px;
-    }
+.ris-riepilogo p {
+  font-size: 14px;
+  color: #a09070;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(201,164,90,0.08);
+  line-height: 1.5;
+}
 
-    .quiz-result-label {
-      font-size: 10px;
-      letter-spacing: 8px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 14px;
-    }
+.ris-riepilogo p:last-child { border-bottom: none; }
+.ris-riepilogo strong { color: #c9a45a; font-weight: 600; }
 
-    .quiz-result-title {
-      font-size: clamp(22px, 4vw, 32px);
-      font-weight: 300;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 20px;
-    }
+.cta-box {
+  background: #100e08;
+  border: 1px solid rgba(201,164,90,0.2);
+  border-radius: 12px;
+  padding: 36px 28px;
+  margin-bottom: 32px;
+}
 
-    .quiz-result-desc {
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--gray);
-      margin-bottom: 40px;
-    }
+.cta-box h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #c9a45a;
+  margin-bottom: 12px;
+}
 
-    .quiz-result-divider {
-      width: 60px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto 40px;
-    }
+.cta-box p {
+  font-size: 14px;
+  color: #a09070;
+  margin-bottom: 24px;
+  line-height: 1.65;
+}
 
-    .btn-restart {
-      display: inline-block;
-      padding: 14px 40px;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      background: transparent;
-      cursor: pointer;
-      font-family: 'Georgia', 'Times New Roman', serif;
-      font-size: 11px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      transition: background 0.3s, color 0.3s;
-    }
+.wa-confirm {
+  background: rgba(26,170,106,0.1);
+  border: 1px solid rgba(26,170,106,0.3);
+  border-radius: 8px;
+  padding: 16px 20px;
+  color: #1aaa6a;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 16px;
+}
 
-    .btn-restart:hover {
-      background: var(--gold);
-      color: var(--black);
-    }
+footer {
+  background: #0c0a06;
+  border-top: 1px solid rgba(201,164,90,0.1);
+  padding: 40px 24px;
+  text-align: center;
+}
 
-    @media (max-width: 560px) {
-      .quiz-box { padding: 40px 24px; }
-    }
-  </style>
+.footer-brand-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a45a;
+  margin-bottom: 10px;
+}
+
+.footer-brand-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #e0c07a;
+  margin-bottom: 14px;
+}
+
+.footer-agency {
+  font-size: 11px;
+  color: #4a3f2a;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 480px) {
+  .step-nav { flex-direction: column-reverse; align-items: stretch; }
+  .btn-gold, .btn-back { text-align: center; width: 100%; }
+}
+</style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <p class="hero-eyebrow">Luxury Boutique</p>
-    <h1 class="hero-title">
-      The Wonders Team
-      <span>by Carolina</span>
-    </h1>
-    <div class="divider"></div>
-    <p class="hero-sub">Gucci &middot; Louis Vuitton &middot; Exclusive Collection</p>
-    <button class="btn-inizia" onclick="openQuiz()">Inizia Ora</button>
-  </section>
+<form name="wonders-team-carolina-quiz" netlify data-netlify="true" hidden>
+  <input type="hidden" name="form-name" value="wonders-team-carolina-quiz">
+  <input type="hidden" name="nome">
+  <input type="hidden" name="whatsapp">
+  <input type="hidden" name="email">
+  <input type="hidden" name="profilo">
+  <input type="hidden" name="da-chi">
+</form>
 
-  <!-- COLLECTION -->
-  <section id="collection">
-    <p class="section-label">Esplora</p>
-    <h2 class="section-title">La Collezione</h2>
-    <div class="grid">
-      <div class="grid-item">
-        <img src="borsa%20gg1.jpg" alt="Borsa GG" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Gucci</p>
-          <p class="grid-item-label">Borsa GG</p>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img src="diante%2C%20b%20gucci%201.png" alt="Bag Collection" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Gucci</p>
-          <p class="grid-item-label">Bag Collection</p>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img src="diamante%2C%20b%20gucci%202.png" alt="Bag Collection" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Gucci</p>
-          <p class="grid-item-label">Bag Collection</p>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img src="diamante%20b%20gucci%203.png" alt="Bag Collection" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Gucci</p>
-          <p class="grid-item-label">Bag Collection</p>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img src="diamante%20%2C%20b%20gucci%204.png" alt="Bag Collection" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Gucci</p>
-          <p class="grid-item-label">Bag Collection</p>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img src="diamante%2C%20camicia%20gucci.png" alt="Camicia Gucci" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Gucci</p>
-          <p class="grid-item-label">Camicia</p>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img src="diamante%2C%20camicia%20gucci%202.png" alt="Camicia Gucci 2" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Gucci</p>
-          <p class="grid-item-label">Camicia</p>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img src="diamante%2C%20lv%202.png" alt="LV Collection" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Louis Vuitton</p>
-          <p class="grid-item-label">LV Collection</p>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img src="diamante.%20lv%203.png" alt="LV Collection" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Louis Vuitton</p>
-          <p class="grid-item-label">LV Collection</p>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img src="diamante%2C%20scarpe%20lv.png" alt="Scarpe LV" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Louis Vuitton</p>
-          <p class="grid-item-label">Scarpe LV</p>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img src="diamante%2C%20scarpe%20lv%201.png" alt="Scarpe LV 1" loading="lazy" />
-        <div class="grid-item-overlay">
-          <p class="grid-item-brand">Louis Vuitton</p>
-          <p class="grid-item-label">Scarpe LV</p>
-        </div>
-      </div>
+<section id="hero" style="display:flex;">
+  <div class="hero-inner">
+    <div class="hero-badge">THE WONDERS TEAM BY CAROLINA</div>
+    <p class="hero-title-top">Entra nel</p>
+    <h1 class="hero-title">THE WONDERS TEAM</h1>
+    <p class="hero-subtitle">Rispondi a 12 domande e scopri se sei pronta per entrare nel Wonders Team — come Ambassador o come Cliente VIP.</p>
+    <p class="hero-note">Non ci sono risposte giuste o sbagliate — solo le tue.</p>
+    <div class="hero-info">
+      <span>12 domande</span>
+      <span>~5 minuti</span>
+      <span>Risultato immediato</span>
     </div>
-  </section>
+    <div class="dachi-block">
+      <label class="dachi-label" for="inp-dachi">Da chi stai vedendo questo QUIZ?</label>
+      <input class="field-input" type="text" id="inp-dachi" placeholder="Da chi stai vedendo questo QUIZ">
+      <p class="dachi-required">&#9888;&#65039; OBBLIGATORIO</p>
+      <div id="dachi-error" class="error-msg" style="display:none;">&#10060; Questo campo &egrave; obbligatorio per continuare</div>
+    </div>
+    <button class="btn-gold" onclick="startQuiz()">INIZIA ORA &#10022;</button>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p class="footer-brand">The Wonders Team</p>
-    <p>&copy; 2025 by Carolina &middot; All rights reserved</p>
-  </footer>
+<section id="quiz">
+  <div class="quiz-header">
+    <div class="quiz-brand">THE WONDERS TEAM BY CAROLINA</div>
+  </div>
 
-  <!-- QUIZ MODAL -->
-  <div class="quiz-overlay" id="quizOverlay" onclick="handleOverlayClick(event)">
-    <div class="quiz-box" id="quizBox">
-      <button class="quiz-close" onclick="closeQuiz()" aria-label="Chiudi">&times;</button>
-
-      <div id="quizContent">
-        <p class="quiz-eyebrow">Scopri il tuo stile</p>
-        <div class="quiz-progress-bar">
-          <div class="quiz-progress-fill" id="progressFill" style="width:0%"></div>
-        </div>
-        <p class="quiz-question" id="quizQuestion"></p>
-        <div class="quiz-options" id="quizOptions"></div>
-      </div>
-
-      <div class="quiz-result" id="quizResult">
-        <div class="quiz-result-icon" id="resultIcon"></div>
-        <p class="quiz-result-label">Il tuo stile è</p>
-        <h2 class="quiz-result-title" id="resultTitle"></h2>
-        <div class="quiz-result-divider"></div>
-        <p class="quiz-result-desc" id="resultDesc"></p>
-        <button class="btn-restart" onclick="restartQuiz()">Ricomincia</button>
-      </div>
+  <div class="step" id="step-1">
+    <p class="step-counter">Domanda 1 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:8.33%;"></div></div>
+    <h2>Cosa ti incuriosisce di pi&ugrave; di questo progetto?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q1','cliente')">Conoscere i prodotti e usarli per me &mdash; mi interessa la beauty routine e i vantaggi personali</button>
+      <button class="opt-btn" onclick="select(this,'q1','business')">Avere il mio shop online e gestire un&apos;attivit&agrave; &mdash; voglio costruire qualcosa di mio e guadagnare</button>
+      <button class="opt-btn" onclick="select(this,'q1','entrambi')">Entrambe le cose &mdash; amo i prodotti e l&apos;idea di un business digitale mi affascina</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-1" onclick="nextQ(1)" disabled>AVANTI &#10022;</button>
     </div>
   </div>
 
-  <script>
-    const questions = [
-      {
-        text: "Qual è il tuo accessorio luxury preferito?",
-        options: [
-          { letter: "A", text: "Borsa iconica", score: { gucci: 2, lv: 1 } },
-          { letter: "B", text: "Scarpe da sogno", score: { gucci: 1, lv: 2 } },
-          { letter: "C", text: "Cintura con logo", score: { gucci: 1, lv: 2 } },
-          { letter: "D", text: "Profumo esclusivo", score: { gucci: 2, lv: 1 } }
-        ]
-      },
-      {
-        text: "Come descriveresti il tuo stile?",
-        options: [
-          { letter: "A", text: "Classico ed elegante", score: { gucci: 1, lv: 2 } },
-          { letter: "B", text: "Bold e contemporaneo", score: { gucci: 2, lv: 1 } },
-          { letter: "C", text: "Minimalista e raffinato", score: { gucci: 1, lv: 2 } },
-          { letter: "D", text: "Eccentrico e creativo", score: { gucci: 2, lv: 1 } }
-        ]
-      },
-      {
-        text: "Qual è la tua palette colori preferita?",
-        options: [
-          { letter: "A", text: "Nero & Oro", score: { gucci: 2, lv: 1 } },
-          { letter: "B", text: "Marrone & Beige", score: { gucci: 1, lv: 2 } },
-          { letter: "C", text: "Nude & Crema", score: { gucci: 1, lv: 2 } },
-          { letter: "D", text: "Colori vivaci", score: { gucci: 2, lv: 1 } }
-        ]
-      },
-      {
-        text: "Dove ti immagini con il tuo pezzo luxury?",
-        options: [
-          { letter: "A", text: "A una cena esclusiva", score: { gucci: 2, lv: 1 } },
-          { letter: "B", text: "In viaggio per il mondo", score: { gucci: 1, lv: 2 } },
-          { letter: "C", text: "A uno show di moda", score: { gucci: 2, lv: 1 } },
-          { letter: "D", text: "Nel quotidiano con stile", score: { gucci: 1, lv: 2 } }
-        ]
-      }
-    ];
+  <div class="step" id="step-2">
+    <p class="step-counter">Domanda 2 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:16.66%;"></div></div>
+    <h2>Come descriveresti il tuo rapporto con i prodotti beauty?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q2','appassionata')">Sono appassionata &mdash; amo scoprire nuovi brand e ho una routine skincare/makeup definita</button>
+      <button class="opt-btn" onclick="select(this,'q2','selettiva')">Sono selettiva &mdash; compro pochi prodotti ma di qualit&agrave;, mi informo prima di acquistare</button>
+      <button class="opt-btn" onclick="select(this,'q2','pratica')">Sono pratica &mdash; cerco prodotti che funzionino senza troppa ricerca</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-2" onclick="nextQ(2)" disabled>AVANTI &#10022;</button>
+      <button class="btn-back" onclick="prevQ(2)">&larr; Indietro</button>
+    </div>
+  </div>
 
-    const results = {
-      gucci: {
-        icon: "✦",
-        title: "L'Anima Gucci",
-        desc: "Sei audace, creativa e non temi di fare una dichiarazione. Il tuo spirito rispecchia l'essenza di Gucci: lusso senza regole, bellezza senza tempo. La collezione di borse e capi Gucci è pensata per te."
-      },
-      lv: {
-        icon: "◆",
-        title: "L'Icona Louis Vuitton",
-        desc: "Porti il lusso con naturalezza e visione. Come Louis Vuitton, sai che il vero stile nasce dalla qualità e dalla storia. Ogni viaggio è un'avventura, ogni accessorio un'opera d'arte."
-      },
-      tie: {
-        icon: "✧",
-        title: "La Fashion Connoisseur",
-        desc: "Hai gusto impeccabile e non ti limiti a un solo mondo. Sei capace di mixare Gucci e Louis Vuitton con maestria, creando uno stile unico che racconta la tua personalità straordinaria."
-      }
-    };
+  <div class="step" id="step-3">
+    <p class="step-counter">Domanda 3 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:25%;"></div></div>
+    <h2>Hai mai condiviso un prodotto o servizio con amici o familiari?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q3','spesso')">S&igrave;, spesso &mdash; quando trovo qualcosa che funziona lo consiglio naturalmente</button>
+      <button class="opt-btn" onclick="select(this,'q3','qualchetimes')">Qualche volta &mdash; se qualcuno me lo chiede o se il prodotto mi ha davvero sorpreso</button>
+      <button class="opt-btn" onclick="select(this,'q3','raramente')">Raramente &mdash; non sono il tipo che consiglia cose agli altri</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-3" onclick="nextQ(3)" disabled>AVANTI &#10022;</button>
+      <button class="btn-back" onclick="prevQ(3)">&larr; Indietro</button>
+    </div>
+  </div>
 
-    let current = 0;
-    let scores = { gucci: 0, lv: 0 };
+  <div class="step" id="step-4">
+    <p class="step-counter">Domanda 4 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:33.33%;"></div></div>
+    <h2>Come ti senti all&apos;idea di parlare di un prodotto che ami sui social?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q4','naturale')">Mi viene naturale &mdash; sono gi&agrave; attiva sui social e mi piace condividere</button>
+      <button class="opt-btn" onclick="select(this,'q4','curioso')">Ci penserei &mdash; non l&apos;ho mai fatto ma l&apos;idea mi incuriosisce</button>
+      <button class="opt-btn" onclick="select(this,'q4','imbarazzo')">Non fa per me &mdash; preferisco la riservatezza</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-4" onclick="nextQ(4)" disabled>AVANTI &#10022;</button>
+      <button class="btn-back" onclick="prevQ(4)">&larr; Indietro</button>
+    </div>
+  </div>
 
-    function openQuiz() {
-      current = 0;
-      scores = { gucci: 0, lv: 0 };
-      document.getElementById('quizOverlay').classList.add('active');
-      document.body.style.overflow = 'hidden';
-      showQuestion();
-    }
+  <div class="step" id="step-5">
+    <p class="step-counter">Domanda 5 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:41.66%;"></div></div>
+    <h2>Quante ore a settimana potresti dedicare a questo progetto?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q5','poco')">Qualche ora &mdash; massimo 5 ore/settimana, voglio qualcosa di flessibile</button>
+      <button class="opt-btn" onclick="select(this,'q5','medio')">10-15 ore/settimana &mdash; ho spazio nella mia agenda se il progetto vale</button>
+      <button class="opt-btn" onclick="select(this,'q5','full')">Sono disposta a impegnarmi seriamente &mdash; oltre 15 ore/settimana</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-5" onclick="nextQ(5)" disabled>AVANTI &#10022;</button>
+      <button class="btn-back" onclick="prevQ(5)">&larr; Indietro</button>
+    </div>
+  </div>
 
-    function closeQuiz() {
-      document.getElementById('quizOverlay').classList.remove('active');
-      document.body.style.overflow = '';
-      document.getElementById('quizResult').classList.remove('active');
-      document.getElementById('quizContent').style.display = '';
-    }
+  <div class="step" id="step-6">
+    <p class="step-counter">Domanda 6 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:50%;"></div></div>
+    <h2>Come gestisci i tuoi acquisti beauty di solito?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q6','online')">Prevalentemente online &mdash; cerco recensioni, comparo prezzi, compro da casa</button>
+      <button class="opt-btn" onclick="select(this,'q6','negozio')">In negozio fisico &mdash; mi piace toccare e provare prima di comprare</button>
+      <button class="opt-btn" onclick="select(this,'q6','entrambi2')">Entrambi &mdash; dipende dal prodotto e dall&apos;umore</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-6" onclick="nextQ(6)" disabled>AVANTI &#10022;</button>
+      <button class="btn-back" onclick="prevQ(6)">&larr; Indietro</button>
+    </div>
+  </div>
 
-    function handleOverlayClick(e) {
-      if (e.target === document.getElementById('quizOverlay')) closeQuiz();
-    }
+  <div class="step" id="step-7">
+    <p class="step-counter">Domanda 7 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:58.33%;"></div></div>
+    <h2>Hai una presenza sui social media?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q7','si_attiva')">S&igrave;, sono abbastanza attiva &mdash; ho un profilo curato e pubblico regolarmente</button>
+      <button class="opt-btn" onclick="select(this,'q7','si_poco')">Ho i social ma li uso poco &mdash; potrei svilupparli se avessi un motivo</button>
+      <button class="opt-btn" onclick="select(this,'q7','no_imparo')">Non molto, ma sono pronta a imparare &mdash; parto da zero ma sono motivata</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-7" onclick="nextQ(7)" disabled>AVANTI &#10022;</button>
+      <button class="btn-back" onclick="prevQ(7)">&larr; Indietro</button>
+    </div>
+  </div>
 
-    function showQuestion() {
-      const q = questions[current];
-      const fill = ((current) / questions.length) * 100;
-      document.getElementById('progressFill').style.width = fill + '%';
-      document.getElementById('quizQuestion').textContent = q.text;
+  <div class="step" id="step-8">
+    <p class="step-counter">Domanda 8 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:66.66%;"></div></div>
+    <h2>Qual &egrave; il tuo obiettivo economico con questo progetto?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q8','extra')">Un extra mensile di 200-500&euro; &mdash; per arrotondare o coprire spese personali</button>
+      <button class="opt-btn" onclick="select(this,'q8','medio_ec')">Un reddito di 500-1.500&euro;/mese &mdash; che mi dia vera indipendenza</button>
+      <button class="opt-btn" onclick="select(this,'q8','alto')">Oltre 1.500&euro;/mese &mdash; voglio che diventi una fonte di reddito principale</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-8" onclick="nextQ(8)" disabled>AVANTI &#10022;</button>
+      <button class="btn-back" onclick="prevQ(8)">&larr; Indietro</button>
+    </div>
+  </div>
 
-      const optContainer = document.getElementById('quizOptions');
-      optContainer.innerHTML = '';
-      q.options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'quiz-option';
-        btn.innerHTML = `<span class="quiz-option-letter">${opt.letter}</span>${opt.text}`;
-        btn.onclick = () => selectOption(opt.score);
-        optContainer.appendChild(btn);
-      });
-    }
+  <div class="step" id="step-9">
+    <p class="step-counter">Domanda 9 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:75%;"></div></div>
+    <h2>Cosa ti frena di pi&ugrave; quando valuti qualcosa di nuovo?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q9','tempo')">Il tempo &mdash; ho gi&agrave; molti impegni e fatico ad aggiungere cose</button>
+      <button class="opt-btn" onclick="select(this,'q9','fiducia')">La fiducia &mdash; ho bisogno di capire bene prima di impegnarmi</button>
+      <button class="opt-btn" onclick="select(this,'q9','giudizio')">Il giudizio degli altri &mdash; mi preoccupa cosa potrebbero pensare</button>
+      <button class="opt-btn" onclick="select(this,'q9','niente')">Poco o niente &mdash; quando qualcosa mi convince, mi lancio</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-9" onclick="nextQ(9)" disabled>AVANTI &#10022;</button>
+      <button class="btn-back" onclick="prevQ(9)">&larr; Indietro</button>
+    </div>
+  </div>
 
-    function selectOption(score) {
-      scores.gucci += score.gucci;
-      scores.lv += score.lv;
-      current++;
+  <div class="step" id="step-10">
+    <p class="step-counter">Domanda 10 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:83.33%;"></div></div>
+    <h2>Hai gi&agrave; avuto esperienze con il network marketing o vendita diretta?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q10','si_bene')">S&igrave;, con risultati positivi &mdash; ho gi&agrave; capito come funziona il meccanismo</button>
+      <button class="opt-btn" onclick="select(this,'q10','si_male')">S&igrave;, ma non &egrave; andata bene &mdash; ho avuto un&apos;esperienza negativa</button>
+      <button class="opt-btn" onclick="select(this,'q10','no')">No, sarebbe la prima volta &mdash; parto completamente da zero</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-10" onclick="nextQ(10)" disabled>AVANTI &#10022;</button>
+      <button class="btn-back" onclick="prevQ(10)">&larr; Indietro</button>
+    </div>
+  </div>
 
-      if (current < questions.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
-    }
+  <div class="step" id="step-11">
+    <p class="step-counter">Domanda 11 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:91.66%;"></div></div>
+    <h2>Come preferisci essere contattata da Carolina dopo il quiz?</h2>
+    <div class="opts">
+      <button class="opt-btn" onclick="select(this,'q11','whatsapp')">WhatsApp &mdash; veloce e informale, preferisco messaggi</button>
+      <button class="opt-btn" onclick="select(this,'q11','call')">Telefonata o videocall &mdash; voglio parlare direttamente</button>
+      <button class="opt-btn" onclick="select(this,'q11','email')">Email &mdash; preferisco avere tutto per iscritto</button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next-11" onclick="nextQ(11)" disabled>AVANTI &#10022;</button>
+      <button class="btn-back" onclick="prevQ(11)">&larr; Indietro</button>
+    </div>
+  </div>
 
-    function showResult() {
-      document.getElementById('progressFill').style.width = '100%';
-      document.getElementById('quizContent').style.display = 'none';
+  <div class="step" id="step-12">
+    <p class="step-counter">Domanda 12 di 12</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:100%;"></div></div>
+    <h2>Quasi fatto! Inserisci i tuoi dati per ricevere il risultato.</h2>
+    <div class="form-block">
+      <label for="inp-dachi2">&#10022; Da chi stai vedendo questo QUIZ? *</label>
+      <input class="field-input" type="text" id="inp-dachi2" placeholder="Da chi stai vedendo questo QUIZ">
+    </div>
+    <div class="form-block">
+      <label for="inp-nome">Il tuo nome *</label>
+      <input class="field-input" type="text" id="inp-nome" placeholder="Come ti chiami?">
+    </div>
+    <div class="form-block">
+      <label for="inp-tel">WhatsApp *</label>
+      <input class="field-input" type="tel" id="inp-tel" placeholder="+39 333 000 0000">
+    </div>
+    <div class="form-block">
+      <label for="inp-email">Email (facoltativa)</label>
+      <input class="field-input" type="email" id="inp-email" placeholder="La tua email">
+    </div>
+    <div class="step-nav">
+      <button class="btn-gold" id="next12" onclick="mostraRisultato()">INVIA E SCOPRI IL TUO PROFILO &#10022;</button>
+      <button class="btn-back" onclick="prevQ(12)">&larr; Indietro</button>
+    </div>
+  </div>
+</section>
 
-      let key;
-      if (scores.gucci > scores.lv) key = 'gucci';
-      else if (scores.lv > scores.gucci) key = 'lv';
-      else key = 'tie';
+<section id="risultato">
+  <div class="risultato-inner">
+    <div class="ris-badge-pill" id="ris-badge"></div>
+    <h2 class="ris-main-title" id="ris-title"></h2>
+    <p class="ris-desc" id="ris-desc"></p>
+    <div class="ris-riepilogo" id="ris-riepilogo"></div>
 
-      const r = results[key];
-      document.getElementById('resultIcon').textContent = r.icon;
-      document.getElementById('resultTitle').textContent = r.title;
-      document.getElementById('resultDesc').textContent = r.desc;
-      document.getElementById('quizResult').classList.add('active');
-    }
+    <div class="cta-box" id="cta-zoom-box" style="display:none;">
+      <h3>Partecipa alla Zoom &#10022;</h3>
+      <p>Carolina ha gi&agrave; visto il tuo profilo. Conferma la tua presenza alla prossima Zoom.</p>
+      <button class="btn-gold" id="btn-zoom-confirm" onclick="confermaZoom()">PARTECIPERÒ ALLA ZOOM &#10022;</button>
+      <div class="wa-confirm" id="wa-group-box" style="display:none;">&#10003; Perfetto! A presto alla Zoom. Ti contatteremo al pi&ugrave; presto.</div>
+    </div>
 
-    function restartQuiz() {
-      current = 0;
-      scores = { gucci: 0, lv: 0 };
-      document.getElementById('quizResult').classList.remove('active');
-      document.getElementById('quizContent').style.display = '';
-      showQuestion();
-    }
+    <div class="cta-box" id="cta-shop-box" style="display:none;">
+      <h3>Benvenuta come Cliente VIP &#128142;</h3>
+      <p>Sei curiosa di scoprire i prodotti di punta del Wonders Team. Chi ti ha condiviso il quiz ti invier&agrave; il link personalizzato.</p>
+      <button class="btn-gold" id="btn-vip-interest" onclick="inviaInteresseVip()">SONO INTERESSATA A DIVENTARE CLIENTE VIP &#10022;</button>
+      <div class="wa-confirm" id="vip-confirm" style="display:none;">&#10003; Perfetto! Chi ti ha condiviso il quiz ricever&agrave; il tuo contatto. &#128154;</div>
+    </div>
+  </div>
+</section>
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeQuiz();
-    });
-  </script>
+<footer>
+  <p class="footer-brand-tag">THE WONDERS TEAM BY CAROLINA</p>
+  <h3 class="footer-brand-title">THE WONDERS TEAM BY CAROLINA</h3>
+  <p class="footer-agency">EnrietaBiz AI Agency &middot; Unlimited &#10022; &mdash; Powered by AI</p>
+</footer>
 
+<script>
+var answers = {};
+var currentProfilo = '';
+
+function startQuiz() {
+  var v = document.getElementById('inp-dachi').value.trim();
+  if (!v) {
+    document.getElementById('inp-dachi').style.borderColor = '#e05555';
+    document.getElementById('dachi-error').style.display = 'block';
+    document.getElementById('inp-dachi').focus();
+    return;
+  }
+  document.getElementById('hero').style.display = 'none';
+  document.getElementById('quiz').style.display = 'block';
+  document.getElementById('step-1').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function select(el, qId, val) {
+  answers[qId] = val;
+  var opts = el.parentNode.getElementsByClassName('opt-btn');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.remove('selected');
+  }
+  el.classList.add('selected');
+  var num = qId.replace('q', '');
+  var nb = document.getElementById('next-' + num);
+  if (nb) { nb.disabled = false; }
+}
+
+function nextQ(n) {
+  document.getElementById('step-' + n).style.display = 'none';
+  document.getElementById('step-' + (n + 1)).style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function prevQ(n) {
+  document.getElementById('step-' + n).style.display = 'none';
+  document.getElementById('step-' + (n - 1)).style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function mostraRisultato() {
+  var nome = document.getElementById('inp-nome').value.trim();
+  var tel = document.getElementById('inp-tel').value.trim();
+  if (!nome) {
+    document.getElementById('inp-nome').style.borderColor = '#e05555';
+    document.getElementById('inp-nome').focus();
+    return;
+  }
+  if (!tel) {
+    document.getElementById('inp-tel').style.borderColor = '#e05555';
+    document.getElementById('inp-tel').focus();
+    return;
+  }
+  var focus = answers['q1'] || '';
+  var obiettivo = answers['q8'] || '';
+  var profilo, badge, desc;
+  if (focus === 'cliente') {
+    profilo = 'La Cliente Consapevole';
+    badge = 'Amante del Beauty';
+    desc = 'Sei curiosa di scoprire i prodotti di punta del Wonders Team. Il tuo approccio è consapevole: vuoi capire prima di decidere. Entra nella community, scopri i prodotti e lasciati guidare da chi conosce il brand.';
+  } else if (focus === 'business' || obiettivo === 'alto') {
+    profilo = 'La Networker Ambiziosa';
+    badge = 'Business Builder';
+    desc = "Hai le idee chiare: vuoi costruire qualcosa di vero. Il tuo profilo è quello di chi può crescere velocemente nel nostro team, specialmente se hai già una rete di relazioni o presenza online.";
+  } else {
+    profilo = 'La Protagonista del suo futuro';
+    badge = 'Beauty & Business';
+    desc = "Hai capito che la nostra community non ti obbliga a scegliere: puoi goderti i prodotti E costruire una piccola attività. Il tuo profilo è quello di chi cresce in modo naturale.";
+  }
+  currentProfilo = profilo;
+  document.getElementById('ris-title').textContent = profilo;
+  document.getElementById('ris-badge').textContent = badge;
+  document.getElementById('ris-desc').textContent = desc;
+  var q1Map = {'cliente':'Conoscere i prodotti e usarli per me','business':'Avere il mio shop online','entrambi':'Entrambe le cose'};
+  var q5Map = {'poco':'Max 5h/settimana','medio':'10-15 ore/settimana','full':'Oltre 15 ore/settimana'};
+  var q7Map = {'si_attiva':'Sì, sono attiva','si_poco':'Ho i social ma poco','no_imparo':'Pronta a imparare'};
+  var q8Map = {'extra':'200-500€/mese','medio_ec':'500-1.500€/mese','alto':'Oltre 1.500€/mese'};
+  var q10Map = {'si_bene':'Sì, positivo','si_male':'Sì, negativo','no':'Prima volta'};
+  var riq = '';
+  riq += '<p><strong>Nome:</strong> ' + nome + '</p>';
+  riq += '<p><strong>WhatsApp:</strong> ' + tel + '</p>';
+  riq += '<p><strong>Curiosità:</strong> ' + (q1Map[answers['q1']] || '—') + '</p>';
+  riq += '<p><strong>Ore disponibili:</strong> ' + (q5Map[answers['q5']] || '—') + '</p>';
+  riq += '<p><strong>Social:</strong> ' + (q7Map[answers['q7']] || '—') + '</p>';
+  riq += '<p><strong>Obiettivo:</strong> ' + (q8Map[answers['q8']] || '—') + '</p>';
+  riq += '<p><strong>Esperienza NM:</strong> ' + (q10Map[answers['q10']] || '—') + '</p>';
+  document.getElementById('ris-riepilogo').innerHTML = riq;
+  if (focus === 'cliente') {
+    document.getElementById('cta-shop-box').style.display = 'block';
+    document.getElementById('cta-zoom-box').style.display = 'none';
+  } else {
+    document.getElementById('cta-zoom-box').style.display = 'block';
+    document.getElementById('cta-shop-box').style.display = 'none';
+  }
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('risultato').style.display = 'block';
+  window.scrollTo(0, 0);
+  inviaNetlify();
+}
+
+function confermaZoom() {
+  document.getElementById('btn-zoom-confirm').style.display = 'none';
+  document.getElementById('wa-group-box').style.display = 'block';
+}
+
+function inviaInteresseVip() {
+  document.getElementById('btn-vip-interest').style.display = 'none';
+  document.getElementById('vip-confirm').style.display = 'block';
+  inviaNetlify();
+}
+
+function inviaNetlify() {
+  var nv = document.getElementById('inp-nome').value || '';
+  var tv = document.getElementById('inp-tel').value || '';
+  var ev = document.getElementById('inp-email').value || '';
+  var d2 = document.getElementById('inp-dachi2').value || '';
+  var d1 = document.getElementById('inp-dachi').value || '';
+  var dv = d2 || d1;
+  var fd = new FormData();
+  fd.append('form-name', 'wonders-team-carolina-quiz');
+  fd.append('nome', nv);
+  fd.append('whatsapp', tv);
+  fd.append('email', ev);
+  fd.append('profilo', currentProfilo);
+  fd.append('da-chi', dv);
+  fetch('/', { method: 'POST', body: fd });
+}
+</script>
 </body>
 </html>
