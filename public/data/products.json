@@ -1,0 +1,220 @@
+{
+  "shipping_threshold": 200,
+  "currency": "€",
+  "products": [
+    {
+      "id": "gucci-marmont-matelasse",
+      "name": "GG Marmont Matelassé",
+      "brand": "Gucci",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 890,
+      "retail": 2200,
+      "image": "gucci-bag-gg-marmont.jpg",
+      "stock": 1,
+      "featured": true,
+      "description": "Borsa GG Marmont in pelle matelassé, doppia G antichizzata, catena a maglia oro spazzolato. Apertura magnetica, interno in microfibra, tasca interna con zip.",
+      "specs": {
+        "Materiale": "Pelle matelassé 100%",
+        "Dimensioni": "26 × 15 × 7 cm",
+        "Tracolla": "Catena regolabile 56 cm",
+        "Condizione": "Nuovo con dustbag e cartellini",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    },
+    {
+      "id": "gucci-diana-tote",
+      "name": "Borsa Tote in Pelle Bamboo",
+      "brand": "Gucci",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 1240,
+      "retail": 2980,
+      "image": "gucci-bag-01.png",
+      "stock": 1,
+      "featured": true,
+      "description": "Tote bag in pelle liscia con manici in bamboo lucido, dettaglio nappina, finiture oro chiaro. Spazio per laptop fino a 13''.",
+      "specs": {
+        "Materiale": "Pelle vitello 100%",
+        "Dimensioni": "37 × 28 × 14 cm",
+        "Manici": "Bamboo naturale",
+        "Condizione": "Nuovo con dustbag",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    },
+    {
+      "id": "gucci-jackie-1961",
+      "name": "Hobo Stampa Heritage",
+      "brand": "Gucci",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 980,
+      "retail": 2400,
+      "image": "gucci-bag-02.png",
+      "stock": 1,
+      "description": "Borsa hobo con tela heritage, finiture in pelle, ferramenta dorata. Tracolla rimovibile.",
+      "specs": {
+        "Materiale": "Tela GG + pelle",
+        "Dimensioni": "30 × 19 × 8 cm",
+        "Tracolla": "Rimovibile, regolabile",
+        "Condizione": "Nuovo con dustbag",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    },
+    {
+      "id": "gucci-padlock-supreme",
+      "name": "Padlock Supreme",
+      "brand": "Gucci",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 780,
+      "retail": 1890,
+      "image": "gucci-bag-03.png",
+      "stock": 2,
+      "description": "Borsa Padlock in tela GG Supreme con chiusura a lucchetto, manico in pelle, tracolla a catena regolabile.",
+      "specs": {
+        "Materiale": "Tela GG Supreme + pelle",
+        "Dimensioni": "30 × 19 × 10 cm",
+        "Tracolla": "Catena 60–110 cm",
+        "Condizione": "Nuovo con dustbag",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    },
+    {
+      "id": "gucci-bamboo-1947",
+      "name": "Bamboo 1947",
+      "brand": "Gucci",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 1490,
+      "retail": 3400,
+      "image": "gucci-bag-04.png",
+      "stock": 1,
+      "featured": true,
+      "description": "Iconica borsa con manico in bamboo lavorato a mano, in pelle a grana, chiusura a girello. Edizione 1947.",
+      "specs": {
+        "Materiale": "Pelle a grana fine",
+        "Dimensioni": "28 × 19 × 10 cm",
+        "Manico": "Bamboo naturale lucido",
+        "Condizione": "Nuovo con dustbag",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    },
+    {
+      "id": "gucci-shirt-cotton-gg",
+      "name": "Camicia Cotone GG",
+      "brand": "Gucci",
+      "category": "Abbigliamento",
+      "subcategory": "Camicie",
+      "price": 390,
+      "retail": 980,
+      "image": "gucci-shirt-01.png",
+      "stock": 3,
+      "description": "Camicia in cotone con stampa GG all-over, vestibilità regolare, bottoni in madreperla.",
+      "specs": {
+        "Materiale": "Cotone 100%",
+        "Taglie": "S — M — L",
+        "Vestibilità": "Regular",
+        "Condizione": "Nuovo con cartellino",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    },
+    {
+      "id": "gucci-shirt-silk-print",
+      "name": "Camicia Seta Stampa",
+      "brand": "Gucci",
+      "category": "Abbigliamento",
+      "subcategory": "Camicie",
+      "price": 480,
+      "retail": 1290,
+      "image": "gucci-shirt-02.png",
+      "stock": 2,
+      "description": "Camicia in seta con stampa decorativa, colletto a punta, polsini con bottone.",
+      "specs": {
+        "Materiale": "Seta 100%",
+        "Taglie": "S — M — L",
+        "Vestibilità": "Regular",
+        "Condizione": "Nuovo con cartellino",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    },
+    {
+      "id": "lv-pochette-metis",
+      "name": "Pochette Metis Monogram",
+      "brand": "Louis Vuitton",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 1280,
+      "retail": 2650,
+      "image": "lv-item-03.png",
+      "stock": 1,
+      "featured": true,
+      "description": "Tracolla compatta in tela Monogram con chiusura S-lock, interno in pelle. Tracolla regolabile.",
+      "specs": {
+        "Materiale": "Tela Monogram",
+        "Dimensioni": "25 × 19 × 9 cm",
+        "Tracolla": "Pelle, regolabile",
+        "Condizione": "Nuovo con dustbag",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    },
+    {
+      "id": "lv-neverfull-mm",
+      "name": "Tote Bag Monogram",
+      "brand": "Louis Vuitton",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 1180,
+      "retail": 2350,
+      "image": "lv-item-02.png",
+      "stock": 1,
+      "description": "Tote bag classica in tela Monogram, manici in pelle naturale, pochette interna inclusa.",
+      "specs": {
+        "Materiale": "Tela Monogram + pelle naturale",
+        "Dimensioni": "32 × 29 × 17 cm",
+        "Manici": "21 cm",
+        "Condizione": "Nuovo con dustbag",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    },
+    {
+      "id": "lv-run-away-sneakers",
+      "name": "Sneakers Run Away",
+      "brand": "Louis Vuitton",
+      "category": "Calzature",
+      "subcategory": "Sneakers",
+      "price": 590,
+      "retail": 990,
+      "image": "lv-shoes-01.png",
+      "stock": 2,
+      "description": "Sneakers sportive in pelle e mesh, suola in gomma, dettagli a contrasto, logo laterale.",
+      "specs": {
+        "Materiale": "Pelle vitello + mesh tecnico",
+        "Taglie": "36 — 41 EU",
+        "Suola": "Gomma con logo",
+        "Condizione": "Nuovo in scatola",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    },
+    {
+      "id": "lv-time-out-sneakers",
+      "name": "Sneakers Time Out",
+      "brand": "Louis Vuitton",
+      "category": "Calzature",
+      "subcategory": "Sneakers",
+      "price": 640,
+      "retail": 1090,
+      "image": "lv-shoes-02.png",
+      "stock": 2,
+      "featured": true,
+      "description": "Sneakers basse in pelle premium, design pulito, lacci tono su tono, suola scolpita.",
+      "specs": {
+        "Materiale": "Pelle vitello premium",
+        "Taglie": "36 — 41 EU",
+        "Suola": "Gomma scolpita",
+        "Condizione": "Nuovo in scatola",
+        "Provenienza": "Outlet ufficiale Mendrisio"
+      }
+    }
+  ]
+}

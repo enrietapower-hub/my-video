@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrello — brandLuxury11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-nav="cart">
+
+<div id="site-header-slot"></div>
+
+<section style="padding-top:50px;">
+  <div class="container">
+    <p class="crumb"><a href="/">Home</a> · Carrello</p>
+    <h1 class="section-title" style="font-size:42px;margin-bottom:30px;">Il tuo carrello</h1>
+    <div id="cart-root"></div>
+  </div>
+</section>
+
+<div id="site-footer-slot"></div>
+
+<script src="/js/config.js"></script>
+<script src="/partials.js"></script>
+<script src="/js/store.js"></script>
+<script>
+(function () {
+  const root = document.getElementById('cart-root');
+
+  function render() {
+    BL11.loadCatalog().then(function (data) {
+      const cart = BL11.getCart();
+      if (cart.length === 0) {
+        root.innerHTML = ''
+          + '<div class="cart-empty">'
+          + '  <h2>Il carrello è vuoto</h2>'
+          + '  <p style="margin-bottom:24px;">Esplora il catalogo e aggiungi i tuoi pezzi preferiti.</p>'
+          + '  <a class="btn-gold" href="/shop.html">Vai al catalogo</a>'
+          + '</div>';
+        return;
+      }
+      const items = cart.map(function (ci) {
+        const p = data.products.find(function (x) { return x.id === ci.id; });
+        return p ? Object.assign({}, p, { qty: ci.qty }) : null;
+      }).filter(Boolean);
+
+      const subtotal = items.reduce(function (a, i) { return a + i.price * i.qty; }, 0);
+      const shipping = subtotal >= data.shipping_threshold ? 0 : 15;
+      const total = subtotal + shipping;
+
+      root.innerHTML = ''
+        + '<div class="cart-layout">'
+        + '  <div class="cart-list">'
+        + items.map(function (i) {
+          return ''
+            + '<div class="cart-item" data-id="' + BL11.escapeHtml(i.id) + '">'
+            + '  <img src="/' + encodeURIComponent(i.image) + '" alt="' + BL11.escapeHtml(i.name) + '">'
+            + '  <div>'
+            + '    <div class="cart-item-brand">' + BL11.escapeHtml(i.brand) + '</div>'
+            + '    <a href="/product.html?id=' + encodeURIComponent(i.id) + '"><div class="cart-item-name">' + BL11.escapeHtml(i.name) + '</div></a>'
+            + '    <div class="cart-item-price">' + BL11.fmtPrice(i.price) + '</div>'
+            + '  </div>'
+            + '  <div class="cart-item-actions">'
+            + '    <div class="qty-control">'
+            + '      <button data-act="dec">−</button>'
+            + '      <input type="number" min="0" value="' + i.qty + '" data-qty>'
+            + '      <button data-act="inc">+</button>'
+            + '    </div>'
+            + '    <button class="cart-item-remove" data-act="remove">Rimuovi</button>'
+            + '  </div>'
+            + '</div>';
+        }).join('')
+        + '  </div>'
+        + '  <div class="cart-summary">'
+        + '    <h3>Riepilogo</h3>'
+        + '    <div class="cart-row"><span>Subtotale</span><span>' + BL11.fmtPrice(subtotal) + '</span></div>'
+        + '    <div class="cart-row"><span>Spedizione</span><span>' + (shipping === 0 ? 'Gratis' : BL11.fmtPrice(shipping)) + '</span></div>'
+        + (subtotal < data.shipping_threshold
+            ? '<div style="font-size:11px;color:#6e5f44;padding:4px 0;">Aggiungi ' + BL11.fmtPrice(data.shipping_threshold - subtotal) + ' per spedizione gratuita.</div>'
+            : '')
+        + '    <div class="cart-row total"><span>Totale</span><span>' + BL11.fmtPrice(total) + '</span></div>'
+        + '    <button class="btn-gold" id="btn-checkout">Procedi al checkout</button>'
+        + '    <a href="/prenota.html" class="alt-link">o richiedi un pagamento personalizzato →</a>'
+        + '    <div id="checkout-note" style="margin-top:18px;font-size:12px;color:#6e5f44;line-height:1.5;display:none;"></div>'
+        + '  </div>'
+        + '</div>';
+
+      // Bind quantity & remove buttons
+      root.querySelectorAll('.cart-item').forEach(function (el) {
+        const pid = el.dataset.id;
+        el.querySelector('[data-act="inc"]').addEventListener('click', function () {
+          const inp = el.querySelector('[data-qty]');
+          inp.value = (parseInt(inp.value, 10) || 0) + 1;
+          BL11.setQty(pid, parseInt(inp.value, 10));
+          render();
+        });
+        el.querySelector('[data-act="dec"]').addEventListener('click', function () {
+          const inp = el.querySelector('[data-qty]');
+          inp.value = Math.max(0, (parseInt(inp.value, 10) || 0) - 1);
+          BL11.setQty(pid, parseInt(inp.value, 10));
+          render();
+        });
+        el.querySelector('[data-qty]').addEventListener('change', function () {
+          BL11.setQty(pid, parseInt(this.value, 10) || 0);
+          render();
+        });
+        el.querySelector('[data-act="remove"]').addEventListener('click', function () {
+          BL11.removeFromCart(pid);
+          render();
+        });
+      });
+
+      document.getElementById('btn-checkout').addEventListener('click', function () {
+        startCheckout(items, total);
+      });
+    });
+  }
+
+  function startCheckout(items, total) {
+    const note = document.getElementById('checkout-note');
+    const btn = document.getElementById('btn-checkout');
+    btn.disabled = true;
+    btn.textContent = 'Apertura checkout…';
+    note.style.display = 'block';
+    note.innerHTML = ''
+      + '⚠️ Il checkout automatico (Stripe) non è ancora attivo. <br>'
+      + 'Per completare l\'ordine ora ti reindirizziamo su WhatsApp con il riepilogo, oppure usa la <a href="/prenota.html">prenotazione personalizzata</a>.';
+
+    setTimeout(function () {
+      const lines = items.map(function (i) {
+        return '• ' + i.name + ' (' + i.brand + ') × ' + i.qty + ' — ' + BL11.fmtPrice(i.price * i.qty);
+      }).join('\n');
+      const msg = 'Ciao! Vorrei ordinare:\n' + lines + '\n\nTotale: ' + BL11.fmtPrice(total);
+      window.location.href = (window.BL11_CONFIG && BL11_CONFIG.waLink) ? BL11_CONFIG.waLink.call(BL11_CONFIG, msg) : '#';
+    }, 1200);
+  }
+
+  document.addEventListener('cart:change', render);
+  render();
+})();
+</script>
+
+</body>
+</html>

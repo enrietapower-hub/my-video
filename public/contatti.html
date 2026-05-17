@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contatti — brandLuxury11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-nav="contatti">
+
+<!-- Netlify Forms registration -->
+<form name="contatto" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="nome"><input type="email" name="email"><textarea name="messaggio"></textarea>
+</form>
+
+<div id="site-header-slot"></div>
+
+<section style="padding-top:50px;">
+  <div class="container">
+    <p class="crumb"><a href="/">Home</a> · Contatti</p>
+    <div style="max-width:680px;margin:0 auto;text-align:center;margin-bottom:40px;">
+      <p class="section-tag">Parliamone</p>
+      <h1 class="section-title">Contatti</h1>
+      <p class="section-desc">Domande sui prodotti, sulla spedizione, sull'autenticità? Siamo qui per te.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:980px;margin:0 auto;">
+
+      <div style="background:#100e08;border:1px solid rgba(201,164,90,0.15);border-radius:10px;padding:32px;">
+        <h3 style="color:#c9a45a;font-size:24px;margin-bottom:18px;">Canali diretti</h3>
+
+        <div style="margin-bottom:24px;">
+          <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#9a7430;margin-bottom:6px;">WhatsApp</div>
+          <a id="ct-wa" href="#" target="_blank" rel="noopener" style="font-size:18px;color:#e8d8b8;">+41 00 000 00 00</a>
+          <p style="font-size:12px;color:#6e5f44;margin-top:4px;">Risposta media in 1h, lun–sab 9:00–19:00</p>
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#9a7430;margin-bottom:6px;">Email</div>
+          <a id="ct-email" href="#" style="font-size:18px;color:#e8d8b8;">info@brandluxury11.com</a>
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#9a7430;margin-bottom:6px;">Instagram</div>
+          <a id="ct-ig" href="#" target="_blank" rel="noopener" style="font-size:18px;color:#e8d8b8;">@brandluxury11</a>
+        </div>
+
+        <div>
+          <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#9a7430;margin-bottom:6px;">Zona operativa</div>
+          <p id="ct-zone" style="color:#c8b89a;font-size:14px;">Mendrisio (CH) · Milano · Como</p>
+          <p style="font-size:12px;color:#6e5f44;margin-top:4px;">Consegna a mano disponibile per la zona.</p>
+        </div>
+      </div>
+
+      <form id="contatto-form" class="form-page" name="contatto" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="padding:32px;">
+        <h3 style="color:#c9a45a;font-size:24px;margin-bottom:18px;">Scrivici un messaggio</h3>
+        <input type="hidden" name="form-name" value="contatto">
+        <p hidden><label>Non compilare: <input name="bot-field"></label></p>
+
+        <div class="form-block">
+          <label for="c-nome">Nome <span class="req">*</span></label>
+          <input type="text" id="c-nome" name="nome" required>
+        </div>
+        <div class="form-block">
+          <label for="c-email">Email <span class="req">*</span></label>
+          <input type="email" id="c-email" name="email" required>
+        </div>
+        <div class="form-block">
+          <label for="c-msg">Messaggio <span class="req">*</span></label>
+          <textarea id="c-msg" name="messaggio" required placeholder="Come possiamo aiutarti?"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-gold">Invia messaggio</button>
+        </div>
+      </form>
+
+    </div>
+
+    <div id="contatto-ok" class="form-ok" style="max-width:620px;margin:24px auto 0;">✓ Messaggio ricevuto! Ti rispondiamo a breve.</div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-tag">Newsletter</p>
+      <h2 class="section-title">Resta nel giro</h2>
+      <p class="section-desc">Anteprima dei nuovi arrivi, accesso prioritario alle promo.</p>
+    </div>
+    <form id="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="newsletter-form">
+      <input type="hidden" name="form-name" value="newsletter">
+      <input type="hidden" name="source" value="contatti">
+      <p hidden><label>Non compilare: <input name="bot-field"></label></p>
+      <input type="email" name="email" required placeholder="La tua email">
+      <button type="submit" class="btn-gold">Iscrivimi</button>
+    </form>
+    <p class="newsletter-note">Niente spam. Solo nuovi arrivi e promo riservate.</p>
+    <div id="newsletter-ok" class="form-ok">✓ Iscrizione confermata.</div>
+  </div>
+</section>
+
+<div id="site-footer-slot"></div>
+
+<script src="/js/config.js"></script>
+<script src="/partials.js"></script>
+<script src="/js/store.js"></script>
+<script>
+  // Riempi i contatti dalla config
+  (function () {
+    const c = window.BL11_CONFIG || {};
+    const wa = document.getElementById('ct-wa');
+    const em = document.getElementById('ct-email');
+    const ig = document.getElementById('ct-ig');
+    const zn = document.getElementById('ct-zone');
+    if (wa && c.waLink) { wa.href = c.waLink.call(c); wa.textContent = c.whatsappDisplay || c.whatsapp; }
+    if (em) { em.href = 'mailto:' + (c.email || ''); em.textContent = c.email || ''; }
+    if (ig) { ig.href = c.instagramUrl || '#'; ig.textContent = c.instagram || ''; }
+    if (zn && c.zone) zn.textContent = c.zone;
+  })();
+
+  document.getElementById('contatto-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    fetch('/', { method: 'POST', body: data }).finally(function () {
+      form.style.display = 'none';
+      document.getElementById('contatto-ok').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>

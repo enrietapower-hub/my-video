@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dettaglio prodotto — brandLuxury11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-nav="shop">
+
+<div id="site-header-slot"></div>
+
+<section style="padding-top:50px;">
+  <div class="container">
+    <p class="crumb" id="crumb"><a href="/">Home</a> · <a href="/shop.html">Catalogo</a></p>
+    <div id="product-content"></div>
+  </div>
+</section>
+
+<section style="background:#0c0a06;">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-tag">Potrebbe piacerti</p>
+      <h2 class="section-title">Pezzi simili</h2>
+    </div>
+    <div class="products-grid" id="related-grid"></div>
+  </div>
+</section>
+
+<div id="site-footer-slot"></div>
+
+<script src="/js/config.js"></script>
+<script src="/partials.js"></script>
+<script src="/js/store.js"></script>
+<script>
+(function () {
+  const id = new URLSearchParams(location.search).get('id');
+  const root = document.getElementById('product-content');
+
+  function whatsappLink(p) {
+    const msg = 'Ciao! Sono interessata a "' + p.name + '" (' + p.brand + ') — prezzo €' + p.price + '. Puoi darmi informazioni?';
+    return (window.BL11_CONFIG && BL11_CONFIG.waLink) ? BL11_CONFIG.waLink.call(BL11_CONFIG, msg) : '#';
+  }
+
+  function render(p) {
+    document.title = p.name + ' — brandLuxury11';
+    document.getElementById('crumb').innerHTML = '<a href="/">Home</a> · <a href="/shop.html">Catalogo</a> · <a href="/shop.html?brand=' + encodeURIComponent(p.brand) + '">' + BL11.escapeHtml(p.brand) + '</a> · ' + BL11.escapeHtml(p.name);
+
+    const disc = BL11.discountPct(p.price, p.retail);
+    const specsRows = Object.keys(p.specs || {}).map(function (k) {
+      return '<dt>' + BL11.escapeHtml(k) + '</dt><dd>' + BL11.escapeHtml(p.specs[k]) + '</dd>';
+    }).join('');
+
+    root.innerHTML = ''
+      + '<div class="product-layout">'
+      + '  <div class="product-gallery">'
+      + '    <img src="/' + encodeURIComponent(p.image) + '" alt="' + BL11.escapeHtml(p.name) + '">'
+      + '  </div>'
+      + '  <div class="product-info">'
+      + '    <div class="product-brand-line">' + BL11.escapeHtml(p.brand) + '</div>'
+      + '    <h1>' + BL11.escapeHtml(p.name) + '</h1>'
+      + '    <div class="product-price-row">'
+      + '      <span class="price-now">' + BL11.fmtPrice(p.price) + '</span>'
+      + (p.retail ? '      <span class="price-was">' + BL11.fmtPrice(p.retail) + '</span>' : '')
+      + (disc ? '      <span class="discount-badge">RISPARMI ' + disc + '%</span>' : '')
+      + '    </div>'
+      + '    <p class="product-desc">' + BL11.escapeHtml(p.description) + '</p>'
+      + '    <div class="product-meta"><dl>' + specsRows + '</dl></div>'
+      + '    <div class="qty-row">'
+      + '      <div class="qty-control">'
+      + '        <button id="qty-minus">−</button>'
+      + '        <input type="number" id="qty-input" value="1" min="1" max="' + (p.stock || 1) + '">'
+      + '        <button id="qty-plus">+</button>'
+      + '      </div>'
+      + '      <span style="font-size:12px;color:#6e5f44;letter-spacing:0.1em;text-transform:uppercase;">Disponibili: ' + (p.stock || 1) + '</span>'
+      + '    </div>'
+      + '    <div class="product-cta">'
+      + '      <button class="btn-gold" id="btn-buy">Aggiungi al carrello</button>'
+      + '      <a class="btn-wa" href="' + whatsappLink(p) + '" target="_blank" rel="noopener">'
+      + '        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.5-.7-.5-.2 0-.4 0-.6 0-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.5 0 1.5 1.1 2.9 1.2 3.1.1.2 2.1 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18.2a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.3 8.3 0 1 1 12 20.2z"/></svg>'
+      + '        Prenota su WhatsApp</a>'
+      + '    </div>'
+      + '    <div class="trust-row">'
+      + '      <span>Autentico con scontrino</span>'
+      + '      <span>Spedizione tracciata</span>'
+      + '      <span>Reso 14 giorni</span>'
+      + '    </div>'
+      + '  </div>'
+      + '</div>';
+
+    document.getElementById('btn-buy').addEventListener('click', function () {
+      const qty = parseInt(document.getElementById('qty-input').value, 10) || 1;
+      BL11.addToCart(p.id, qty);
+      const b = document.getElementById('btn-buy');
+      b.textContent = '✓ Aggiunto al carrello — vai al carrello';
+      b.onclick = function () { location.href = '/cart.html'; };
+    });
+    document.getElementById('qty-minus').addEventListener('click', function () {
+      const inp = document.getElementById('qty-input');
+      inp.value = Math.max(1, (parseInt(inp.value, 10) || 1) - 1);
+    });
+    document.getElementById('qty-plus').addEventListener('click', function () {
+      const inp = document.getElementById('qty-input');
+      const max = parseInt(inp.max, 10) || 99;
+      inp.value = Math.min(max, (parseInt(inp.value, 10) || 1) + 1);
+    });
+  }
+
+  function renderRelated(p, all) {
+    const related = all.filter(function (x) {
+      return x.id !== p.id && (x.brand === p.brand || x.category === p.category);
+    }).slice(0, 4);
+    const grid = document.getElementById('related-grid');
+    grid.innerHTML = related.map(BL11.productCardHTML).join('');
+    document.dispatchEvent(new CustomEvent('catalog:rendered'));
+  }
+
+  if (!id) {
+    root.innerHTML = '<p style="text-align:center;padding:60px;color:#a08070;">Prodotto non trovato. <a href="/shop.html">Torna al catalogo</a>.</p>';
+  } else {
+    BL11.loadCatalog().then(function (data) {
+      const p = data.products.find(function (x) { return x.id === id; });
+      if (!p) {
+        root.innerHTML = '<p style="text-align:center;padding:60px;color:#a08070;">Prodotto non trovato. <a href="/shop.html">Torna al catalogo</a>.</p>';
+        return;
+      }
+      render(p);
+      renderRelated(p, data.products);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

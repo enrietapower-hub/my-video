@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prenotazione su misura — brandLuxury11</title>
+<meta name="description" content="Cerchiamo per te il pezzo dei sogni. Inviaci la tua richiesta e ti contattiamo entro 24h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-nav="prenota">
+
+<!-- Netlify Forms registration -->
+<form name="prenotazione" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="nome"><input type="email" name="email"><input type="tel" name="whatsapp">
+  <input type="text" name="brand"><input type="text" name="modello"><input type="text" name="taglia">
+  <input type="text" name="budget"><textarea name="note"></textarea>
+</form>
+
+<div id="site-header-slot"></div>
+
+<section style="padding-top:50px;">
+  <div class="container">
+    <p class="crumb"><a href="/">Home</a> · Prenotazione su misura</p>
+    <div style="max-width:680px;margin:0 auto;text-align:center;margin-bottom:40px;">
+      <p class="section-tag">Su misura per te</p>
+      <h1 class="section-title">Cerchi un pezzo specifico?</h1>
+      <p class="section-desc">Dicci cosa stai cercando — brand, modello, taglia o colore. Quando lo troviamo in outlet ti contattiamo con foto e prezzo. Senza impegno.</p>
+    </div>
+
+    <form id="prenota-form" class="form-page" name="prenotazione" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="prenotazione">
+      <p hidden><label>Non compilare: <input name="bot-field"></label></p>
+
+      <div class="form-block">
+        <label for="nome">Nome <span class="req">*</span></label>
+        <input type="text" id="nome" name="nome" required placeholder="Il tuo nome">
+      </div>
+
+      <div class="form-block">
+        <label for="email">Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+      </div>
+
+      <div class="form-block">
+        <label for="whatsapp">WhatsApp <span class="req">*</span></label>
+        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+39 333 000 0000">
+        <p class="form-help">Ti scriviamo qui appena troviamo qualcosa per te.</p>
+      </div>
+
+      <div class="form-block">
+        <label for="brand">Brand di interesse</label>
+        <select id="brand" name="brand">
+          <option value="">— Seleziona —</option>
+          <option>Gucci</option>
+          <option>Louis Vuitton</option>
+          <option>Prada</option>
+          <option>Dior</option>
+          <option>Burberry</option>
+          <option>Saint Laurent</option>
+          <option>Bottega Veneta</option>
+          <option>Fendi</option>
+          <option>Indifferente</option>
+        </select>
+      </div>
+
+      <div class="form-block">
+        <label for="modello">Modello o tipologia</label>
+        <input type="text" id="modello" name="modello" placeholder="es. Gucci Marmont small, sneakers LV Run Away…">
+      </div>
+
+      <div class="form-block">
+        <label for="taglia">Taglia / Misura</label>
+        <input type="text" id="taglia" name="taglia" placeholder="es. 38, M, small…">
+      </div>
+
+      <div class="form-block">
+        <label for="budget">Budget indicativo</label>
+        <select id="budget" name="budget">
+          <option value="">— Seleziona —</option>
+          <option>Fino a € 500</option>
+          <option>€ 500 – 1.000</option>
+          <option>€ 1.000 – 2.000</option>
+          <option>Oltre € 2.000</option>
+          <option>Flessibile</option>
+        </select>
+      </div>
+
+      <div class="form-block">
+        <label for="note">Note aggiuntive</label>
+        <textarea id="note" name="note" placeholder="Colore preferito, occasione d'uso, eventuali alternative…"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-gold">Invia richiesta</button>
+      </div>
+      <p class="form-help" style="text-align:center;margin-top:14px;">Ti rispondiamo entro 24h. Non condividiamo i tuoi dati.</p>
+    </form>
+
+    <div id="prenota-ok" class="form-ok" style="max-width:620px;margin:24px auto 0;">✓ Richiesta ricevuta! Ti contatteremo entro 24h con foto e prezzo del pezzo richiesto.</div>
+  </div>
+</section>
+
+<div id="site-footer-slot"></div>
+
+<script src="/js/config.js"></script>
+<script src="/partials.js"></script>
+<script src="/js/store.js"></script>
+<script>
+  document.getElementById('prenota-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    fetch('/', { method: 'POST', body: data }).finally(function () {
+      form.style.display = 'none';
+      document.getElementById('prenota-ok').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>

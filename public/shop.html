@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalogo — brandLuxury11</title>
+<meta name="description" content="Catalogo completo brandLuxury11: borse, abbigliamento, calzature delle grandi maison. Filtra per brand e categoria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-nav="shop">
+
+<div id="site-header-slot"></div>
+
+<section style="padding-top:50px;padding-bottom:30px;">
+  <div class="container">
+    <p class="crumb"><a href="/">Home</a> · Catalogo</p>
+    <h1 class="section-title" id="shop-title" style="font-size:42px;margin-bottom:8px;">Catalogo</h1>
+    <p class="section-desc" id="shop-subtitle" style="margin:0;">Tutte le selezioni disponibili al momento.</p>
+  </div>
+</section>
+
+<section style="padding-top:20px;">
+  <div class="container">
+    <div class="shop-layout">
+
+      <aside>
+        <button class="filter-mobile-toggle" id="toggle-filters">Filtri ▾</button>
+        <div class="filters" id="filters">
+          <h4>Categoria</h4>
+          <ul class="filter-list" id="cat-filters">
+            <li data-filter="category" data-value="" class="active">Tutte</li>
+          </ul>
+          <h4>Brand</h4>
+          <ul class="filter-list" id="brand-filters">
+            <li data-filter="brand" data-value="" class="active">Tutti</li>
+          </ul>
+          <h4>Prezzo</h4>
+          <ul class="filter-list" id="price-filters">
+            <li data-filter="price" data-value="" class="active">Tutti</li>
+            <li data-filter="price" data-value="0-500">Fino a € 500</li>
+            <li data-filter="price" data-value="500-1000">€ 500 – 1.000</li>
+            <li data-filter="price" data-value="1000-9999">Oltre € 1.000</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div>
+        <div class="shop-head">
+          <span class="shop-count" id="shop-count">0 prodotti</span>
+          <select class="shop-sort" id="sort">
+            <option value="featured">Suggeriti</option>
+            <option value="price-asc">Prezzo crescente</option>
+            <option value="price-desc">Prezzo decrescente</option>
+            <option value="discount">Sconto maggiore</option>
+          </select>
+        </div>
+        <div class="products-grid" id="shop-grid"></div>
+        <div id="shop-empty" style="display:none;text-align:center;padding:60px 20px;color:#6e5f44;">
+          <h3 style="color:#c9a45a;margin-bottom:14px;">Nessun prodotto trovato</h3>
+          <p>Prova a rimuovere qualche filtro o <a href="/prenota.html">richiedi un pezzo su misura</a>.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="site-footer-slot"></div>
+
+<script src="/js/config.js"></script>
+<script src="/partials.js"></script>
+<script src="/js/store.js"></script>
+<script>
+(function () {
+  const state = { category: '', brand: '', price: '', sort: 'featured' };
+
+  function readURLParams() {
+    const u = new URLSearchParams(location.search);
+    if (u.get('category')) state.category = u.get('category');
+    if (u.get('brand')) state.brand = u.get('brand');
+  }
+
+  function updateURL() {
+    const u = new URLSearchParams();
+    if (state.category) u.set('category', state.category);
+    if (state.brand) u.set('brand', state.brand);
+    const q = u.toString();
+    history.replaceState(null, '', '/shop.html' + (q ? '?' + q : ''));
+  }
+
+  function priceMatch(p, range) {
+    if (!range) return true;
+    const parts = range.split('-').map(Number);
+    return p.price >= parts[0] && p.price < parts[1];
+  }
+
+  function applyFilters(products) {
+    let list = products.filter(function (p) {
+      if (state.category && p.category !== state.category) return false;
+      if (state.brand && p.brand !== state.brand) return false;
+      if (!priceMatch(p, state.price)) return false;
+      return true;
+    });
+    if (state.sort === 'price-asc') list.sort(function (a, b) { return a.price - b.price; });
+    else if (state.sort === 'price-desc') list.sort(function (a, b) { return b.price - a.price; });
+    else if (state.sort === 'discount') list.sort(function (a, b) {
+      return BL11.discountPct(b.price, b.retail) - BL11.discountPct(a.price, a.retail);
+    });
+    else list.sort(function (a, b) { return (b.featured ? 1 : 0) - (a.featured ? 1 : 0); });
+    return list;
+  }
+
+  function renderFilters(products) {
+    const cats = {}, brands = {};
+    products.forEach(function (p) {
+      cats[p.category] = (cats[p.category] || 0) + 1;
+      brands[p.brand] = (brands[p.brand] || 0) + 1;
+    });
+    const catUl = document.getElementById('cat-filters');
+    Object.keys(cats).sort().forEach(function (k) {
+      const li = document.createElement('li');
+      li.dataset.filter = 'category';
+      li.dataset.value = k;
+      li.innerHTML = BL11.escapeHtml(k) + '<span class="count">' + cats[k] + '</span>';
+      catUl.appendChild(li);
+    });
+    const brUl = document.getElementById('brand-filters');
+    Object.keys(brands).sort().forEach(function (k) {
+      const li = document.createElement('li');
+      li.dataset.filter = 'brand';
+      li.dataset.value = k;
+      li.innerHTML = BL11.escapeHtml(k) + '<span class="count">' + brands[k] + '</span>';
+      brUl.appendChild(li);
+    });
+    bindFilters();
+    syncFilterActive();
+  }
+
+  function bindFilters() {
+    document.querySelectorAll('.filter-list li').forEach(function (li) {
+      if (li._bound) return;
+      li._bound = true;
+      li.addEventListener('click', function () {
+        const f = li.dataset.filter;
+        state[f] = li.dataset.value;
+        updateURL();
+        syncFilterActive();
+        rerender();
+      });
+    });
+  }
+
+  function syncFilterActive() {
+    document.querySelectorAll('.filter-list li').forEach(function (li) {
+      const f = li.dataset.filter;
+      const v = li.dataset.value;
+      if (state[f] === v) li.classList.add('active');
+      else li.classList.remove('active');
+    });
+  }
+
+  function rerender() {
+    BL11.loadCatalog().then(function (data) {
+      const filtered = applyFilters(data.products);
+      const grid = document.getElementById('shop-grid');
+      const empty = document.getElementById('shop-empty');
+      grid.innerHTML = filtered.map(BL11.productCardHTML).join('');
+      document.getElementById('shop-count').textContent = filtered.length + ' prodott' + (filtered.length === 1 ? 'o' : 'i');
+      empty.style.display = filtered.length === 0 ? 'block' : 'none';
+      // Update title
+      let title = 'Catalogo';
+      if (state.brand) title = state.brand;
+      else if (state.category) title = state.category;
+      document.getElementById('shop-title').textContent = title;
+      document.dispatchEvent(new CustomEvent('catalog:rendered'));
+    });
+  }
+
+  readURLParams();
+  document.getElementById('sort').addEventListener('change', function (e) {
+    state.sort = e.target.value;
+    rerender();
+  });
+  document.getElementById('toggle-filters').addEventListener('click', function () {
+    document.getElementById('filters').classList.toggle('open');
+  });
+
+  BL11.loadCatalog().then(function (data) {
+    renderFilters(data.products);
+    rerender();
+  });
+})();
+</script>
+
+</body>
+</html>
