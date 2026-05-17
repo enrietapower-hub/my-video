@@ -1,7 +1,7 @@
 // brandLuxury11 — Shared store + cart logic
 (function (global) {
   const CART_KEY = 'bl11_cart_v1';
-  const DATA_URL = '/data/products.json';
+  const DATA_URL = 'data/products.json';
 
   let catalogPromise = null;
 
@@ -85,13 +85,13 @@
     const disc = discountPct(p.price, p.retail);
     return ''
       + '<article class="product-card">'
-      + '  <a class="product-card-img" href="/product.html?id=' + encodeURIComponent(p.id) + '">'
+      + '  <a class="product-card-img" href="product.html?id=' + encodeURIComponent(p.id) + '">'
       + (disc ? '    <span class="product-card-badge">-' + disc + '%</span>' : '')
-      + '    <img src="/' + encodeURIComponent(p.image) + '" alt="' + escapeHtml(p.name) + '" loading="lazy">'
+      + '    <img src="' + encodeURIComponent(p.image) + '" alt="' + escapeHtml(p.name) + '" loading="lazy">'
       + '  </a>'
       + '  <div class="product-card-body">'
       + '    <div class="product-card-brand">' + escapeHtml(p.brand) + '</div>'
-      + '    <h3 class="product-card-name"><a href="/product.html?id=' + encodeURIComponent(p.id) + '">' + escapeHtml(p.name) + '</a></h3>'
+      + '    <h3 class="product-card-name"><a href="product.html?id=' + encodeURIComponent(p.id) + '">' + escapeHtml(p.name) + '</a></h3>'
       + '    <div class="product-card-price">'
       + '      <span class="price-now">' + fmtPrice(p.price) + '</span>'
       + (p.retail ? '      <span class="price-was">' + fmtPrice(p.retail) + '</span>' : '')

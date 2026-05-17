@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body data-nav="shop">
 
@@ -15,7 +15,7 @@
 
 <section style="padding-top:50px;">
   <div class="container">
-    <p class="crumb" id="crumb"><a href="/">Home</a> · <a href="/shop.html">Catalogo</a></p>
+    <p class="crumb" id="crumb"><a href="./">Home</a> · <a href="shop.html">Catalogo</a></p>
     <div id="product-content"></div>
   </div>
 </section>
@@ -32,9 +32,9 @@
 
 <div id="site-footer-slot"></div>
 
-<script src="/js/config.js"></script>
-<script src="/partials.js"></script>
-<script src="/js/store.js"></script>
+<script src="js/config.js"></script>
+<script src="partials.js"></script>
+<script src="js/store.js"></script>
 <script>
 (function () {
   const id = new URLSearchParams(location.search).get('id');
@@ -47,7 +47,7 @@
 
   function render(p) {
     document.title = p.name + ' — brandLuxury11';
-    document.getElementById('crumb').innerHTML = '<a href="/">Home</a> · <a href="/shop.html">Catalogo</a> · <a href="/shop.html?brand=' + encodeURIComponent(p.brand) + '">' + BL11.escapeHtml(p.brand) + '</a> · ' + BL11.escapeHtml(p.name);
+    document.getElementById('crumb').innerHTML = '<a href="./">Home</a> · <a href="shop.html">Catalogo</a> · <a href="shop.html?brand=' + encodeURIComponent(p.brand) + '">' + BL11.escapeHtml(p.brand) + '</a> · ' + BL11.escapeHtml(p.name);
 
     const disc = BL11.discountPct(p.price, p.retail);
     const specsRows = Object.keys(p.specs || {}).map(function (k) {
@@ -57,7 +57,7 @@
     root.innerHTML = ''
       + '<div class="product-layout">'
       + '  <div class="product-gallery">'
-      + '    <img src="/' + encodeURIComponent(p.image) + '" alt="' + BL11.escapeHtml(p.name) + '">'
+      + '    <img src="' + encodeURIComponent(p.image) + '" alt="' + BL11.escapeHtml(p.name) + '">'
       + '  </div>'
       + '  <div class="product-info">'
       + '    <div class="product-brand-line">' + BL11.escapeHtml(p.brand) + '</div>'
@@ -96,7 +96,7 @@
       BL11.addToCart(p.id, qty);
       const b = document.getElementById('btn-buy');
       b.textContent = '✓ Aggiunto al carrello — vai al carrello';
-      b.onclick = function () { location.href = '/cart.html'; };
+      b.onclick = function () { location.href = 'cart.html'; };
     });
     document.getElementById('qty-minus').addEventListener('click', function () {
       const inp = document.getElementById('qty-input');
@@ -119,12 +119,12 @@
   }
 
   if (!id) {
-    root.innerHTML = '<p style="text-align:center;padding:60px;color:#a08070;">Prodotto non trovato. <a href="/shop.html">Torna al catalogo</a>.</p>';
+    root.innerHTML = '<p style="text-align:center;padding:60px;color:#a08070;">Prodotto non trovato. <a href="shop.html">Torna al catalogo</a>.</p>';
   } else {
     BL11.loadCatalog().then(function (data) {
       const p = data.products.find(function (x) { return x.id === id; });
       if (!p) {
-        root.innerHTML = '<p style="text-align:center;padding:60px;color:#a08070;">Prodotto non trovato. <a href="/shop.html">Torna al catalogo</a>.</p>';
+        root.innerHTML = '<p style="text-align:center;padding:60px;color:#a08070;">Prodotto non trovato. <a href="shop.html">Torna al catalogo</a>.</p>';
         return;
       }
       render(p);

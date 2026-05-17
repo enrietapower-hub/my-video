@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body data-nav="cart">
 
@@ -15,7 +15,7 @@
 
 <section style="padding-top:50px;">
   <div class="container">
-    <p class="crumb"><a href="/">Home</a> · Carrello</p>
+    <p class="crumb"><a href="./">Home</a> · Carrello</p>
     <h1 class="section-title" style="font-size:42px;margin-bottom:30px;">Il tuo carrello</h1>
     <div id="cart-root"></div>
   </div>
@@ -23,9 +23,9 @@
 
 <div id="site-footer-slot"></div>
 
-<script src="/js/config.js"></script>
-<script src="/partials.js"></script>
-<script src="/js/store.js"></script>
+<script src="js/config.js"></script>
+<script src="partials.js"></script>
+<script src="js/store.js"></script>
 <script>
 (function () {
   const root = document.getElementById('cart-root');
@@ -38,7 +38,7 @@
           + '<div class="cart-empty">'
           + '  <h2>Il carrello è vuoto</h2>'
           + '  <p style="margin-bottom:24px;">Esplora il catalogo e aggiungi i tuoi pezzi preferiti.</p>'
-          + '  <a class="btn-gold" href="/shop.html">Vai al catalogo</a>'
+          + '  <a class="btn-gold" href="shop.html">Vai al catalogo</a>'
           + '</div>';
         return;
       }
@@ -57,10 +57,10 @@
         + items.map(function (i) {
           return ''
             + '<div class="cart-item" data-id="' + BL11.escapeHtml(i.id) + '">'
-            + '  <img src="/' + encodeURIComponent(i.image) + '" alt="' + BL11.escapeHtml(i.name) + '">'
+            + '  <img src="' + encodeURIComponent(i.image) + '" alt="' + BL11.escapeHtml(i.name) + '">'
             + '  <div>'
             + '    <div class="cart-item-brand">' + BL11.escapeHtml(i.brand) + '</div>'
-            + '    <a href="/product.html?id=' + encodeURIComponent(i.id) + '"><div class="cart-item-name">' + BL11.escapeHtml(i.name) + '</div></a>'
+            + '    <a href="product.html?id=' + encodeURIComponent(i.id) + '"><div class="cart-item-name">' + BL11.escapeHtml(i.name) + '</div></a>'
             + '    <div class="cart-item-price">' + BL11.fmtPrice(i.price) + '</div>'
             + '  </div>'
             + '  <div class="cart-item-actions">'
@@ -83,7 +83,7 @@
             : '')
         + '    <div class="cart-row total"><span>Totale</span><span>' + BL11.fmtPrice(total) + '</span></div>'
         + '    <button class="btn-gold" id="btn-checkout">Procedi al checkout</button>'
-        + '    <a href="/prenota.html" class="alt-link">o richiedi un pagamento personalizzato →</a>'
+        + '    <a href="prenota.html" class="alt-link">o richiedi un pagamento personalizzato →</a>'
         + '    <div id="checkout-note" style="margin-top:18px;font-size:12px;color:#6e5f44;line-height:1.5;display:none;"></div>'
         + '  </div>'
         + '</div>';
@@ -127,7 +127,7 @@
     note.style.display = 'block';
     note.innerHTML = ''
       + '⚠️ Il checkout automatico (Stripe) non è ancora attivo. <br>'
-      + 'Per completare l\'ordine ora ti reindirizziamo su WhatsApp con il riepilogo, oppure usa la <a href="/prenota.html">prenotazione personalizzata</a>.';
+      + 'Per completare l\'ordine ora ti reindirizziamo su WhatsApp con il riepilogo, oppure usa la <a href="prenota.html">prenotazione personalizzata</a>.';
 
     setTimeout(function () {
       const lines = items.map(function (i) {

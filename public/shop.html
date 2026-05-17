@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body data-nav="shop">
 
@@ -16,7 +16,7 @@
 
 <section style="padding-top:50px;padding-bottom:30px;">
   <div class="container">
-    <p class="crumb"><a href="/">Home</a> · Catalogo</p>
+    <p class="crumb"><a href="./">Home</a> · Catalogo</p>
     <h1 class="section-title" id="shop-title" style="font-size:42px;margin-bottom:8px;">Catalogo</h1>
     <p class="section-desc" id="shop-subtitle" style="margin:0;">Tutte le selezioni disponibili al momento.</p>
   </div>
@@ -60,7 +60,7 @@
         <div class="products-grid" id="shop-grid"></div>
         <div id="shop-empty" style="display:none;text-align:center;padding:60px 20px;color:#6e5f44;">
           <h3 style="color:#c9a45a;margin-bottom:14px;">Nessun prodotto trovato</h3>
-          <p>Prova a rimuovere qualche filtro o <a href="/prenota.html">richiedi un pezzo su misura</a>.</p>
+          <p>Prova a rimuovere qualche filtro o <a href="prenota.html">richiedi un pezzo su misura</a>.</p>
         </div>
       </div>
 
@@ -70,9 +70,9 @@
 
 <div id="site-footer-slot"></div>
 
-<script src="/js/config.js"></script>
-<script src="/partials.js"></script>
-<script src="/js/store.js"></script>
+<script src="js/config.js"></script>
+<script src="partials.js"></script>
+<script src="js/store.js"></script>
 <script>
 (function () {
   const state = { category: '', brand: '', price: '', sort: 'featured' };
@@ -88,7 +88,7 @@
     if (state.category) u.set('category', state.category);
     if (state.brand) u.set('brand', state.brand);
     const q = u.toString();
-    history.replaceState(null, '', '/shop.html' + (q ? '?' + q : ''));
+    history.replaceState(null, '', 'shop.html' + (q ? '?' + q : ''));
   }
 
   function priceMatch(p, range) {
