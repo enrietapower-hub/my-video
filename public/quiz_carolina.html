@@ -522,7 +522,7 @@ body {
       "Mi fa piacere che hai il desiderio di far parte del <strong style="color:var(--text);font-style:normal">THE WONDERS TEAM</strong> — ti contatteremo al più presto per una <strong style="color:var(--gold);font-style:normal">Zoom personalizzata.</strong><br>Clicca qui sotto per confermare la tua presenza."
     </div>
 
-    <button class="btn-cta" id="btn-conferma" onclick="confermaStep()" style="margin:0 auto;display:inline-flex">
+    <button class="btn-cta" id="btn-conferma" onclick="confermaZoom()" style="margin:0 auto;display:inline-flex">
       Parteciperò alla Zoom ✦
     </button>
   </div>
@@ -692,15 +692,20 @@ function mostraRisultato() {
     if (zoom) zoom.style.display = 'block';
   }
 
-  // Netlify Forms
-  inviaNetlify(nome, tel, email, profiloName, dachiSalvato);
+  // Netlify Forms — zoom non ancora confermata
+  inviaNetlify(nome, tel, email, profiloName, dachiSalvato, 'non ha confermato la sua presenza');
 }
 
 function confermaZoom() {
-  var btn = document.getElementById('btn-conferma-zoom');
+  var btn = document.getElementById('btn-conferma');
   var box = document.getElementById('wa-group-box');
   if (btn) btn.style.display = 'none';
   if (box) box.style.display = 'block';
+  var nome  = (document.getElementById('inp-nome')  || {value:''}).value.trim();
+  var tel   = (document.getElementById('inp-tel')   || {value:''}).value.trim();
+  var email = (document.getElementById('inp-email') || {value:''}).value.trim();
+  var profiloName = (document.getElementById('ris-profilo-name') || {textContent:''}).textContent.trim();
+  inviaNetlify(nome, tel, email, profiloName, dachiSalvato, 'ha confermato la sua presenza ✅');
 }
 
 function inviaInteresseVip() {
