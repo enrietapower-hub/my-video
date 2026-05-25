@@ -825,6 +825,18 @@ function mostraRisultato() {
 function confermaZoom() {
   document.getElementById('btn-zoom-confirm').style.display = 'none';
   document.getElementById('wa-group-box').style.display = 'block';
+  var nv = document.getElementById('inp-nome').value || '';
+  var tv = document.getElementById('inp-tel').value || '';
+  var ev = document.getElementById('inp-email').value || '';
+  var dv = document.getElementById('inp-dachi').value || '';
+  var fd = new FormData();
+  fd.append('form-name', 'wonders-team-carolina-quiz');
+  fd.append('nome', nv);
+  fd.append('whatsapp', tv);
+  fd.append('email', ev);
+  fd.append('profilo', currentProfilo + ' — ✅ CONFERMATA ZOOM');
+  fd.append('da-chi', dv);
+  fetch('/', { method: 'POST', body: fd });
 }
 
 function inviaInteresseVip() {
