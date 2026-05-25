@@ -573,21 +573,33 @@ function select(el, qId, val) {
 }
 
 function nextQ(n) {
-  var cur = document.getElementById('step-' + n);
-  var nxt = document.getElementById('step-' + (n+1));
-  if (cur) cur.style.display = 'none';
+  var cur = document.getElementById('q' + n);
+  var nxt = document.getElementById('q' + (n+1));
+  if (cur) cur.classList.remove('active');
   if (nxt) {
-    nxt.style.display = 'block';
+    nxt.classList.add('active');
+    var tot = 6;
+    var pct = Math.round(((n+1)/tot)*100);
+    var pf = document.getElementById('prog-fill');
+    var pn = document.getElementById('prog-num');
+    if (pf) pf.style.width = pct + '%';
+    if (pn) pn.textContent = (n+1) + ' / ' + tot;
     window.scrollTo({top:0, behavior:'smooth'});
   }
 }
 
 function prevQ(n) {
-  var cur = document.getElementById('step-' + n);
-  var prv = document.getElementById('step-' + (n-1));
-  if (cur) cur.style.display = 'none';
+  var cur = document.getElementById('q' + n);
+  var prv = document.getElementById('q' + (n-1));
+  if (cur) cur.classList.remove('active');
   if (prv) {
-    prv.style.display = 'block';
+    prv.classList.add('active');
+    var tot = 6;
+    var pct = Math.round(((n-1)/tot)*100);
+    var pf = document.getElementById('prog-fill');
+    var pn = document.getElementById('prog-num');
+    if (pf) pf.style.width = pct + '%';
+    if (pn) pn.textContent = (n-1) + ' / ' + tot;
     window.scrollTo({top:0, behavior:'smooth'});
   }
 }
