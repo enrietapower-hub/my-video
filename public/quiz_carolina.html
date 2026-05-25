@@ -565,9 +565,11 @@ function startQuiz() {
 function select(el, qId, val) {
   answers[qId] = val;
   var opts = el.closest('.q-options') || el.parentNode;
-  var all = opts.querySelectorAll('.q-option');
+  var all = opts.querySelectorAll('.option');
   all.forEach(function(o){ o.classList.remove('selected'); });
   el.classList.add('selected');
+  var nb = document.getElementById('next' + qId.replace('q',''));
+  if (nb) nb.disabled = false;
 }
 
 function nextQ(n) {
