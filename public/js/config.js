@@ -2,7 +2,7 @@
 // 👇 MODIFICA QUI i tuoi dati reali prima di pubblicare il sito
 window.BL11_CONFIG = {
   brandName: 'brandLuxury11',
-  tagline: 'Selected Luxury',
+  tagline: 'Atelier Ginevra',
 
   // Contatti — sostituisci con i tuoi reali
   whatsapp: '+41000000000',       // formato internazionale senza spazi/+ per il link wa.me
@@ -12,7 +12,7 @@ window.BL11_CONFIG = {
   instagramUrl: 'https://instagram.com/brandluxury11',
 
   // Zona operativa
-  zone: 'Mendrisio (CH) · Milano · Como',
+  zone: 'Ginevra (CH) · Milano · Como',
 
   // Spedizione
   shippingThreshold: 200,

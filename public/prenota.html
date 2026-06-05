@@ -15,7 +15,7 @@
 <!-- Netlify Forms registration -->
 <form name="prenotazione" data-netlify="true" netlify-honeypot="bot-field" hidden>
   <input type="text" name="nome"><input type="email" name="email"><input type="tel" name="whatsapp">
-  <input type="text" name="brand"><input type="text" name="modello"><input type="text" name="taglia">
+  <input type="text" name="tipologia"><input type="text" name="ispirazione"><input type="text" name="taglia">
   <input type="text" name="budget"><textarea name="note"></textarea>
 </form>
 
@@ -27,7 +27,7 @@
     <div style="max-width:680px;margin:0 auto;text-align:center;margin-bottom:40px;">
       <p class="section-tag">Su misura per te</p>
       <h1 class="section-title">Cerchi un pezzo specifico?</h1>
-      <p class="section-desc">Dicci cosa stai cercando — brand, modello, taglia o colore. Quando lo troviamo in outlet ti contattiamo con foto e prezzo. Senza impegno.</p>
+      <p class="section-desc">Dicci che tipo di pezzo hai in mente — forma, materiale, taglia o colore. Quando entra in collezione qualcosa che ti corrisponde ti contattiamo con foto e prezzo. Senza impegno.</p>
     </div>
 
     <form id="prenota-form" class="form-page" name="prenotazione" method="POST" data-netlify="true" netlify-honeypot="bot-field">
@@ -51,24 +51,31 @@
       </div>
 
       <div class="form-block">
-        <label for="brand">Brand di interesse</label>
-        <select id="brand" name="brand">
+        <label for="tipologia">Tipo di pezzo</label>
+        <select id="tipologia" name="tipologia">
           <option value="">— Seleziona —</option>
-          <option>Gucci</option>
-          <option>Louis Vuitton</option>
-          <option>Prada</option>
-          <option>Dior</option>
-          <option>Burberry</option>
-          <option>Saint Laurent</option>
-          <option>Bottega Veneta</option>
-          <option>Fendi</option>
-          <option>Indifferente</option>
+          <option>Borsa hobo / a spalla</option>
+          <option>Tote / shopper</option>
+          <option>Tracolla / pochette</option>
+          <option>Top handle</option>
+          <option>Zaino</option>
+          <option>Belt bag</option>
+          <option>Sneakers</option>
+          <option>Décolleté / scarpe tacco</option>
+          <option>Stivaletti</option>
+          <option>Mocassini</option>
+          <option>Capispalla</option>
+          <option>Maglieria</option>
+          <option>Camicia / blusa</option>
+          <option>Accessorio (cintura, foulard, portafoglio)</option>
+          <option>Altro</option>
         </select>
       </div>
 
       <div class="form-block">
-        <label for="modello">Modello o tipologia</label>
-        <input type="text" id="modello" name="modello" placeholder="es. Gucci Marmont small, sneakers LV Run Away…">
+        <label for="ispirazione">Estetica di riferimento</label>
+        <input type="text" id="ispirazione" name="ispirazione" placeholder="es. hobo capitonné con catena, sneakers basse pelle bianche…">
+        <p class="form-help">Descrivici la forma o lo stile che hai in mente, anche con parole tue.</p>
       </div>
 
       <div class="form-block">
@@ -99,7 +106,7 @@
       <p class="form-help" style="text-align:center;margin-top:14px;">Ti rispondiamo entro 24h. Non condividiamo i tuoi dati.</p>
     </form>
 
-    <div id="prenota-ok" class="form-ok" style="max-width:620px;margin:24px auto 0;">✓ Richiesta ricevuta! Ti contatteremo entro 24h con foto e prezzo del pezzo richiesto.</div>
+    <div id="prenota-ok" class="form-ok" style="max-width:620px;margin:24px auto 0;">✓ Richiesta ricevuta! Ti contattiamo entro 24h con proposte adatte a quello che cerchi.</div>
   </div>
 </section>
 

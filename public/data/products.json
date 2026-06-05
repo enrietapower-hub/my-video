@@ -1,220 +1,514 @@
 {
   "shipping_threshold": 200,
   "currency": "€",
+  "collections": ["Iconica", "Atelier", "Capsule", "Contemporanea"],
   "products": [
+
     {
-      "id": "gucci-marmont-matelasse",
-      "name": "GG Marmont Matelassé",
-      "brand": "Gucci",
+      "id": "hobo-matelasse-nera",
+      "name": "Hobo Matelassé Nera",
+      "collection": "Iconica",
       "category": "Pelletteria",
       "subcategory": "Borse",
-      "price": 890,
-      "retail": 2200,
+      "price": 290,
+      "boutique_value": 2200,
       "image": "gucci-bag-gg-marmont.jpg",
       "stock": 1,
       "featured": true,
-      "description": "Borsa GG Marmont in pelle matelassé, doppia G antichizzata, catena a maglia oro spazzolato. Apertura magnetica, interno in microfibra, tasca interna con zip.",
+      "description": "Borsa hobo a spalla in pelle matelassé capitonné, chiusura magnetica, catena oro spazzolato regolabile. Interno foderato con tasca interna a zip. Una forma iconica reinterpretata con attenzione alla qualità della pelle e delle finiture.",
       "specs": {
-        "Materiale": "Pelle matelassé 100%",
+        "Materiale": "Pelle bovina matelassé",
         "Dimensioni": "26 × 15 × 7 cm",
         "Tracolla": "Catena regolabile 56 cm",
-        "Condizione": "Nuovo con dustbag e cartellini",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Finiture": "Hardware oro spazzolato",
+        "Packaging": "Dust bag inclusa"
       }
     },
+
     {
-      "id": "gucci-diana-tote",
-      "name": "Borsa Tote in Pelle Bamboo",
-      "brand": "Gucci",
+      "id": "tote-manici-naturali",
+      "name": "Tote in Pelle Manici Naturali",
+      "collection": "Atelier",
       "category": "Pelletteria",
       "subcategory": "Borse",
-      "price": 1240,
-      "retail": 2980,
+      "price": 320,
+      "boutique_value": 2400,
       "image": "gucci-bag-01.png",
       "stock": 1,
       "featured": true,
-      "description": "Tote bag in pelle liscia con manici in bamboo lucido, dettaglio nappina, finiture oro chiaro. Spazio per laptop fino a 13''.",
+      "description": "Tote bag in pelle liscia con manici in bamboo naturale lucido, dettaglio nappina sospesa, finiture in metallo dorato. Capienza per laptop 13'', interno foderato. Pezzo dal carattere elegante e versatile.",
       "specs": {
-        "Materiale": "Pelle vitello 100%",
+        "Materiale": "Pelle vitello liscia",
         "Dimensioni": "37 × 28 × 14 cm",
         "Manici": "Bamboo naturale",
-        "Condizione": "Nuovo con dustbag",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Finiture": "Hardware oro chiaro",
+        "Packaging": "Dust bag inclusa"
       }
     },
+
     {
-      "id": "gucci-jackie-1961",
-      "name": "Hobo Stampa Heritage",
-      "brand": "Gucci",
+      "id": "hobo-monogram-heritage",
+      "name": "Hobo Tela Monogramma Heritage",
+      "collection": "Iconica",
       "category": "Pelletteria",
       "subcategory": "Borse",
-      "price": 980,
-      "retail": 2400,
+      "price": 260,
+      "boutique_value": 2400,
       "image": "gucci-bag-02.png",
       "stock": 1,
-      "description": "Borsa hobo con tela heritage, finiture in pelle, ferramenta dorata. Tracolla rimovibile.",
+      "description": "Borsa hobo in tela con pattern monogramma all-over, finiture in pelle, ferramenta dorata. Tracolla rimovibile e regolabile. Spazioso interno con tasca interna.",
       "specs": {
-        "Materiale": "Tela GG + pelle",
+        "Materiale": "Tela tecnica + pelle",
         "Dimensioni": "30 × 19 × 8 cm",
         "Tracolla": "Rimovibile, regolabile",
-        "Condizione": "Nuovo con dustbag",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Finiture": "Hardware oro",
+        "Packaging": "Dust bag inclusa"
       }
     },
+
     {
-      "id": "gucci-padlock-supreme",
-      "name": "Padlock Supreme",
-      "brand": "Gucci",
+      "id": "borsa-lucchetto-pattern",
+      "name": "Borsa con Lucchetto Tela Pattern",
+      "collection": "Capsule",
       "category": "Pelletteria",
       "subcategory": "Borse",
-      "price": 780,
-      "retail": 1890,
+      "price": 210,
+      "boutique_value": 1890,
       "image": "gucci-bag-03.png",
       "stock": 2,
-      "description": "Borsa Padlock in tela GG Supreme con chiusura a lucchetto, manico in pelle, tracolla a catena regolabile.",
+      "description": "Borsa stile satchel in tela rivestita con pattern grafico, chiusura a lucchetto pendente, manico in pelle. Tracolla a catena regolabile per portarla a spalla o crossbody.",
       "specs": {
-        "Materiale": "Tela GG Supreme + pelle",
+        "Materiale": "Tela rivestita + pelle",
         "Dimensioni": "30 × 19 × 10 cm",
         "Tracolla": "Catena 60–110 cm",
-        "Condizione": "Nuovo con dustbag",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Chiusura": "Lucchetto + zip",
+        "Packaging": "Dust bag inclusa"
       }
     },
+
     {
-      "id": "gucci-bamboo-1947",
-      "name": "Bamboo 1947",
-      "brand": "Gucci",
+      "id": "top-handle-bamboo",
+      "name": "Top Handle con Manico Naturale",
+      "collection": "Atelier",
       "category": "Pelletteria",
       "subcategory": "Borse",
-      "price": 1490,
-      "retail": 3400,
+      "price": 410,
+      "boutique_value": 3400,
       "image": "gucci-bag-04.png",
       "stock": 1,
       "featured": true,
-      "description": "Iconica borsa con manico in bamboo lavorato a mano, in pelle a grana, chiusura a girello. Edizione 1947.",
+      "description": "Top handle in pelle a grana fine con manico in bamboo lavorato a mano, chiusura a girello. Una silhouette senza tempo, lavorata con attenzione ai dettagli artigianali.",
       "specs": {
         "Materiale": "Pelle a grana fine",
         "Dimensioni": "28 × 19 × 10 cm",
         "Manico": "Bamboo naturale lucido",
-        "Condizione": "Nuovo con dustbag",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Tracolla": "In pelle, rimovibile",
+        "Packaging": "Dust bag inclusa"
       }
     },
+
     {
-      "id": "gucci-shirt-cotton-gg",
-      "name": "Camicia Cotone GG",
-      "brand": "Gucci",
+      "id": "camicia-cotone-pattern",
+      "name": "Camicia in Cotone Stampa Pattern",
+      "collection": "Capsule",
       "category": "Abbigliamento",
       "subcategory": "Camicie",
-      "price": 390,
-      "retail": 980,
+      "price": 110,
+      "boutique_value": 980,
       "image": "gucci-shirt-01.png",
       "stock": 3,
-      "description": "Camicia in cotone con stampa GG all-over, vestibilità regolare, bottoni in madreperla.",
+      "description": "Camicia in cotone leggero con stampa pattern all-over, vestibilità regolare, bottoni in madreperla, colletto classico.",
       "specs": {
         "Materiale": "Cotone 100%",
         "Taglie": "S — M — L",
         "Vestibilità": "Regular",
-        "Condizione": "Nuovo con cartellino",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Colletto": "Classico a punta",
+        "Packaging": "Imballaggio premium"
       }
     },
+
     {
-      "id": "gucci-shirt-silk-print",
-      "name": "Camicia Seta Stampa",
-      "brand": "Gucci",
+      "id": "camicia-seta-stampata",
+      "name": "Camicia in Seta Stampata",
+      "collection": "Capsule",
       "category": "Abbigliamento",
       "subcategory": "Camicie",
-      "price": 480,
-      "retail": 1290,
+      "price": 140,
+      "boutique_value": 1290,
       "image": "gucci-shirt-02.png",
       "stock": 2,
-      "description": "Camicia in seta con stampa decorativa, colletto a punta, polsini con bottone.",
+      "description": "Camicia in seta lucida con stampa decorativa, vestibilità morbida, polsini con bottone, colletto a punta.",
       "specs": {
         "Materiale": "Seta 100%",
         "Taglie": "S — M — L",
         "Vestibilità": "Regular",
-        "Condizione": "Nuovo con cartellino",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Lavaggio": "A secco",
+        "Packaging": "Imballaggio premium"
       }
     },
+
     {
-      "id": "lv-pochette-metis",
-      "name": "Pochette Metis Monogram",
-      "brand": "Louis Vuitton",
+      "id": "tracolla-tela-stampata",
+      "name": "Tracolla Compatta Tela Stampata",
+      "collection": "Capsule",
       "category": "Pelletteria",
       "subcategory": "Borse",
-      "price": 1280,
-      "retail": 2650,
+      "price": 280,
+      "boutique_value": 2650,
       "image": "lv-item-03.png",
       "stock": 1,
       "featured": true,
-      "description": "Tracolla compatta in tela Monogram con chiusura S-lock, interno in pelle. Tracolla regolabile.",
+      "description": "Tracolla compatta in tela rivestita con pattern stampato, chiusura S-lock, interno foderato in pelle. Tracolla in cuoio regolabile.",
       "specs": {
-        "Materiale": "Tela Monogram",
+        "Materiale": "Tela rivestita",
         "Dimensioni": "25 × 19 × 9 cm",
-        "Tracolla": "Pelle, regolabile",
-        "Condizione": "Nuovo con dustbag",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Tracolla": "Cuoio, regolabile",
+        "Chiusura": "Magnetica S-lock",
+        "Packaging": "Dust bag inclusa"
       }
     },
+
     {
-      "id": "lv-neverfull-mm",
-      "name": "Tote Bag Monogram",
-      "brand": "Louis Vuitton",
+      "id": "tote-tela-stampata",
+      "name": "Tote Tela Stampata Manici Cuoio",
+      "collection": "Iconica",
       "category": "Pelletteria",
       "subcategory": "Borse",
-      "price": 1180,
-      "retail": 2350,
+      "price": 250,
+      "boutique_value": 2350,
       "image": "lv-item-02.png",
       "stock": 1,
-      "description": "Tote bag classica in tela Monogram, manici in pelle naturale, pochette interna inclusa.",
+      "description": "Tote bag spaziosa in tela rivestita con pattern stampato, manici in cuoio naturale che si patina con il tempo. Pochette interna a contrasto inclusa.",
       "specs": {
-        "Materiale": "Tela Monogram + pelle naturale",
+        "Materiale": "Tela rivestita + cuoio",
         "Dimensioni": "32 × 29 × 17 cm",
-        "Manici": "21 cm",
-        "Condizione": "Nuovo con dustbag",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Manici": "Cuoio naturale",
+        "Extra": "Pochette interna inclusa",
+        "Packaging": "Dust bag inclusa"
       }
     },
+
     {
-      "id": "lv-run-away-sneakers",
-      "name": "Sneakers Run Away",
-      "brand": "Louis Vuitton",
+      "id": "sneakers-sport-tessuto",
+      "name": "Sneakers Sportive Tessuto Tecnico",
+      "collection": "Contemporanea",
       "category": "Calzature",
       "subcategory": "Sneakers",
-      "price": 590,
-      "retail": 990,
+      "price": 150,
+      "boutique_value": 990,
       "image": "lv-shoes-01.png",
       "stock": 2,
-      "description": "Sneakers sportive in pelle e mesh, suola in gomma, dettagli a contrasto, logo laterale.",
+      "description": "Sneakers sportive in pelle e mesh tecnico traspirante, suola in gomma con logo embossato a contrasto, lacci tono su tono.",
       "specs": {
         "Materiale": "Pelle vitello + mesh tecnico",
         "Taglie": "36 — 41 EU",
-        "Suola": "Gomma con logo",
-        "Condizione": "Nuovo in scatola",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Suola": "Gomma scolpita",
+        "Sottopiede": "Imbottito traspirante",
+        "Packaging": "Scatola originale"
       }
     },
+
     {
-      "id": "lv-time-out-sneakers",
-      "name": "Sneakers Time Out",
-      "brand": "Louis Vuitton",
+      "id": "sneakers-basse-pelle",
+      "name": "Sneakers Basse Pelle Premium",
+      "collection": "Contemporanea",
       "category": "Calzature",
       "subcategory": "Sneakers",
-      "price": 640,
-      "retail": 1090,
+      "price": 170,
+      "boutique_value": 1090,
       "image": "lv-shoes-02.png",
       "stock": 2,
       "featured": true,
-      "description": "Sneakers basse in pelle premium, design pulito, lacci tono su tono, suola scolpita.",
+      "description": "Sneakers basse dal design pulito in pelle vitello premium, lacci tono su tono, suola scolpita con marchio embossato.",
       "specs": {
         "Materiale": "Pelle vitello premium",
         "Taglie": "36 — 41 EU",
         "Suola": "Gomma scolpita",
-        "Condizione": "Nuovo in scatola",
-        "Provenienza": "Outlet ufficiale Mendrisio"
+        "Stile": "Lifestyle daily",
+        "Packaging": "Scatola originale"
+      }
+    },
+
+    {
+      "id": "bucket-bag-pelle",
+      "name": "Bucket Bag Pelle a Grana",
+      "collection": "Iconica",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 230,
+      "boutique_value": 1690,
+      "image": null,
+      "stock": 2,
+      "description": "Borsa secchiello in pelle a grana fine con coulisse e nappina, tracolla regolabile, interno foderato. La forma bucket è un evergreen che si abbina con tutto.",
+      "specs": {
+        "Materiale": "Pelle a grana",
+        "Dimensioni": "25 × 26 × 18 cm",
+        "Tracolla": "Regolabile, rimovibile",
+        "Chiusura": "Coulisse + nappina",
+        "Packaging": "Dust bag inclusa"
+      }
+    },
+
+    {
+      "id": "belt-bag-crossbody",
+      "name": "Belt Bag Convertibile",
+      "collection": "Contemporanea",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 180,
+      "boutique_value": 1290,
+      "image": null,
+      "stock": 3,
+      "description": "Marsupio convertibile in tracolla, in pelle saffiano resistente, chiusura a zip ampia. Tracolla regolabile per portarla a vita, a tracolla o crossbody.",
+      "specs": {
+        "Materiale": "Pelle saffiano",
+        "Dimensioni": "23 × 14 × 6 cm",
+        "Tracolla": "Regolabile 70-120 cm",
+        "Chiusura": "Zip",
+        "Packaging": "Dust bag inclusa"
+      }
+    },
+
+    {
+      "id": "backpack-mini-pelle",
+      "name": "Backpack Mini in Pelle",
+      "collection": "Contemporanea",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 260,
+      "boutique_value": 1990,
+      "image": null,
+      "stock": 2,
+      "description": "Zaino mini in pelle vitello con dettaglio nappina, doppia chiusura zip, spallacci regolabili in pelle. Ideale per uso quotidiano elegante.",
+      "specs": {
+        "Materiale": "Pelle vitello",
+        "Dimensioni": "22 × 27 × 11 cm",
+        "Spallacci": "Pelle, regolabili",
+        "Tasche": "Frontale + interna",
+        "Packaging": "Dust bag inclusa"
+      }
+    },
+
+    {
+      "id": "crossbody-flap",
+      "name": "Tracolla a Pattina Quilted",
+      "collection": "Iconica",
+      "category": "Pelletteria",
+      "subcategory": "Borse",
+      "price": 270,
+      "boutique_value": 2400,
+      "image": null,
+      "stock": 1,
+      "description": "Tracolla con pattina e chiusura a girello in metallo, lavorazione quilted morbida, tracolla a catena intrecciata in pelle. Una forma intramontabile che attraversa le stagioni.",
+      "specs": {
+        "Materiale": "Pelle agnello quilted",
+        "Dimensioni": "25 × 16 × 7 cm",
+        "Tracolla": "Catena + pelle, regolabile",
+        "Chiusura": "Girello metallo",
+        "Packaging": "Dust bag inclusa"
+      }
+    },
+
+    {
+      "id": "loafers-pelle-morsetto",
+      "name": "Mocassini Pelle con Morsetto",
+      "collection": "Atelier",
+      "category": "Calzature",
+      "subcategory": "Mocassini",
+      "price": 190,
+      "boutique_value": 1190,
+      "image": null,
+      "stock": 3,
+      "featured": true,
+      "description": "Mocassini classici in pelle vitello lucida con dettaglio morsetto in metallo dorato sul collo del piede, suola in cuoio. Un evergreen che si porta con tutto.",
+      "specs": {
+        "Materiale": "Pelle vitello lucida",
+        "Taglie": "35 — 42 EU",
+        "Suola": "Cuoio",
+        "Finitura": "Morsetto metallo dorato",
+        "Packaging": "Scatola originale"
+      }
+    },
+
+    {
+      "id": "decollete-pelle-nera",
+      "name": "Décolleté Pelle Nera Tacco 8",
+      "collection": "Iconica",
+      "category": "Calzature",
+      "subcategory": "Décolleté",
+      "price": 150,
+      "boutique_value": 890,
+      "image": null,
+      "stock": 4,
+      "description": "Décolleté classiche in pelle nappa nera, punta affusolata, tacco a spillo 8 cm, suola in cuoio. La scarpa da sera che non passa mai di moda.",
+      "specs": {
+        "Materiale": "Pelle nappa",
+        "Taglie": "35 — 41 EU",
+        "Tacco": "8 cm a spillo",
+        "Suola": "Cuoio",
+        "Packaging": "Scatola originale"
+      }
+    },
+
+    {
+      "id": "ankle-boots-pelle",
+      "name": "Stivaletti Pelle Punta Quadrata",
+      "collection": "Contemporanea",
+      "category": "Calzature",
+      "subcategory": "Stivaletti",
+      "price": 220,
+      "boutique_value": 1290,
+      "image": null,
+      "stock": 2,
+      "description": "Stivaletti alla caviglia in pelle vitello, punta quadrata moderna, tacco geometrico 5 cm, zip laterale. Eleganti e versatili.",
+      "specs": {
+        "Materiale": "Pelle vitello",
+        "Taglie": "35 — 41 EU",
+        "Tacco": "5 cm",
+        "Chiusura": "Zip laterale",
+        "Packaging": "Scatola originale"
+      }
+    },
+
+    {
+      "id": "cintura-fibbia-logo",
+      "name": "Cintura Pelle Fibbia Iconica",
+      "collection": "Capsule",
+      "category": "Accessori",
+      "subcategory": "Cinture",
+      "price": 95,
+      "boutique_value": 490,
+      "image": null,
+      "stock": 5,
+      "description": "Cintura in pelle vitello con fibbia in metallo lucido, fodera interna in pelle, lavorazione artigianale. Disponibile in nera e marrone.",
+      "specs": {
+        "Materiale": "Pelle vitello",
+        "Larghezza": "3 cm",
+        "Misure": "75 — 85 — 95 cm",
+        "Fibbia": "Metallo lucido",
+        "Colori": "Nero · Marrone"
+      }
+    },
+
+    {
+      "id": "foulard-seta-stampato",
+      "name": "Foulard Seta Stampato 90×90",
+      "collection": "Capsule",
+      "category": "Accessori",
+      "subcategory": "Foulard",
+      "price": 75,
+      "boutique_value": 490,
+      "image": null,
+      "stock": 6,
+      "description": "Foulard quadrato in seta twill, stampa decorativa colorata, orlo arrotolato a mano. Un accessorio che eleva qualunque look.",
+      "specs": {
+        "Materiale": "Seta twill",
+        "Dimensioni": "90 × 90 cm",
+        "Orlo": "Rifinito a mano",
+        "Lavaggio": "A secco",
+        "Packaging": "Scatola regalo"
+      }
+    },
+
+    {
+      "id": "portafoglio-continental",
+      "name": "Portafoglio Continental Pelle",
+      "collection": "Capsule",
+      "category": "Accessori",
+      "subcategory": "Portafogli",
+      "price": 110,
+      "boutique_value": 690,
+      "image": null,
+      "stock": 4,
+      "description": "Portafoglio formato continental in pelle a grana, chiusura a zip perimetrale, 12 alloggi carte, doppio scomparto banconote, tasca portamonete.",
+      "specs": {
+        "Materiale": "Pelle a grana",
+        "Dimensioni": "19 × 10 × 2 cm",
+        "Alloggi carte": "12",
+        "Chiusura": "Zip perimetrale",
+        "Packaging": "Scatola inclusa"
+      }
+    },
+
+    {
+      "id": "porta-carte-mini",
+      "name": "Porta Carte Mini in Pelle",
+      "collection": "Capsule",
+      "category": "Accessori",
+      "subcategory": "Portafogli",
+      "price": 55,
+      "boutique_value": 290,
+      "image": null,
+      "stock": 8,
+      "description": "Porta carte compatto in pelle saffiano, 6 alloggi carte, tasca centrale per banconote. Slim e leggero.",
+      "specs": {
+        "Materiale": "Pelle saffiano",
+        "Dimensioni": "11 × 7,5 cm",
+        "Alloggi carte": "6",
+        "Colori": "Nero · Cammello · Bordeaux",
+        "Packaging": "Scatola inclusa"
+      }
+    },
+
+    {
+      "id": "trench-cammello",
+      "name": "Trench Cotone Cammello",
+      "collection": "Iconica",
+      "category": "Abbigliamento",
+      "subcategory": "Capispalla",
+      "price": 280,
+      "boutique_value": 1990,
+      "image": null,
+      "stock": 2,
+      "description": "Trench doppiopetto in cotone gabardine cammello, cintura in vita, spalline, polsini con cinturino. Il capospalla che attraversa le epoche.",
+      "specs": {
+        "Materiale": "Cotone gabardine",
+        "Taglie": "S — M — L",
+        "Colore": "Cammello",
+        "Vestibilità": "Regular oversize",
+        "Packaging": "Imballaggio premium"
+      }
+    },
+
+    {
+      "id": "blazer-doppiopetto",
+      "name": "Blazer Doppiopetto Lana",
+      "collection": "Contemporanea",
+      "category": "Abbigliamento",
+      "subcategory": "Capispalla",
+      "price": 240,
+      "boutique_value": 1490,
+      "image": null,
+      "stock": 2,
+      "description": "Blazer doppiopetto in lana vergine, fodera in seta, bottoni in metallo, taglio sartoriale. Capo da costruzione per look strutturati.",
+      "specs": {
+        "Materiale": "Lana vergine 100%",
+        "Taglie": "S — M — L",
+        "Fodera": "Seta",
+        "Vestibilità": "Slim",
+        "Packaging": "Gruccia + housse"
+      }
+    },
+
+    {
+      "id": "maglione-cashmere",
+      "name": "Maglione Cashmere Girocollo",
+      "collection": "Atelier",
+      "category": "Abbigliamento",
+      "subcategory": "Maglieria",
+      "price": 160,
+      "boutique_value": 890,
+      "image": null,
+      "stock": 4,
+      "description": "Maglione in puro cashmere a girocollo, lavorazione fine, colori basici. Capo confortevole e raffinato per ogni stagione fredda.",
+      "specs": {
+        "Materiale": "Cashmere 100%",
+        "Taglie": "S — M — L",
+        "Vestibilità": "Regular",
+        "Colori": "Beige · Grigio · Nero · Bordeaux",
+        "Packaging": "Imballaggio premium"
       }
     }
+
   ]
 }

@@ -81,20 +81,26 @@
     return Math.round((1 - now / was) * 100);
   }
 
+  function productImage(p) {
+    return p.image ? encodeURIComponent(p.image) : 'placeholder.svg';
+  }
+
   function productCardHTML(p) {
-    const disc = discountPct(p.price, p.retail);
+    const ref = p.boutique_value || p.retail;
+    const disc = discountPct(p.price, ref);
+    const tag = p.collection || p.brand || '';
     return ''
       + '<article class="product-card">'
       + '  <a class="product-card-img" href="product.html?id=' + encodeURIComponent(p.id) + '">'
       + (disc ? '    <span class="product-card-badge">-' + disc + '%</span>' : '')
-      + '    <img src="' + encodeURIComponent(p.image) + '" alt="' + escapeHtml(p.name) + '" loading="lazy">'
+      + '    <img src="' + productImage(p) + '" alt="' + escapeHtml(p.name) + '" loading="lazy">'
       + '  </a>'
       + '  <div class="product-card-body">'
-      + '    <div class="product-card-brand">' + escapeHtml(p.brand) + '</div>'
+      + '    <div class="product-card-brand">' + escapeHtml(tag) + '</div>'
       + '    <h3 class="product-card-name"><a href="product.html?id=' + encodeURIComponent(p.id) + '">' + escapeHtml(p.name) + '</a></h3>'
       + '    <div class="product-card-price">'
       + '      <span class="price-now">' + fmtPrice(p.price) + '</span>'
-      + (p.retail ? '      <span class="price-was">' + fmtPrice(p.retail) + '</span>' : '')
+      + (ref ? '      <span class="price-was" title="Valore boutique del segmento">' + fmtPrice(ref) + '</span>' : '')
       + '    </div>'
       + '    <div class="product-card-cta">'
       + '      <button class="btn-add" data-add="' + escapeHtml(p.id) + '">Aggiungi</button>'
