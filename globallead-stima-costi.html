@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlobalLead · Stima Costi & Preventivi</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0b0a12; --panel:#15131f; --panel2:#1c1930; --line:#2a2640;
+    --txt:#ece9f5; --muted:#9a93b5; --accent:#a855f7; --accent2:#ec4899;
+    --gold:#c9a45a; --good:#34d399; --warn:#fbbf24;
+  }
+  body{background:var(--bg);color:var(--txt);font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;padding:24px}
+  .wrap{max-width:860px;margin:0 auto}
+  h1{font-size:24px;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);font-size:14px;margin:4px 0 22px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px}
+  .card h2{font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .card h2 .i{opacity:.7;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:12px;display:block;margin-top:3px}
+  .row{display:flex;gap:14px;flex-wrap:wrap}
+  .field{flex:1;min-width:150px;margin-bottom:12px}
+  label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}
+  input,select{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font-size:15px;font-family:inherit}
+  input:focus,select:focus{outline:none;border-color:var(--accent)}
+  .presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .preset{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:30px;padding:8px 16px;font-size:13px;cursor:pointer;transition:.15s}
+  .preset:hover{border-color:var(--accent);background:#241f3a}
+  .preset.active{background:linear-gradient(90deg,var(--accent),var(--accent2));border-color:transparent;font-weight:600}
+  .out{background:linear-gradient(135deg,#1c1930,#241b30);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .big{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .big .v{font-size:34px;font-weight:700;color:#fff}
+  .big .v.client{background:linear-gradient(90deg,var(--good),#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lines{margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+  .ln{display:flex;justify-content:space-between;font-size:14px;padding:4px 0;color:var(--muted)}
+  .ln b{color:var(--txt);font-weight:600}
+  .hint{font-size:12px;color:var(--muted);margin-top:6px}
+  details{margin-top:6px}
+  summary{cursor:pointer;color:var(--accent);font-size:13px;padding:6px 0}
+  .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;background:#241f3a;color:var(--muted);margin-left:6px}
+  .footnote{font-size:12px;color:var(--muted);text-align:center;margin-top:18px;line-height:1.6}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>💎 GlobalLead · Stima Costi & Preventivi</h1>
+  <p class="sub">Calcola la tua spesa reale per ogni tipo di scraping e il prezzo da fare al cliente. Imposta i prezzi veri delle tue API e i numeri sono tuoi.</p>
+
+  <!-- SCENARI -->
+  <div class="card">
+    <h2>1 · Scegli lo scenario del cliente</h2>
+    <div class="presets" id="presets">
+      <button class="preset" data-p="light">🟢 Light — solo lista (Google)</button>
+      <button class="preset" data-p="standard">🟡 Standard — lista + AI score</button>
+      <button class="preset active" data-p="full">🟣 Full — lista + score + messaggi AI</button>
+      <button class="preset" data-p="web">🔵 Web — ricerca su siti (Brave) + AI</button>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>Numero di lead richiesti</label>
+        <input type="number" id="leads" value="500" min="0">
+      </div>
+      <div class="field">
+        <label>% lead con dettaglio (telefono/sito)</label>
+        <input type="number" id="pctDetails" value="100" min="0" max="100">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>AI Score sui lead?</label>
+        <select id="useScore"><option value="1">Sì</option><option value="0">No</option></select>
+      </div>
+      <div class="field">
+        <label>Genera messaggi AI?</label>
+        <select id="useDraft"><option value="1">Sì</option><option value="0">No</option></select>
+      </div>
+      <div class="field">
+        <label>Modello Claude</label>
+        <select id="model">
+          <option value="haiku">Haiku (economico)</option>
+          <option value="sonnet" selected>Sonnet (equilibrato)</option>
+          <option value="opus">Opus (premium)</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>Fonte ricerca</label>
+        <select id="source"><option value="places" selected>Google Places (Maps)</option><option value="brave">Brave (siti web)</option></select>
+      </div>
+      <div class="field">
+        <label>Ricarico per il cliente (×)</label>
+        <input type="number" id="markup" value="5" min="1" step="0.5">
+      </div>
+    </div>
+  </div>
+
+  <!-- RISULTATO -->
+  <div class="out">
+    <div class="big"><span class="muted" style="color:var(--muted)">Tua spesa effettiva</span><span class="v" id="costMe">€0</span></div>
+    <div class="big"><span style="color:var(--muted)">Prezzo consigliato al cliente</span><span class="v client" id="priceClient">€0</span></div>
+    <div class="lines" id="breakdown"></div>
+    <div class="hint" id="perLead"></div>
+  </div>
+
+  <!-- PREZZI API (editabili) -->
+  <div class="card" style="margin-top:18px">
+    <h2>2 · I tuoi prezzi API <span class="i">Aggiorna con i prezzi reali dei tuoi account. Valori di default indicativi (in €).</span></h2>
+    <details open>
+      <summary>Google Places</summary>
+      <div class="row" style="margin-top:10px">
+        <div class="field"><label>Ricerca (ogni ~20 risultati) €</label><input type="number" id="pPlacesSearch" value="0.030" step="0.001"></div>
+        <div class="field"><label>Dettaglio luogo (telefono/sito) €/lead</label><input type="number" id="pPlacesDetail" value="0.017" step="0.001"></div>
+      </div>
+    </details>
+    <details>
+      <summary>Brave Search</summary>
+      <div class="row" style="margin-top:10px">
+        <div class="field"><label>Query €/cad</label><input type="number" id="pBrave" value="0.004" step="0.001"></div>
+        <div class="field"><label>Query gratuite/mese</label><input type="number" id="braveFree" value="2000"></div>
+      </div>
+    </details>
+    <details>
+      <summary>Claude API (token)</summary>
+      <div class="row" style="margin-top:10px">
+        <div class="field"><label>Haiku — in / out €/M</label>
+          <div class="row"><input type="number" id="haikuIn" value="0.90" step="0.01"><input type="number" id="haikuOut" value="4.50" step="0.01"></div></div>
+        <div class="field"><label>Sonnet — in / out €/M</label>
+          <div class="row"><input type="number" id="sonnetIn" value="2.80" step="0.01"><input type="number" id="sonnetOut" value="14.00" step="0.1"></div></div>
+        <div class="field"><label>Opus — in / out €/M</label>
+          <div class="row"><input type="number" id="opusIn" value="14.00" step="0.1"><input type="number" id="opusOut" value="70.00" step="0.1"></div></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Token per SCORE (in / out)</label>
+          <div class="row"><input type="number" id="scoreIn" value="800"><input type="number" id="scoreOut" value="150"></div></div>
+        <div class="field"><label>Token per MESSAGGIO (in / out)</label>
+          <div class="row"><input type="number" id="draftIn" value="1500"><input type="number" id="draftOut" value="450"></div></div>
+      </div>
+    </details>
+  </div>
+
+  <p class="footnote">
+    ⚠️ Numeri = <b>stima</b>, non fattura. I costi reali sono nei tuoi account:
+    Google Cloud Billing · Brave API Dashboard · console.anthropic.com → Usage.<br>
+    Aggiorna i prezzi qui sopra coi tuoi tariffari per avere stime precise.
+  </p>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const ids = ['leads','pctDetails','useScore','useDraft','model','source','markup',
+  'pPlacesSearch','pPlacesDetail','pBrave','braveFree',
+  'haikuIn','haikuOut','sonnetIn','sonnetOut','opusIn','opusOut',
+  'scoreIn','scoreOut','draftIn','draftOut'];
+const eur = n => '€' + (n<10 ? n.toFixed(2) : n.toFixed(n<100?1:0));
+
+const PRESETS = {
+  light:    {useScore:'0',useDraft:'0',source:'places'},
+  standard: {useScore:'1',useDraft:'0',source:'places'},
+  full:     {useScore:'1',useDraft:'1',source:'places'},
+  web:      {useScore:'1',useDraft:'1',source:'brave'},
+};
+
+document.querySelectorAll('.preset').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('.preset').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const p=PRESETS[b.dataset.p];
+    for(const k in p) $(k).value=p[k];
+    calc();
+  };
+});
+
+function modelPrices(){
+  const m=$('model').value;
+  if(m==='haiku')  return [+$('haikuIn').value,  +$('haikuOut').value];
+  if(m==='opus')   return [+$('opusIn').value,   +$('opusOut').value];
+  return [+$('sonnetIn').value, +$('sonnetOut').value];
+}
+
+function calc(){
+  const leads=+$('leads').value||0;
+  const pct=(+$('pctDetails').value||0)/100;
+  const src=$('source').value;
+  const [pin,pout]=modelPrices();
+
+  // --- ricerca/raccolta ---
+  let searchCost=0;
+  if(src==='places'){
+    const searches=Math.ceil(leads/20);              // ~20 risultati per ricerca
+    searchCost = searches*(+$('pPlacesSearch').value)
+               + leads*pct*(+$('pPlacesDetail').value); // dettaglio per chi vuole tel/sito
+  } else {
+    const q=Math.max(0, leads - (+$('braveFree').value)); // togli quota gratuita
+    searchCost = q*(+$('pBrave').value);
+  }
+
+  // --- AI score ---
+  let scoreCost=0;
+  if($('useScore').value==='1'){
+    scoreCost = leads*((+$('scoreIn').value)*pin + (+$('scoreOut').value)*pout)/1e6;
+  }
+  // --- AI messaggi (solo sui qualificati, stima ~40% dei lead) ---
+  let draftCost=0, drafted=0;
+  if($('useDraft').value==='1'){
+    drafted = Math.round(leads*0.4);
+    draftCost = drafted*((+$('draftIn').value)*pin + (+$('draftOut').value)*pout)/1e6;
+  }
+
+  const total = searchCost+scoreCost+draftCost;
+  const client = total*(+$('markup').value||1);
+
+  $('costMe').textContent = eur(total);
+  $('priceClient').textContent = client>0 ? eur(Math.ceil(client)) : '€0';
+
+  $('breakdown').innerHTML = `
+    <div class="ln">Raccolta lead (${src==='places'?'Google Places':'Brave'}) <b>${eur(searchCost)}</b></div>
+    <div class="ln">AI Score ${$('useScore').value==='1'?`(${leads} lead)`:'<span class="pill">off</span>'} <b>${eur(scoreCost)}</b></div>
+    <div class="ln">Messaggi AI ${$('useDraft').value==='1'?`(~${drafted} qualificati)`:'<span class="pill">off</span>'} <b>${eur(draftCost)}</b></div>
+  `;
+  $('perLead').textContent = leads>0
+    ? `Costo per lead: ${eur(total/leads)} · Margine sul cliente: ${eur(client-total)} (×${$('markup').value})`
+    : '';
+}
+ids.forEach(id=>$(id).addEventListener('input',calc));
+ids.forEach(id=>$(id).addEventListener('change',calc));
+calc();
+</script>
+</body>
+</html>
