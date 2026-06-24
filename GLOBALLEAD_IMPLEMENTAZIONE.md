@@ -198,27 +198,43 @@ const sheets = google.sheets({ version: "v4", auth });
 const SHEET_ID = process.env.SHEET_ID;        // id del foglio "Global leads"
 const TAB = "Leads";
 
-// header del foglio: deve combaciare con lo schema canonico (incluse colonne nuove)
+// NOMI REALI del foglio "Leads EnrietaBiz" (id 1wH8QuMPrpW-uKumuwoA7Y5cy_DdjynBjpQeJ-HGT8MM):
+//   ID · Stato trattativa · Nome attività · Referente / Titolare · Sito web ·
+//   Servizio consigliato · ... (la chiave è "ID", NON "ID Lead")
+// Colonne NUOVE da AGGIUNGERE in fondo al foglio:
+//   Data contatto · Canale · Contattato da · N° follow-up · Prossimo follow-up
+const TAB = "Foglio1";                          // nome del tab reale
 export async function updateSheetRow(idLead, patch) {
   const { data } = await sheets.spreadsheets.values.get({
-    spreadsheetId: SHEET_ID, range: `${TAB}!A1:Z`,
+    spreadsheetId: SHEET_ID, range: `${TAB}!A1:AD`,
   });
   const [header, ...rows] = data.values;
-  const idCol = header.indexOf("ID Lead");
+  const idCol = header.indexOf("ID");           // ← chiave reale del Sheet
   const r = rows.findIndex(row => row[idCol] === idLead);
   if (r === -1) return;                        // ADATTA: oppure append nuova riga
 
+  // mappa: nome colonna REALE nel Sheet -> valore
   const map = {
-    Stato:"Stato","Data contatto":patch.contacted_at,"Canale":patch.channel,
-    "Contattato da":patch.contacted_by,"N° follow-up":patch.followup_count,
-    "Prossimo follow-up":patch.next_followup_at,"Ultimo messaggio":patch.last_message,
+    "Stato trattativa": patch.Stato,            // ← non "Stato"
+    "Data contatto":    patch.contacted_at,
+    "Canale":           patch.channel,
+    "Contattato da":    patch.contacted_by,
+    "N° follow-up":     patch.followup_count,
+    "Prossimo follow-up": patch.next_followup_at,
+  };
+  // indice colonna -> lettera A1 (gestisce anche AA, AB... oltre la Z)
+  const colLetter = (n) => {
+    let s = "";
+    for (n += 1; n > 0; n = Math.floor((n - 1) / 26))
+      s = String.fromCharCode(65 + (n - 1) % 26) + s;
+    return s;
   };
   const updates = [];
   for (const [name, val] of Object.entries(map)) {
     if (val == null) continue;
     const c = header.indexOf(name);
     if (c === -1) continue;
-    const a1 = `${TAB}!${String.fromCharCode(65 + c)}${r + 2}`;
+    const a1 = `${TAB}!${colLetter(c)}${r + 2}`;
     updates.push({ range: a1, values: [[val]] });
   }
   if (updates.length)
