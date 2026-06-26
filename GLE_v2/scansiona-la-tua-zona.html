@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scansiona la tua zona · EnrietaBiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --viola:#7C3AED; --fucsia:#C038E6; --oro:#E6C75A;
+  --notte:#0E0A18; --bianco:#FFFFFF; --muted:rgba(255,255,255,.62);
+  --panel:rgba(255,255,255,.04); --line:rgba(255,255,255,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(120% 80% at 85% -10%, rgba(192,56,230,.30), transparent 50%),
+    radial-gradient(120% 90% at 5% 110%, rgba(124,58,237,.38), transparent 55%),
+    #080510;
+  color:var(--bianco); font-family:'Manrope',system-ui,sans-serif;
+  min-height:100vh; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+.wrap{max-width:680px;margin:0 auto;padding:54px 24px 80px}
+
+.eyebrow{display:flex;align-items:center;gap:12px;justify-content:center;
+  font-weight:700;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--oro);margin-bottom:30px}
+.eyebrow .ico{width:30px;height:30px}
+
+h1{font-family:'Cormorant Garamond';font-weight:600;font-size:clamp(46px,11vw,82px);
+  line-height:1;text-align:center;letter-spacing:-.01em}
+h1 .g{background:linear-gradient(110deg,#fff 20%,var(--fucsia) 120%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{text-align:center;color:var(--muted);font-size:clamp(16px,4vw,20px);
+  line-height:1.55;max-width:520px;margin:22px auto 0}
+.sub b{color:#fff;font-weight:700}
+
+/* form card */
+.card{margin:38px auto 0;max-width:520px;background:var(--panel);
+  border:1px solid var(--line);border-radius:24px;padding:28px 26px;
+  backdrop-filter:blur(10px);box-shadow:0 30px 80px -40px rgba(192,56,230,.5)}
+label{display:block;font-weight:600;font-size:13px;letter-spacing:.02em;color:var(--muted);margin:0 0 8px 2px}
+.field{margin-bottom:18px}
+input{width:100%;background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:14px;
+  padding:15px 16px;color:#fff;font-family:inherit;font-size:16px;font-weight:500;transition:.18s}
+input::placeholder{color:rgba(255,255,255,.34)}
+input:focus{outline:none;border-color:var(--fucsia);box-shadow:0 0 0 3px rgba(192,56,230,.18)}
+.btn{width:100%;margin-top:6px;border:none;cursor:pointer;border-radius:14px;
+  padding:17px;font-family:inherit;font-weight:800;font-size:17px;color:#fff;
+  background:linear-gradient(120deg,var(--viola),var(--fucsia));transition:.18s;letter-spacing:.01em}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn:disabled{opacity:.6;cursor:default;transform:none}
+.tiny{text-align:center;color:rgba(255,255,255,.4);font-size:12px;margin-top:14px;line-height:1.5}
+.err{color:#ff9 caa;color:#ffabba;font-size:13px;margin:-8px 0 12px 2px;font-weight:600;display:none}
+
+/* radar */
+.scan{display:none;margin:40px auto 0;max-width:520px;text-align:center}
+.radar{position:relative;width:240px;height:240px;margin:0 auto 24px;border-radius:50%;
+  background:radial-gradient(circle,rgba(124,58,237,.12),transparent 70%);
+  border:1px solid rgba(192,56,230,.25)}
+.radar i{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,255,255,.06)}
+.radar i:nth-child(1){inset:30px}.radar i:nth-child(2){inset:70px}.radar i:nth-child(3){inset:108px}
+.sweep{position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg, transparent 0deg, rgba(192,56,230,.45) 40deg, transparent 80deg);
+  animation:spin 1.6s linear infinite}
+.blip{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--oro);
+  box-shadow:0 0 12px var(--oro);opacity:0;animation:pop .5s ease forwards}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1);opacity:1}}
+.scan .stxt{font-weight:700;font-size:18px}
+.scan .ssub{color:var(--muted);font-size:14px;margin-top:6px}
+
+/* results */
+.res{display:none;margin:36px auto 0;max-width:520px}
+.res .lead-in{text-align:center;margin-bottom:24px}
+.res .count{font-family:'Cormorant Garamond';font-weight:600;font-size:30px}
+.res .count b{color:var(--oro)}
+.res .lead-in p{color:var(--muted);font-size:15px;margin-top:4px}
+.row{display:flex;align-items:center;gap:16px;background:var(--panel);border:1px solid var(--line);
+  border-radius:16px;padding:16px 18px;margin-bottom:12px}
+.ring{flex:0 0 auto;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
+  font-weight:800;font-size:16px;position:relative}
+.ring span{position:relative;z-index:2}
+.meta{flex:1;min-width:0}
+.meta .nm{font-weight:700;font-size:16px}
+.meta .sig{margin-top:7px;display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:11px;font-weight:600;color:var(--oro);background:rgba(230,199,90,.1);
+  border:1px solid rgba(230,199,90,.28);padding:4px 10px;border-radius:20px}
+.cta{margin-top:26px;text-align:center;background:linear-gradient(150deg,rgba(124,58,237,.16),rgba(192,56,230,.10));
+  border:1px solid rgba(192,56,230,.4);border-radius:20px;padding:28px 24px}
+.cta h3{font-family:'Cormorant Garamond';font-weight:600;font-size:27px;line-height:1.15}
+.cta p{color:var(--muted);font-size:15px;margin:10px 0 20px;line-height:1.5}
+.cta a{display:inline-block;text-decoration:none;color:#fff;font-weight:800;font-size:16px;
+  background:linear-gradient(120deg,var(--viola),var(--fucsia));padding:15px 30px;border-radius:13px}
+
+.demo-badge{position:fixed;top:14px;right:14px;z-index:50;font-size:11px;font-weight:700;
+  letter-spacing:.1em;color:var(--oro);background:rgba(14,10,24,.8);border:1px solid rgba(230,199,90,.4);
+  padding:6px 12px;border-radius:20px;display:none}
+
+footer{text-align:center;margin-top:60px;color:var(--muted);font-size:13px}
+footer .wm{font-weight:800;color:#fff}
+footer .wm i{font-style:normal;color:var(--fucsia)}
+
+@media(prefers-reduced-motion:reduce){.sweep{animation:none}.blip{animation:none;opacity:1}}
+</style>
+</head>
+<body>
+<div class="demo-badge" id="demoBadge">ANTEPRIMA · DEMO</div>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c038e6"/></linearGradient>
+</defs><symbol id="ico" viewBox="0 0 84 84">
+<rect width="84" height="84" rx="20" fill="url(#eg)"/>
+<rect x="23" y="21" width="9" height="43" rx="4.5" fill="#fff"/><rect x="23" y="21" width="39" height="9" rx="4.5" fill="#fff"/>
+<rect x="23" y="37" width="28" height="9" rx="4.5" fill="#fff"/><rect x="23" y="55" width="39" height="9" rx="4.5" fill="#fff"/>
+<path d="M64 9 L67.5 13.5 L72 17 L67.5 20.5 L64 25 L60.5 20.5 L56 17 L60.5 13.5 Z" fill="#e6c75a"/>
+</symbol></svg>
+
+<div class="wrap">
+  <div class="eyebrow"><svg class="ico"><use href="#ico"/></svg>EnrietaBiz · GlobalLead Engine</div>
+
+  <section id="intro">
+    <h1>Scansiona<br>la <span class="g">tua zona</span></h1>
+    <p class="sub">Scopri quante aziende nella tua città stanno <b>perdendo clienti</b> — e quali puoi conquistare. Report gratuito, in meno di un minuto.</p>
+
+    <div class="card">
+      <div class="field">
+        <label for="city">La tua città o zona</label>
+        <input id="city" type="text" placeholder="es. Lugano, Como, Milano centro…" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="cat">Che tipo di aziende vuoi trovare</label>
+        <input id="cat" type="text" placeholder="es. saloni di bellezza, ristoranti, palestre…" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="email">Dove ti mando il report</label>
+        <input id="email" type="email" placeholder="la-tua@email.com" autocomplete="email">
+      </div>
+      <div class="err" id="err"></div>
+      <button class="btn" id="go">Scansiona ora →</button>
+      <p class="tiny">Niente spam. Solo il tuo report e qualche idea per usarlo. Dati trattati nel rispetto del GDPR.</p>
+    </div>
+  </section>
+
+  <section class="scan" id="scan">
+    <div class="radar"><i></i><i></i><i></i><div class="sweep"></div></div>
+    <div class="stxt" id="stxt">Sto scansionando…</div>
+    <div class="ssub" id="ssub">Analizzo sito, prenotazioni, recensioni e presenza social</div>
+  </section>
+
+  <section class="res" id="res">
+    <div class="lead-in">
+      <div class="count" id="count"></div>
+      <p>Ecco le più “calde” — quelle a cui manca qualcosa che tu puoi vendere:</p>
+    </div>
+    <div id="list"></div>
+    <div class="cta">
+      <h3>Vuoi la lista completa, con nomi e contatti?</h3>
+      <p>Te la consegno io e ti mostro come trasformarla in clienti. La prima call è gratuita.</p>
+      <a id="ctaLink" href="#">Prenota la tua call →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wm">Enrieta<i>Biz</i></div>
+    <div style="margin-top:6px">enrietabiz.com</div>
+  </footer>
+</div>
+
+<script>
+// ---------- CONFIG (compila questi quando colleghi il backend) ----------
+const CONFIG = {
+  GLE_API_URL: "",                       // es. "https://tuo-vps/api/scan"  → se vuoto, gira in DEMO
+  CALENDLY_URL: "https://calendly.com/enrietabiz/call", // metti il tuo link reale
+  DM_FALLBACK: "https://instagram.com/enrietabiz"
+};
+// -----------------------------------------------------------------------
+
+const $ = id => document.getElementById(id);
+$("ctaLink").href = CONFIG.CALENDLY_URL || CONFIG.DM_FALLBACK;
+if(!CONFIG.GLE_API_URL){ $("demoBadge").style.display = "block"; }
+
+function showErr(m){ const e=$("err"); e.textContent=m; e.style.display="block"; }
+function clearErr(){ $("err").style.display="none"; }
+
+function ringStyle(score){
+  const c = score>=80 ? "#E6C75A" : score>=65 ? "#C038E6" : "#7C3AED";
+  return `background:conic-gradient(${c} ${score*3.6}deg, rgba(255,255,255,.08) 0deg);`+
+         `box-shadow:0 0 0 1px rgba(255,255,255,.08) inset;color:${c}`;
+}
+function maskName(cat, city){
+  const base = (cat.split(/[ ,]/)[0]||"Attività");
+  const word = base.charAt(0).toUpperCase()+base.slice(1).replace(/i$/,'e');
+  const dots = "••••••";
+  return `${word} ${dots} — ${city}`;
+}
+const SIGNALS = ["Nessun sito web","Nessuna prenotazione online","Instagram inattivo",
+  "Recensioni alte, zero follow-up","Sito lento / non mobile","Nessuna risposta fuori orario"];
+
+function demoScan(city, cat){
+  const total = 18 + Math.floor(Math.random()*60);
+  const leads = [];
+  for(let i=0;i<5;i++){
+    const score = 92 - i*5 - Math.floor(Math.random()*4);
+    const s = [...SIGNALS].sort(()=>Math.random()-.5).slice(0, 2+ (i%2));
+    leads.push({ name: maskName(cat, city), score, signals: s });
+  }
+  return { total, leads };
+}
+
+async function realScan(city, cat, email){
+  const r = await fetch(CONFIG.GLE_API_URL, {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ city, category:cat, email })
+  });
+  if(!r.ok) throw new Error("scan failed");
+  return await r.json(); // atteso: { total, leads:[{name,score,signals[]}] }
+}
+
+function renderResults(data){
+  $("count").innerHTML = `Ho trovato <b>${data.total}</b> aziende in zona.`;
+  const list = $("list"); list.innerHTML = "";
+  data.leads.forEach(l=>{
+    const row = document.createElement("div"); row.className="row";
+    row.innerHTML = `<div class="ring" style="${ringStyle(l.score)}"><span>${l.score}</span></div>
+      <div class="meta"><div class="nm">${l.name}</div>
+      <div class="sig">${l.signals.map(s=>`<span class="pill">${s}</span>`).join("")}</div></div>`;
+    list.appendChild(row);
+  });
+  $("intro").style.display="none";
+  $("scan").style.display="none";
+  $("res").style.display="block";
+  $("res").scrollIntoView({behavior:"smooth"});
+}
+
+function dropBlips(){
+  const radar = document.querySelector(".radar");
+  radar.querySelectorAll(".blip").forEach(b=>b.remove());
+  for(let i=0;i<6;i++){
+    setTimeout(()=>{
+      const b=document.createElement("div"); b.className="blip";
+      const a=Math.random()*6.28, r=30+Math.random()*78;
+      b.style.left=`calc(50% + ${Math.cos(a)*r}px)`;
+      b.style.top=`calc(50% + ${Math.sin(a)*r}px)`;
+      radar.appendChild(b);
+    }, 300+i*240);
+  }
+}
+
+$("go").addEventListener("click", async ()=>{
+  clearErr();
+  const city=$("city").value.trim(), cat=$("cat").value.trim(), email=$("email").value.trim();
+  if(!city){ return showErr("Scrivi la tua città o zona."); }
+  if(!cat){ return showErr("Dimmi che tipo di aziende cercare."); }
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ return showErr("Controlla l'indirizzo email."); }
+
+  $("go").disabled=true;
+  $("intro").style.display="none";
+  $("scan").style.display="block";
+  $("stxt").textContent = `Sto scansionando ${city}…`;
+  dropBlips();
+
+  try{
+    let data;
+    if(CONFIG.GLE_API_URL){ data = await realScan(city,cat,email); }
+    else { await new Promise(r=>setTimeout(r,2200)); data = demoScan(city,cat); }
+    renderResults(data);
+  }catch(e){
+    $("scan").style.display="none";
+    $("intro").style.display="block";
+    showErr("Qualcosa è andato storto nella scansione. Riprova tra un momento.");
+  }finally{ $("go").disabled=false; }
+});
+</script>
+</body>
+</html>
