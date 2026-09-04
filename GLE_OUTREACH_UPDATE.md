@@ -1,9 +1,36 @@
 # PROMPT per Claude Code — Aggiornamento sistema Outreach GLE
 
+> ⭐ VERIFICA PRIMA DI RILANCIARE — dati reali dal database suggeriscono che gran parte di questo
+> sia già stata implementata. I messaggi recenti sono già corti/umani (coerenti con TASK 2/5,
+> es. "questo è l'ultimo messaggio da parte mia, promesso 🙂"), la colonna `dettaglio_personale`
+> esiste già (TASK 3B-bis). Trovati inoltre **40 messaggi** con testo verbatim del segmento
+> Cliniche ("receptionist AI" / "KI-Rezeptionistin") — prima di toccare qualsiasi cosa, capisci
+> se il segmento Cliniche (oggetto di GLE_SEGMENTO_CLINICHE.md, ancora in coda come "da
+> lanciare") in realtà esiste già parzialmente, per non duplicarlo o romperlo.
 > Da usare dentro il repo di **GlobalLead Engine** (app.enrietabiz.com), NON in questo repo.
 > Trascina questo file dentro Claude Code e scrivi: "Leggi GLE_OUTREACH_UPDATE.md e segui le istruzioni".
 
 ---
+
+## STEP 0 — Verifica cosa è già fatto (STOP dopo, riportami prima di procedere)
+Prima di leggere il resto del prompt sotto come una lista di cose da costruire da zero, controlla
+il codice e riportami, TASK per TASK:
+1. **TASK 1 (firma dinamica)**: esiste già la mappa mittente→firma/presentazione per
+   Enrieta/EnrietaGmail vs Desy/Sara?
+2. **TASK 2 (copy corto)**: il template di generazione usa già la struttura corta a 5-6 righe, o
+   i messaggi corti che ho visto nel database sono stati scritti/modificati a mano?
+3. **TASK 3/3B (gancio sul gap + segmento Luxury)**: esiste la priorità no-booking > sito
+   vecchio > IG > fallback? Il segmento Luxury con doppia offerta esiste?
+4. **TASK 3B-bis (dettaglio_personale)**: la colonna esiste (confermato), ma è collegata al
+   generatore di bozze e al bottone "rigenera bozza"? Se vuota, conferma che il default resta
+   quello generico senza inventare nulla.
+5. **Il mistero dei 40 messaggi "receptionist AI"**: da dove arrivano? È già attivo un segmento
+   Cliniche (anche parziale/informale) prima che io lanciassi GLE_SEGMENTO_CLINICHE.md?
+6. **TASK 4 (rigenerazione in blocco)**, **TASK 5B (cabina senza reload)**, **TASK 6 (Velvet)**:
+   stato di ciascuno.
+
+Solo per i TASK che risultano DAVVERO mancanti o incompleti, procedi con le istruzioni originali
+sotto — non riscrivere/sovrascrivere quello che già funziona.
 
 ## CONTESTO
 Sei dentro il codice di GlobalLead Engine (GLE). Il sistema genera bozze di email di outreach per lead qualificati, assegnati a 4 "corsie" mittente: Enrieta, EnrietaGmail, Desy, Sara. Ogni lead ha un punteggio (score) e uno o più gap rilevati (es. sito vecchio, no booking, IG, Enagic).
