@@ -1,9 +1,26 @@
 # PROMPT — Bot Telegram: nuovo gruppo setter con topic (lead 80% + lead da chiamare)
 
+> ⭐ PRIORITÀ — rollout completo, non solo test. Verificato via database: le colonne
+> `telegram_inviato_a`/`telegram_inviato_b` risultano popolate solo su ~10 lead in totale
+> (su 17.792), sparsi tra giugno e settembre — sembra un test isolato o un invio manuale
+> occasionale, NON un flusso attivo su tutto il backlog qualificato come descritto sotto.
+> Obiettivo di questo giro: capire perché il rollout non è mai partito su scala, e completarlo.
 > Da usare in Claude Code dentro il progetto **GlobalLead Engine**. Conferma prima in quale cartella sei.
 > Procedi a piccoli passi fermandoti a ogni STOP. Niente invii di massa senza mia conferma.
 
 ---
+
+## STEP 0 — Perché non è mai partito su scala (STOP dopo, riportami prima di tutto)
+Prima di rileggere il resto del prompt sotto, rispondi a queste domande:
+1. Il codice per pubblicare nei topic 11/9 esiste già (anche se usato solo su ~10 lead), o
+   quei ~10 record sono stati scritti a mano/da un test manuale senza automazione reale dietro?
+2. Se il codice esiste, perché non gira su tutto il backlog qualificato? È collegato allo scan
+   notturno (stesso preset vuoto documentato in GLE_SCAN_NOTTURNO.md — priorità #1 in coda) o è
+   un processo indipendente che semplicemente non è mai stato attivato/schedulato?
+3. C'è un flag tipo `scan_attivo` o un cron dedicato per questo gruppo che risulta spento?
+
+Se il blocco è lo stesso dello scan notturno (preset vuoto), dimmelo chiaramente: potrebbe
+convenire risolverli insieme invece che duplicare l'indagine.
 
 ## CONTESTO
 Il bot Telegram "enrietabiz" esiste già e già manda notifiche/approvazioni. Ho creato un
@@ -70,9 +87,12 @@ STOP.
   il messaggio sparisca/si aggiorni nel gruppo.
 - STOP: controllo io nel gruppo e ti do l'ok.
 
-## STEP 5 — Attiva
-Solo dopo il mio ok: attiva sul flusso reale. Il vecchio canale Telegram di approvazione
-NON si tocca: questo gruppo è IN AGGIUNTA.
+## STEP 5 — Attiva sul rollout completo
+Solo dopo il mio ok: attiva sul flusso reale, su TUTTO il backlog di lead qualificati che
+rientrano nei criteri dei due topic (non solo i pochi già pubblicati finora). Il vecchio canale
+Telegram di approvazione NON si tocca: questo gruppo è IN AGGIUNTA. Alla fine, verifica con una
+query che il numero di lead con `telegram_inviato_a`/`telegram_inviato_b` valorizzato sia
+cresciuto in modo coerente con i lead pubblicabili (non più solo ~10 record), e riportamelo.
 
 ---
 
