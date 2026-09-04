@@ -1,9 +1,48 @@
 # GLE — MODULO IMMOBILIARE (sezione vera in dashboard, con scraping)
 
+> ⭐ VERIFICA PRIMA DI RIPARTIRE DALLO STEP 2 — dati reali dal database mostrano che il backend
+> è MOLTO più avanti di quanto pensassi: esistono già 3 ricerche di collaudo/reali (Como, Rimini,
+> Bologna) e **392 risultati veri** raccolti da fonti `pvp` (379), `privati` (12, da
+> case-appartamenti.eu e casetraprivati.it — siti NON previsti nell'elenco fonti originale sotto,
+> al posto di subito.it), `demanio` (1). Ultima scansione: 29/8/2026. Quindi lo STEP 3 (backend +
+> fonte 1) e parte dello STEP 4 (fonte aggiuntiva) sembrano già fatti — ma con scelte diverse da
+> quelle proposte in origine, da confermare.
+>
+> Problemi trovati che vanno chiariti PRIMA di continuare (vedi STEP 0):
+> - **Tutti i 392 risultati sono ancora `stato='nuovo'`**, zero `contattato_il` popolato — la
+>   pipeline (nuovo→interessante→contattato→in trattativa→chiuso) non risulta mai usata.
+> - **`omi_zona`/`omi_prezzo_mq_medio` sono sempre null** — lo scoring "prezzo/mq vs media zona
+>   OMI" (punto D) non risulta collegato, anche se le colonne esistono.
+> - **Nessun collegamento diretto** (`ricerca_id` o simile) tra `risultati_immobiliari` e
+>   `ricerche_immobiliari` — solo il nome comune in comune, da verificare se è voluto.
+> - Tra i risultati PVP compaiono lotti non immobiliari (mobili/arredo ufficio, laboratori) con
+>   score basso (4, 7) — sembra intenzionale (score basso = scartabili), ma conferma che il
+>   filtro "immobili" a monte lascia passare anche non-immobili.
+>
 > Da usare in Claude Code dentro il progetto **GlobalLead Engine** (lead-engine sul VPS/PC).
 > Conferma in quale progetto sei. Procedi a piccoli passi, STOP dopo ogni step.
 > Se nella cartella c'è `demo-immobiliare.html`, usalo come RIFERIMENTO GRAFICO per la UI
 > (stessi pannelli: funnel, score, card immobili, incroci) — ma qui i dati sono VERI, non mock.
+
+## STEP 0 — Cosa esiste già, cosa manca (STOP dopo, riportami PRIMA di toccare qualsiasi cosa)
+1. Conferma quali fonti sono realmente attive nello scraper oggi (pvp, demanio, e il sito/i siti
+   dietro "privati" — case-appartamenti.eu? casetraprivati.it? altri?) e perché si è scelto
+   "privati" invece di subito.it come da piano originale (punto C sotto) — subito.it è risultato
+   non fattibile, o è stata una scelta diversa in corsa? Dimmelo, non dare per scontato.
+2. Esiste già una sezione "Immobiliare" nella dashboard (punto A: Ricerche/Risultati/Pipeline/
+   Incroci), o i 392 risultati sono visibili solo query-side (come li ho visti io) e MAI mostrati
+   da nessuna interfaccia? Se la UI non esiste, è il vero motivo per cui tutto è fermo a "nuovo".
+3. Lo scoring OMI (prezzo/mq vs media zona) è mai stato collegato, o le colonne `omi_zona`/
+   `omi_prezzo_mq_medio` sono state create ma mai popolate da nessun codice?
+4. Il bottone "Genera messaggio" (punto G) e l'aggancio all'outreach standard esistono?
+5. La sezione "Incroci" (punto F, richiesta cliente ↔ risultati) esiste?
+6. C'è un cron/scheduling per "Aggiorna ora" per ogni ricerca salvata, o le 3 scansioni finora
+   sono state lanciate a mano?
+
+In base a cosa trovi, riprendi SOLO dagli step realmente mancanti (probabilmente STEP 5 — UI — e
+STEP 6 — bozze messaggi/incroci — non dagli STEP 2/3 che sembrano già superati). Se la UI esiste
+già e il problema è un altro (es. nessuno l'ha mai aperta, o mostra dati vecchi), dimmelo invece
+di ricostruirla da zero.
 
 ## OBIETTIVO DI BUSINESS
 Voglio propormi alle agenzie immobiliari così: "Mi dai una ZONA precisa (città/quartiere,
