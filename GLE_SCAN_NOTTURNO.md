@@ -1,5 +1,7 @@
 # GLE — Scan notturno: perché non genera nuove bozze
 
+> ⭐ PRIORITÀ #1 — lancia questo prima degli altri prompt GLE in coda. Ogni giorno che passa con
+> il preset vuoto sono lead qualificati fermi senza nessuna bozza generata.
 > Da usare in Claude Code dentro il progetto GlobalLead Engine. Conferma in quale progetto sei.
 > Prima INVESTIGA e riportami cosa trovi. Non modificare nulla prima del mio ok. STOP dopo ogni step.
 
@@ -13,11 +15,15 @@ invio_auto_attivo = true
 invio_limite_giornaliero = 15   (per casella, 2 caselle = 30/giorno reali — NON toccare)
 followup_limite_giornaliero = 5
 ```
-Ci sono **5.306 lead qualificati (score ≥50)** mai contattati e senza nessuna bozza generata
-(tabella `messaggi` — zero righe per loro). Il sospetto è che il preset vuoto blocchi lo scan
+Ci sono **5.736 lead qualificati (score ≥50)** mai contattati e senza nessuna bozza generata
+(tabella `messaggi` — zero righe per loro; numero riverificato oggi via query diretta, era 5.306
+l'ultima volta — sta continuando a crescere). Il sospetto è che il preset vuoto blocchi lo scan
 notturno, ma non è confermato: potrebbe anche essere che lo scan notturno serva SOLO a cercare
 lead NUOVI (scraping) e sia un processo diverso dalla generazione bozze sul backlog esistente.
 Vanno capite entrambe le cose separatamente prima di toccare qualsiasi codice.
+
+Riconfermato oggi via SQL diretto: `scan_notturno_preset = []` e `scan_attivo = true` — il preset è
+ancora vuoto, il problema non si è risolto da solo.
 
 ## STEP 1 — Ricognizione (STOP dopo, riportami tutto prima di procedere)
 Trova nel codice il job schedulato sul `cron_orario` e rispondi a queste domande separate:
