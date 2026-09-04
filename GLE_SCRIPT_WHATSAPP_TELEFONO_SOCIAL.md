@@ -1,11 +1,39 @@
 # PROMPT — Script WhatsApp, Telefonata e Contatto Social per le setter
 
+> ⭐ VERIFICA PRIMA DI RILANCIARE — dati reali dal database mostrano una situazione mista:
+> esiste già una colonna `scheda_chiamata` (JSON) con **domande di discovery personalizzate
+> per tipo di attività** (es. per un hotel: "quando un cliente scrive su WhatsApp la sera e la
+> mattina dopo ha già prenotato altrove?"; per uno studio legale: domande su posizionamento
+> Google) — sembra un generatore di traccia telefonica **più avanzato** di quello descritto
+> sotto (che è a priorità fissa sul gap principale, senza personalizzazione per categoria).
+> Al contrario, la colonna `call_esito` esiste ma è **null su tutti i 17.811 lead**: il
+> tracciamento dell'esito chiamata non risulta collegato a nessuna interfaccia reale.
 > Da usare in Claude Code dentro il progetto **GlobalLead Engine**, DOPO aver completato
 > il gruppo Telegram setter (GLE_TELEGRAM_GRUPPO_SETTER.md).
 > Procedi a piccoli passi, STOP dopo ogni step. I testi qui sotto sono BOZZE approvate
 > da Enrieta: usali così, non riscriverli di tua iniziativa.
 
 ---
+
+## STEP 0 — Verifica cosa esiste già (STOP dopo, riportami prima di procedere)
+1. Trova dove viene generata `scheda_chiamata` (funzione/prompt) e mostrami un esempio completo,
+   non solo l'anteprima. È collegata alla scheda lead/cabina setter con un bottone "copia" come
+   previsto sotto, o è un campo generato ma non ancora mostrato da nessuna parte nell'interfaccia?
+2. Se `scheda_chiamata` è già un generatore di traccia telefonica funzionante e più ricco
+   (domande personalizzate per categoria, non solo per gap), **NON sostituirlo** con la traccia
+   telefonica statica del TASK B sotto — piuttosto valuta se il TASK B è già superato/ridondante e
+   dimmelo, invece di creare due sistemi paralleli.
+3. `call_esito`: esiste un punto nell'interfaccia (bottone, select) dove la setter dovrebbe poterlo
+   valorizzare? Se sì, perché resta sempre null — è un bug, o semplicemente non viene mai usato dal
+   team? Se non esiste nessun punto UI, quello è il vero gap da chiudere (coincide con lo
+   `esito_chiamata` richiesto nello STEP 3 sotto — stesso concetto, nome diverso: riusa la colonna
+   esistente `call_esito`, non crearne una seconda).
+4. Gli script WhatsApp (TASK A) e social (TASK C) sotto: esistono già in qualche forma, o sono
+   ancora da costruire? Il link wa.me nel topic 9 Telegram contiene già il messaggio precompilato?
+
+In base a quello che trovi, aggiorna tu stesso il resto del piano: implementa SOLO le parti
+davvero mancanti, collega `call_esito` all'interfaccia se manca, e lascia `scheda_chiamata` come
+sistema principale per la traccia telefonica se risulta già più completo del TASK B.
 
 ## CONTESTO
 Le setter Daniela e Cristina lavorano i lead del topic "Lead da chiamare / WhatsApp"
