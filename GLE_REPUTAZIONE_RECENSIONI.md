@@ -13,26 +13,51 @@ review_analyses
 reputation_snapshots
 reputation_audits
 ```
-Non so cosa facciano: se sono uno scaffolding mai completato, un modulo attivo ma dimenticato, o un
-esperimento per un prodotto diverso da GLE/EnrietaBiz. Vanno capiti prima di decidere se e come
-usarli — non presumere nulla sul loro scopo.
 
-## STEP 1 — Cosa sono davvero (STOP dopo, riportami tutto prima di procedere)
-Rispondi punto per punto:
+**Aggiornamento — verificato già via query dirette sul database (non serve rifare questa parte):**
+Non è scaffolding morto. È un generatore di **audit reputazione automatico, già funzionante e
+testato su dati veri**:
+- 6 `reputation_sources` collegate a 6 lead reali e diversi per settore (autoscuola, 2 cliniche
+  veterinarie, palestra, parrucchiere, centro commerciale), fonte Google via provider "serper".
+- 120 recensioni reali scaricate (`reviews`), **tutte** analizzate dall'AI (`review_analyses`):
+  sentiment, temi, urgenza, risposta suggerita.
+- 6 `reputation_snapshots` con rating medio, totale recensioni, recensioni ultimi 90gg, tasso di
+  risposta del gestore.
+- 6 `reputation_audits` completi: punteggio 0-100, temi critici/positivi estratti, **PDF già
+  generato** (`pdf_path` valorizzato per tutti e 6, es.
+  `reputation/9fe31e59-.../2026-08-25-1787654249542.pdf`).
+- **Ma `sent_at` e `opened_at` sono NULL su tutti e 6** — nessun audit è mai stato inviato a
+  nessun lead.
+- Il lavoro è distribuito su due sessioni distinte (3 agosto, poi 25-26 agosto 2026), non un test
+  isolato — poi si è fermato del tutto per oltre 10 giorni.
+- Esempio concreto (Fit Express Rimini): rating 3.5, 348 recensioni, tasso di risposta 10%, **10
+  recensioni negative senza risposta**, temi critici "Atteggiamento del personale"/"Sauna"/
+  "Accoglienza clienti", score 34/100 — è esattamente il tipo di dato reale che serve per un audit
+  "porta d'ingresso" di alto livello, molto più ricco dei semplici `sito_obsoleto`/`ha_booking`
+  usati in `GLE_AUDIT_AUTOMATICO.md`.
 
-1. **Schema**: mostrami le colonne di ciascuna delle 5 tabelle e quante righe hanno oggi (anche 0).
-2. **Codice**: cerca nel codebase dove vengono lette/scritte queste tabelle. Sono collegate a un
-   endpoint, una pagina, un cron job, o non sono referenziate da nessuna parte (codice morto)?
-3. **Scopo**: se trovi codice attivo, capisci a cosa serve — es. monitorare le recensioni Google/
-   Facebook dei LEAD (per arricchire l'audit/outreach), oppure delle attività GIÀ CLIENTI di
-   EnrietaBiz (per un servizio di reputation management separato), oppure qualcos'altro?
-4. **Collegamento con `leads`**: la tabella `leads` ha già `num_recensioni` e `rating` (statici, un
-   solo snapshot). Il sistema `reputation_*` fa qualcosa di più (storico nel tempo, testo delle
-   recensioni analizzato, alert su calo rating)? Se sì, cosa esattamente.
-5. **Stato**: il sistema risulta completo e funzionante, a metà, o abbandonato? Se c'è un motivo
-   noto per cui è stato interrotto (nel codice, commit, commenti), riportalo.
+Quindi la domanda non è più "cosa fa", ma: **perché si è fermato dopo il 26 agosto, e come si
+collega (o si integra) con l'audit automatico già in coda?**
 
-Non proporre nulla allo STEP 2 finché non hai risposto a queste 5 domande con dati reali.
+## STEP 1 — Cosa manca per renderlo vivo (STOP dopo, riportami tutto prima di procedere)
+Il database è già verificato (vedi sopra) — concentrati sul codice:
+
+1. **Trova lo script/funzione** che genera source → reviews → analyses → snapshot → audit PDF.
+   È un job manuale (lanciato a mano due volte), un cron mai attivato, o un endpoint mai collegato
+   a un bottone nell'interfaccia?
+2. **Perché si è fermato il 26 agosto?** Cerca errori, TODO, commenti, o un limite tecnico (rate
+   limit del provider "serper", costo per chiamata, credenziali scadute) che possa spiegarlo.
+3. **Come si arriva ai 6 lead scelti**: c'è un criterio (categoria, score, settore) o sono stati
+   scelti a mano per testare il sistema su tipologie diverse?
+4. **Invio**: esiste già del codice per "inviare" l'audit (email, WhatsApp, link con tracking per
+   popolare `opened_at`), anche se mai usato? O manca completamente il passo di invio?
+5. **Relazione con l'audit automatico esistente** (`GLE_AUDIT_AUTOMATICO.md`, ancora in coda, basato
+   su `sito_obsoleto`/`ha_booking`): sono due sistemi paralleli scollegati, o quello nuovo può/deve
+   sostituire quello più semplice come "porta d'ingresso" quando il lead ha recensioni Google
+   sufficienti a fare un audit reputazione vero?
+
+Non proporre nulla allo STEP 2 finché non hai risposto a queste 5 domande con dati reali dal
+codice.
 
 ## STEP 2 — Proposta (STOP, aspetta il mio ok esplicito)
 In base a cosa trovi, preparati a UNA di queste strade (o dimmi se ne vedi un'altra più sensata):
