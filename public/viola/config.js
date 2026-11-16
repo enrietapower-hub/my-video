@@ -1,6 +1,9 @@
 /* Tornare a me — configurazione commerciale. Si cambia tutto da qui. */
 window.TAM = {
-  // Link del checkout (Stripe Payment Link, Shopify, Gumroad…). Vuoto = i pulsanti "Acquista" aprono il DM Instagram.
+  // Stripe Payment Link. Due link perché ogni link ha un prezzo fisso:
+  // checkoutUrlPromo = 9,90 € (sabato e domenica), checkoutUrl = prezzo pieno (da lunedì).
+  // Vuoti = i pulsanti "Acquista" aprono il DM Instagram.
+  checkoutUrlPromo: "",
   checkoutUrl: "",
   igHandle: "violaliberamente",
   igUrl: "https://www.instagram.com/violaliberamente/",
@@ -28,4 +31,5 @@ window.TAM.phase = function (now) {
   if (t <= new Date(this.promoEnd).getTime()) return "promo";
   return "post";
 };
-window.TAM.buyUrl = function () { return this.checkoutUrl || this.dmUrl; };
+window.TAM.checkout = function () { return this.phase() === "promo" ? this.checkoutUrlPromo : this.checkoutUrl; };
+window.TAM.buyUrl = function () { return this.checkout() || this.dmUrl; };

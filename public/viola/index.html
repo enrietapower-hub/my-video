@@ -244,7 +244,7 @@ function cdHtml(){
   var s=Math.max(0,Math.floor((target-new Date())/1000)),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),mi=Math.floor(s%3600/60),se=s%60;
   return '<div><b>'+pad(d)+'</b><span>giorni</span></div><div><b>'+pad(h)+'</b><span>ore</span></div><div><b>'+pad(mi)+'</b><span>min</span></div><div><b>'+pad(se)+'</b><span>sec</span></div>'}
 function draw(){
-  var ph=C.phase(),canBuy=ph!=='pre'||C.sellBeforePromo,buyLabel=C.checkoutUrl?'Inizia il percorso':'Scrivi «'+C.dmKeyword+'» a Viola per acquistare';
+  var ph=C.phase(),canBuy=ph!=='pre'||C.sellBeforePromo,buyLabel=C.checkout()?'Inizia il percorso':'Scrivi «'+C.dmKeyword+'» a Viola per acquistare';
   var cd='<div class="count" id="cd"></div>';
   if(ph==='promo'){
     box.innerHTML='<div class="eyebrow">Prezzo di lancio · solo questo fine settimana</div><div class="price">'+C.pricePromo+' €</div><p class="small muted" style="margin:0">Da lunedì il prezzo sarà '+C.priceFull+' €. Il prezzo di lancio termina tra:</p>'+cd+'<a class="btn block" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+buyLabel+'</a>';

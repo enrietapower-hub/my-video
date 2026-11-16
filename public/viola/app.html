@@ -243,7 +243,7 @@ function paywall(codeOnly){
   var ph=C.phase(), canBuy=ph!=='pre'||C.sellBeforePromo, h='';
   if(!codeOnly){
     h+='<div class="eyebrow">Tornare a me · percorso completo</div><h2 style="margin:8px 0">Sblocca i 14 giorni</h2><p class="muted">13 porte ancora da aprire, gli esercizi guidati, il tuo diario, la versione da stampare e la promessa finale da salvare. Accesso immediato, per sempre.</p>';
-    if(canBuy){h+='<div class="price">'+priceNow()+' €</div><p class="small muted">'+(ph==='promo'?'Prezzo di lancio, solo questo fine settimana. Da lunedì '+C.priceFull+' €.':'Pagamento unico. Nessun abbonamento.')+'</p><a class="btn gold" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+(C.checkoutUrl?'Acquista ora':'Scrivimi «'+C.dmKeyword+'» per acquistare')+'</a>'}
+    if(canBuy){h+='<div class="price">'+priceNow()+' €</div><p class="small muted">'+(ph==='promo'?'Prezzo di lancio, solo questo fine settimana. Da lunedì '+C.priceFull+' €.':'Pagamento unico. Nessun abbonamento.')+'</p><a class="btn gold" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+(C.checkout()?'Acquista ora':'Scrivimi «'+C.dmKeyword+'» per acquistare')+'</a>'}
     else h+='<div class="card"><b>Si apre sabato 21 novembre.</b><p class="small muted" style="margin:6px 0 0">Per 48 ore al prezzo di lancio di '+C.pricePromo+' € (poi '+C.priceFull+' €). Scrivi «'+C.dmKeyword+'» a Viola su Instagram per ricevere il link appena apre.</p></div><div class="sp"></div><a class="btn gold" href="'+C.dmUrl+'" target="_blank" rel="noopener">Avvisami su Instagram</a>';
     h+='<div class="sp2"></div>';
   }
