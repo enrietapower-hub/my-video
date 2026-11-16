@@ -152,7 +152,7 @@ window.TAM_DAYS = [
       "Come cambierebbe la mia giornata se dicessi una cosa vera in più?"
     ],
     prompt: "La cosa che non ho mai detto è:",
-    step: "Scrivi qui sotto la lettera che non spedirai. Non devi mandarla a nessuno. Serve a te, per sentire la tua voce.",
+    step: "Scrivi la lettera che non spedirai. Non devi mandarla a nessuno. Serve a te, per sentire la tua voce.",
     remember: "La mia opinione ha diritto di esistere, anche quando non mette tutti d'accordo.",
     extra: { title: "La lettera che non spedirò", note: "Scrivi senza correggerti. Nessuno la leggerà: resta solo su questo dispositivo.", fields: ["Cara / Caro…"], long: true }
   },

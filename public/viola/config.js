@@ -11,7 +11,7 @@ window.TAM = {
   promoStart: "2026-11-21T00:00:00+01:00",
   promoEnd: "2026-11-22T23:59:59+01:00",
   pricePromo: "9,90",
-  priceFull: "17",
+  priceFull: "14,90",
   // false = prima di sabato non si vende: si regala il Giorno 1 e si raccoglie la lista d'attesa.
   sellBeforePromo: false,
 

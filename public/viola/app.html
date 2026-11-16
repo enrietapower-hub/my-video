@@ -148,12 +148,13 @@ function vHome(){
   });
   if(dc===14)h+='<div class="sp"></div><button class="btn gold" data-go="finale">La mia promessa</button>';
   if(dc>=2)h+='<div class="sp2"></div><div class="card"><div class="eyebrow">Come sto cambiando</div><div class="sp"></div>'+chart()+'</div>';
-  h+='<div class="tools noprint"><button data-go="diary">Il mio diario</button><button data-go="reminders">Il mio promemoria</button><button data-go="letter">Una lettera per te</button><button id="bk">Salva una copia</button></div>';
+  h+='<div class="tools noprint"><button data-go="diary">Il mio diario</button><button data-go="reminders">Il mio promemoria</button><button data-go="letter">Una lettera per te</button><button id="bk">Salva una copia</button><button id="stp2" style="grid-column:1/-1">Versione da stampare (A4)</button></div>';
   if(!S.paid)h+='<div class="sp"></div><button class="btn link" id="code">Ho già un codice d\'accesso</button>';
   h+=safeFooter();
   app.innerHTML=h;bind();
   app.querySelectorAll('[data-day]').forEach(function(b){b.onclick=function(){openDay(+b.dataset.day)}});
   document.getElementById('bk').onclick=backup;
+  document.getElementById('stp2').onclick=function(){S.paid?location.href='stampa.html':paywall()};
   var c=document.getElementById('code');if(c)c.onclick=function(){paywall(true)};
 }
 function openDay(n){
@@ -241,7 +242,7 @@ function sheet(html,cb){var el=document.createElement('div');el.className='sheet
 function paywall(codeOnly){
   var ph=C.phase(), canBuy=ph!=='pre'||C.sellBeforePromo, h='';
   if(!codeOnly){
-    h+='<div class="eyebrow">Tornare a me · percorso completo</div><h2 style="margin:8px 0">Sblocca i 14 giorni</h2><p class="muted">13 porte ancora da aprire, gli esercizi guidati, il tuo diario e la promessa finale da salvare. Accesso immediato, per sempre.</p>';
+    h+='<div class="eyebrow">Tornare a me · percorso completo</div><h2 style="margin:8px 0">Sblocca i 14 giorni</h2><p class="muted">13 porte ancora da aprire, gli esercizi guidati, il tuo diario, la versione da stampare e la promessa finale da salvare. Accesso immediato, per sempre.</p>';
     if(canBuy){h+='<div class="price">'+priceNow()+' €</div><p class="small muted">'+(ph==='promo'?'Prezzo di lancio, solo questo fine settimana. Da lunedì '+C.priceFull+' €.':'Pagamento unico. Nessun abbonamento.')+'</p><a class="btn gold" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+(C.checkoutUrl?'Acquista ora':'Scrivimi «'+C.dmKeyword+'» per acquistare')+'</a>'}
     else h+='<div class="card"><b>Si apre sabato 21 novembre.</b><p class="small muted" style="margin:6px 0 0">Per 48 ore al prezzo di lancio di '+C.pricePromo+' € (poi '+C.priceFull+' €). Scrivi «'+C.dmKeyword+'» a Viola su Instagram per ricevere il link appena apre.</p></div><div class="sp"></div><a class="btn gold" href="'+C.dmUrl+'" target="_blank" rel="noopener">Avvisami su Instagram</a>';
     h+='<div class="sp2"></div>';

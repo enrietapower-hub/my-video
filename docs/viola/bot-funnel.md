@@ -16,21 +16,21 @@ Il Giorno 1 è gratis. Vuoi che ti mandi il link?
 Si apre subito, non devi scaricare niente. Quello che scrivi resta solo sul tuo telefono.
 
 ## 2. Follow-up (24 ore dopo il link, una sola volta)
-Hai aperto la prima porta? Se ti va di continuare, sabato e domenica il percorso completo è a 9,90 € (poi 17 €). Te lo ricordo sabato mattina?
+Hai aperto la prima porta? Se ti va di continuare, sabato e domenica il percorso completo è a 9,90 € (poi 14,90 €). Te lo ricordo sabato mattina?
 
 ## 3. Sabato mattina (solo a chi ha detto sì)
 Buongiorno {nome} 🤍 da adesso a domenica sera «Tornare a me» è a 9,90 €: {LINK_CHECKOUT}
 Dopo il pagamento ricevi subito il link personale per sbloccare tutti i 14 giorni.
 
 ## 4. Domenica ore 18 (solo a chi ha cliccato e non ha acquistato)
-Ultime ore al prezzo di lancio: da domani «Tornare a me» torna a 17 €. Se senti che è il momento: {LINK_CHECKOUT}
+Ultime ore al prezzo di lancio: da domani «Tornare a me» torna a 14,90 €. Se senti che è il momento: {LINK_CHECKOUT}
 
 ## 5. Dopo l'acquisto (consegna)
 Grazie {nome} 🤍 ecco il tuo accesso: {LINK_APP}?k={CODICE}
 Apri il link dallo stesso telefono su cui hai fatto il Giorno 1: ritrovi quello che hai già scritto.
 
 ## Obiezioni
-- «Quanto costa?» → 17 €, pagamento unico. Sabato e domenica 9,90 €. Il Giorno 1 è gratis: {LINK_LANDING}
+- «Quanto costa?» → 14,90 €, pagamento unico. Sabato e domenica 9,90 €. Il Giorno 1 è gratis: {LINK_LANDING}
 - «Non sono pratica» → Se usi WhatsApp, sai usarlo. Provalo gratis e lo vedi subito.
 - «È un abbonamento?» → No, paghi una volta e resta tuo.
 - «Chi legge quello che scrivo?» → Nessuno. Resta solo sul tuo telefono.
