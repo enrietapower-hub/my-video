@@ -22,7 +22,14 @@ window.TAM = {
   accessHash: "4e049ff633a98688bb0440b604c20cfb288bee12f5f5ac7b189b69e4f8814e72",
 
   // Dati legali da completare prima di vendere.
-  legal: { seller: "[RAGIONE SOCIALE / NOME E COGNOME]", vat: "[P. IVA]", email: "[EMAIL ASSISTENZA]" }
+  legal: {
+    seller: "[RAGIONE SOCIALE / NOME E COGNOME]",
+    address: "[INDIRIZZO DELLA SEDE]",
+    vat: "[P. IVA]",
+    email: "[EMAIL ASSISTENZA]",
+    botProvider: "[FORNITORE DELL'ASSISTENTE AUTOMATICO]",
+    updated: "16 novembre 2026"
+  }
 };
 
 window.TAM.phase = function (now) {

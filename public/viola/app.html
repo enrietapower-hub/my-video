@@ -6,9 +6,7 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#1F1612">
 <title>Tornare a me — il mio percorso</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 <style>
 :root{--ink:#2E2420;--espresso:#1F1612;--cream:#FAF6F0;--sand:#EFE4D9;--line:#DCCBBB;--terra:#A8703F;--gold:#C9A46A;--muted:#7A6A60;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
 *{box-sizing:border-box}
@@ -114,7 +112,7 @@ function top(backTo,dots){return '<div class="top noprint"><button class="back" 
 function bind(){
   app.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){go({name:b.dataset.go})}});
 }
-function safeFooter(){return '<footer class="safe noprint">Questo percorso è uno spazio di riflessione personale e non sostituisce un supporto medico, psicologico o terapeutico. Se una situazione o una relazione ti fa sentire in pericolo, la priorità è chiedere aiuto: in Italia chiama il <b>1522</b> (antiviolenza, gratuito, 24h), in Svizzera il <b>143</b>, per le emergenze il <b>112</b>.<br><br>Ciò che scrivi resta solo su questo dispositivo: nessuno, nemmeno Viola, può leggerlo.</footer>'}
+function safeFooter(){return '<footer class="safe noprint">Questo percorso è uno spazio di riflessione personale e non sostituisce un supporto medico, psicologico o terapeutico. Se una situazione o una relazione ti fa sentire in pericolo, la priorità è chiedere aiuto: in Italia chiama il <b>1522</b> (antiviolenza, gratuito, 24h), in Svizzera il <b>143</b>, per le emergenze il <b>112</b>.<br><br>Ciò che scrivi resta solo su questo dispositivo: nessuno, nemmeno Viola, può leggerlo.<br><br><a href="privacy.html" style="color:inherit">Privacy</a> · <a href="condizioni.html" style="color:inherit">Condizioni di vendita</a></footer>'}
 
 function vWelcome(){
   app.innerHTML='<div class="hero" style="padding-top:70px;padding-bottom:50px"><div class="eyebrow">Project Liberty · di Viola</div><h1>Tornare a me</h1><p class="it" style="color:#E6C894">14 giorni, dieci minuti al giorno, per ricominciare a scegliermi.</p></div>'+
@@ -242,7 +240,7 @@ function sheet(html,cb){var el=document.createElement('div');el.className='sheet
 function paywall(codeOnly){
   var ph=C.phase(), canBuy=ph!=='pre'||C.sellBeforePromo, h='';
   if(!codeOnly){
-    h+='<div class="eyebrow">Tornare a me · percorso completo</div><h2 style="margin:8px 0">Sblocca i 14 giorni</h2><p class="muted">13 porte ancora da aprire, gli esercizi guidati, il tuo diario, la versione da stampare e la promessa finale da salvare. Accesso immediato, per sempre.</p>';
+    h+='<div class="eyebrow">Tornare a me · percorso completo</div><h2 style="margin:8px 0">Sblocca i 14 giorni</h2><p class="muted">13 porte ancora da aprire, gli esercizi guidati, il tuo diario, la versione da stampare e la promessa finale da salvare. Accesso immediato, nessun abbonamento.</p>';
     if(canBuy){h+='<div class="price">'+priceNow()+' €</div><p class="small muted">'+(ph==='promo'?'Prezzo di lancio, solo questo fine settimana. Da lunedì '+C.priceFull+' €.':'Pagamento unico. Nessun abbonamento.')+'</p><a class="btn gold" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+(C.checkout()?'Acquista ora':'Scrivimi «'+C.dmKeyword+'» per acquistare')+'</a>'}
     else h+='<div class="card"><b>Si apre sabato 21 novembre.</b><p class="small muted" style="margin:6px 0 0">Per 48 ore al prezzo di lancio di '+C.pricePromo+' € (poi '+C.priceFull+' €). Scrivi «'+C.dmKeyword+'» a Viola su Instagram per ricevere il link appena apre.</p></div><div class="sp"></div><a class="btn gold" href="'+C.dmUrl+'" target="_blank" rel="noopener">Avvisami su Instagram</a>';
     h+='<div class="sp2"></div>';
