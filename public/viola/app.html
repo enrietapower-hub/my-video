@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1F1612">
+<title>Tornare a me — il mio percorso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2E2420;--espresso:#1F1612;--cream:#FAF6F0;--sand:#EFE4D9;--line:#DCCBBB;--terra:#A8703F;--gold:#C9A46A;--muted:#7A6A60;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer}
+#app{max-width:560px;margin:0 auto;min-height:100vh;padding:0 20px calc(40px + env(safe-area-inset-bottom))}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12;margin:0}
+h1{font-size:38px}h2{font-size:28px}h3{font-size:22px}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.it{font-family:var(--serif);font-style:italic;color:var(--terra);font-size:21px;line-height:1.3}
+.muted{color:var(--muted)}.small{font-size:13.5px}.center{text-align:center}
+.btn{display:block;width:100%;border:0;border-radius:999px;padding:16px 22px;font-size:16px;font-weight:600;background:var(--espresso);color:#fff;text-align:center;text-decoration:none}
+.btn.gold{background:linear-gradient(135deg,#D9B77E,#B98B4E);color:#1F1612}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.link{background:none;color:var(--muted);font-weight:500;padding:10px;font-size:14px;text-decoration:underline}
+.btn:disabled{opacity:.4}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.remember{background:var(--sand);border-left:3px solid var(--terra);border-radius:12px;padding:16px 18px}
+.remember b{font-size:11px;letter-spacing:.18em;display:block;color:var(--terra);margin-bottom:4px}
+.remember span{font-family:var(--serif);font-size:21px;line-height:1.3}
+label.q{display:block;font-weight:500;margin:22px 0 8px}
+textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px 14px;font:inherit;background:#fff;color:var(--ink);resize:vertical}
+textarea{min-height:96px}textarea.long{min-height:240px}
+textarea:focus,input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0 8px}
+.top .back{background:none;border:0;font-size:15px;color:var(--muted);padding:8px 0}
+.dots{display:flex;gap:6px}.dots i{width:22px;height:3px;border-radius:2px;background:var(--line)}.dots i.on{background:var(--terra)}
+/* hero home */
+.hero{margin:0 -20px;padding:34px 24px 30px;background:linear-gradient(180deg,rgba(31,22,18,.55),rgba(31,22,18,.92)),url(img/cover.jpg) center 30%/cover;color:#fff}
+.hero .eyebrow{color:var(--gold)}.hero h1{margin:8px 0 6px}.hero p{margin:0;color:#E9DDD0}
+.bar{height:5px;background:rgba(255,255,255,.2);border-radius:3px;margin-top:20px;overflow:hidden}.bar i{display:block;height:100%;background:var(--gold);border-radius:3px;transition:width .6s}
+.week{margin:30px 0 12px}.week h3{margin-top:4px}
+.door{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:10px;color:var(--ink)}
+.door .num{flex:none;width:44px;height:44px;border-radius:12px;background:var(--sand);color:var(--terra);display:grid;place-items:center;font-weight:600;font-size:14px}
+.door .t{font-family:var(--serif);font-size:20px;line-height:1.15}.door .s{font-size:12.5px;color:var(--muted)}
+.door .st{margin-left:auto;font-size:18px;color:var(--terra);flex:none}
+.door.done .num{background:var(--terra);color:#fff}
+.door.next{border-color:var(--terra);box-shadow:0 6px 22px rgba(168,112,63,.18)}
+.door.locked{opacity:.55}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+.tools button{background:var(--sand);border:0;border-radius:14px;padding:16px 12px;font-size:14px;font-weight:500;color:var(--ink)}
+/* meters */
+.meter{margin:22px 0}.meter .lab{display:flex;justify-content:space-between;font-weight:500;margin-bottom:10px}.meter .lab em{font-style:normal;color:var(--muted);font-size:13px}
+.pips{display:flex;gap:10px}.pips button{flex:1;height:46px;border-radius:12px;border:1px solid var(--line);background:#fff;font-size:15px;font-weight:600;color:var(--muted)}
+.pips button.on{background:var(--terra);border-color:var(--terra);color:#fff}
+/* breath */
+.breath{display:grid;place-items:center;height:300px;position:relative}
+.breath .ring{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#E6C894,#B98B4E);opacity:.9;transition:transform 4s ease-in-out}
+.breath .ring.in{transform:scale(1.9)}.breath .ring.out{transform:scale(1);transition-duration:6s}
+.breath .txt{position:absolute;font-family:var(--serif);font-size:24px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+/* step */
+.check{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:14px}
+.check input{width:22px;height:22px;accent-color:var(--terra);margin-top:2px;flex:none}
+/* sheet */
+.sheet{position:fixed;inset:0;background:rgba(31,22,18,.6);display:flex;align-items:flex-end;justify-content:center;z-index:9}
+.sheet>div{background:var(--cream);width:100%;max-width:560px;border-radius:24px 24px 0 0;padding:28px 22px calc(26px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
+.price{font-family:var(--serif);font-size:54px;line-height:1}
+.chart{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+.entry{border-bottom:1px solid var(--line);padding:18px 0}.entry p{margin:6px 0 0;white-space:pre-wrap}
+.entry .ql{font-size:13px;color:var(--muted);margin-top:14px}
+.sp{height:16px}.sp2{height:28px}
+canvas#cert{width:100%;max-width:300px;border-radius:14px;display:block;margin:0 auto;box-shadow:0 14px 40px rgba(31,22,18,.3)}
+.fade{animation:f .45s ease both}@keyframes f{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+footer.safe{margin-top:40px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media print{.noprint,.top{display:none!important}#app{max-width:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="config.js"></script>
+<script src="days.js"></script>
+<script>
+(function(){
+var C=window.TAM, DAYS=window.TAM_DAYS, WEEKS=window.TAM_WEEKS, KEY='tam_v1';
+var app=document.getElementById('app');
+var S=load(); var view={name:'home'};
+
+function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.days)return s}catch(e){}return{name:'',start:null,days:{},paid:false}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function D(n){if(!S.days[n])S.days[n]={m:{},a:[],p:'',x:[],step:false,done:null};return S.days[n]}
+function isDone(n){return !!(S.days[n]&&S.days[n].done)}
+function doneCount(){return DAYS.filter(function(d){return isDone(d.n)}).length}
+function nextDay(){for(var i=0;i<DAYS.length;i++)if(!isDone(DAYS[i].n))return DAYS[i].n;return null}
+function today(){return new Date().toISOString().slice(0,10)}
+function go(v){view=v;render();window.scrollTo(0,0)}
+function priceNow(){return C.phase()==='promo'?C.pricePromo:C.priceFull}
+
+/* ---------- unlock ---------- */
+function sha(str){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(str)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return('0'+x.toString(16)).slice(-2)}).join('')})}
+function tryCode(code){code=String(code||'').trim().toUpperCase();if(!code||!window.crypto||!crypto.subtle)return Promise.resolve(false);
+  return sha(code).then(function(h){if(h===C.accessHash){S.paid=true;save();return true}return false})}
+
+/* ---------- render ---------- */
+function render(){var v=view.name;
+  if(!S.name&&v!=='welcome')return go({name:'welcome'});
+  if(S.name&&!S.start&&v!=='start')return go({name:'start'});
+  ({welcome:vWelcome,start:vStart,home:vHome,day:vDay,done:vDone,diary:vDiary,letter:vLetter,reminders:vReminders,finale:vFinale})[v]();
+}
+function top(backTo,dots){return '<div class="top noprint"><button class="back" data-go="'+backTo+'">← Indietro</button>'+(dots||'')+'</div>'}
+function bind(){
+  app.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){go({name:b.dataset.go})}});
+}
+function safeFooter(){return '<footer class="safe noprint">Questo percorso è uno spazio di riflessione personale e non sostituisce un supporto medico, psicologico o terapeutico. Se una situazione o una relazione ti fa sentire in pericolo, la priorità è chiedere aiuto: in Italia chiama il <b>1522</b> (antiviolenza, gratuito, 24h), in Svizzera il <b>143</b>, per le emergenze il <b>112</b>.<br><br>Ciò che scrivi resta solo su questo dispositivo: nessuno, nemmeno Viola, può leggerlo.</footer>'}
+
+function vWelcome(){
+  app.innerHTML='<div class="hero" style="padding-top:70px;padding-bottom:50px"><div class="eyebrow">Project Liberty · di Viola</div><h1>Tornare a me</h1><p class="it" style="color:#E6C894">14 giorni, dieci minuti al giorno, per ricominciare a scegliermi.</p></div>'+
+  '<div class="fade"><div class="sp2"></div><p>Benvenuta. Questo è uno spazio solo tuo.</p><p class="muted">Non troverai formule magiche. Troverai una porta al giorno: una domanda, un respiro, un piccolo passo.</p>'+
+  '<label class="q" for="nm">Come ti chiami?</label><input type="text" id="nm" maxlength="30" autocomplete="given-name" placeholder="Il tuo nome"><div class="sp"></div>'+
+  '<button class="btn gold" id="ok">Comincio</button><p class="small muted center">Ciò che scrivi resta solo su questo dispositivo.</p></div>';
+  var nm=document.getElementById('nm');
+  document.getElementById('ok').onclick=function(){var n=nm.value.trim();if(!n){nm.focus();return}S.name=n;save();go({name:'start'})};
+}
+
+function vStart(){
+  var st=S.start||{w:'',b:'',p:''};
+  app.innerHTML='<div class="sp2"></div><div class="fade"><div class="eyebrow">Prima fotografia</div><h2 style="margin-top:6px">Oggi, prima di iniziare</h2><p class="muted">Non è un test, '+esc(S.name)+'. È una piccola fotografia del momento in cui stai cominciando. La ritroverai lungo il percorso.</p>'+
+  '<label class="q">Tre parole che descrivono come mi sento oggi</label><input type="text" id="w" value="'+esc(st.w)+'">'+
+  '<label class="q">In questo momento ho bisogno di</label><textarea id="b">'+esc(st.b)+'</textarea>'+
+  '<label class="q">Da questi quattordici giorni vorrei portare con me</label><textarea id="p">'+esc(st.p)+'</textarea><div class="sp"></div>'+
+  '<button class="btn" id="ok">Apri il percorso</button></div>';
+  document.getElementById('ok').onclick=function(){S.start={w:val('w'),b:val('b'),p:val('p'),date:today()};save();go({name:'home'})};
+}
+function val(id){return document.getElementById(id).value.trim()}
+
+function vHome(){
+  var dc=doneCount(), nx=nextDay(), h='';
+  h+='<div class="hero"><div class="eyebrow">Tornare a me · 14 giorni</div><h1>Ciao, '+esc(S.name)+'.</h1><p>'+(dc===0?'La prima porta ti aspetta.':dc===14?'Hai attraversato tutte le porte.':'Hai aperto '+dc+' '+(dc===1?'porta':'porte')+' su 14.')+'</p><div class="bar"><i style="width:'+(dc/14*100)+'%"></i></div></div>';
+  WEEKS.forEach(function(w){
+    h+='<div class="week"><div class="eyebrow">Settimana '+w.n+'</div><h3>'+w.title+'</h3><div class="small muted">'+w.sub+'</div></div>';
+    DAYS.filter(function(d){return Math.ceil(d.n/7)===w.n}).forEach(function(d){
+      var done=isDone(d.n), isNext=d.n===nx, needPay=d.n>1&&!S.paid, locked=!done&&!isNext;
+      h+='<button class="door'+(done?' done':'')+(isNext?' next':'')+(locked?' locked':'')+'" data-day="'+d.n+'"><span class="num">'+('0'+d.n).slice(-2)+'</span><span><span class="t">'+d.title+'</span><br><span class="s">'+(done?'Completato':isNext?(needPay?'Sblocca per continuare':d.n===1&&!S.paid?'Gratis · 10 minuti':'Pronta per te · 10 minuti'):'Si apre dopo il giorno '+(d.n-1))+'</span></span><span class="st">'+(done?'✓':needPay?'🔒':isNext?'→':'')+'</span></button>';
+    });
+  });
+  if(dc===14)h+='<div class="sp"></div><button class="btn gold" data-go="finale">La mia promessa</button>';
+  if(dc>=2)h+='<div class="sp2"></div><div class="card"><div class="eyebrow">Come sto cambiando</div><div class="sp"></div>'+chart()+'</div>';
+  h+='<div class="tools noprint"><button data-go="diary">Il mio diario</button><button data-go="reminders">Il mio promemoria</button><button data-go="letter">Una lettera per te</button><button id="bk">Salva una copia</button><button id="stp2" style="grid-column:1/-1">Versione da stampare (A4)</button></div>';
+  if(!S.paid)h+='<div class="sp"></div><button class="btn link" id="code">Ho già un codice d\'accesso</button>';
+  h+=safeFooter();
+  app.innerHTML=h;bind();
+  app.querySelectorAll('[data-day]').forEach(function(b){b.onclick=function(){openDay(+b.dataset.day)}});
+  document.getElementById('bk').onclick=backup;
+  document.getElementById('stp2').onclick=function(){S.paid?location.href='stampa.html':paywall()};
+  var c=document.getElementById('code');if(c)c.onclick=function(){paywall(true)};
+}
+function openDay(n){
+  var nx=nextDay();
+  if(isDone(n))return go({name:'day',n:n,i:0});
+  if(n!==nx)return;
+  if(n>1&&!S.paid)return paywall();
+  var prev=S.days[n-1];
+  if(prev&&prev.done===today()&&!(S.days[n]&&S.days[n].started)){
+    return sheet('<div class="eyebrow">Una porta al giorno</div><h2 style="margin:8px 0">Hai già aperto una porta, oggi.</h2><p class="muted">Viola consiglia di lasciare a ogni giorno il suo tempo: quello che hai scritto ha bisogno di una notte per posarsi. Ma il percorso è tuo.</p><div class="sp"></div><button class="btn" data-x="close">Torno domani</button><div class="sp"></div><button class="btn ghost" data-x="go">Apro comunque</button>',function(a){if(a==='go'){D(n).started=true;save();go({name:'day',n:n,i:0})}});
+  }
+  D(n).started=true;save();go({name:'day',n:n,i:0});
+}
+
+/* ---------- day wizard ---------- */
+function steps(d){var s=['intro','breath','meters','write'];if(d.extra)s.push('extra');s.push('step');return s}
+function vDay(){
+  var d=DAYS[view.n-1], st=steps(d), i=Math.min(view.i||0,st.length-1), cur=st[i], data=D(d.n), h='';
+  var dots='<div class="dots">'+st.map(function(_,k){return '<i class="'+(k<=i?'on':'')+'"></i>'}).join('')+'</div>';
+  h+='<div class="top noprint"><button class="back" id="bk">← '+(i===0?'Percorso':'Indietro')+'</button>'+dots+'</div><div class="fade">';
+  if(cur==='intro'){
+    h+='<div class="sp"></div><div class="eyebrow">Giorno '+d.n+' di 14</div><h1 style="margin:8px 0 12px">'+d.title+'</h1><p class="it">'+d.sub+'</p><p>'+d.intro+'</p><div class="sp"></div><button class="btn" id="nx">Comincio</button>';
+  }else if(cur==='breath'){
+    h+='<div class="sp"></div><div class="eyebrow">Prima di scrivere</div><h2 style="margin-top:6px">Fermati un minuto.</h2><p class="muted">Appoggia le spalle. Segui il cerchio: inspira quando si apre, espira quando si chiude. Non cercare la risposta giusta: cerca quella vera per te, oggi.</p><div class="breath"><div class="ring" id="ring"></div><div class="txt" id="btxt">Inspira</div></div><button class="btn" id="nx" disabled>Ancora <span id="sec">60</span> secondi…</button><button class="btn link" id="skip">Salta il respiro</button>';
+  }else if(cur==='meters'){
+    h+='<div class="sp"></div><div class="eyebrow">Come sto, oggi</div><h2 style="margin-top:6px">Da 1 a 5, senza pensarci troppo.</h2>'+
+      meter('e','Energia','scarica','piena',data)+meter('s','Spazio per me','nessuno','tanto',data)+meter('c','Chiarezza','confusa','lucida',data)+'<div class="sp"></div><button class="btn" id="nx">Continua</button>';
+  }else if(cur==='write'){
+    h+='<div class="sp"></div><div class="eyebrow">Fermati e rispondi</div><h2 style="margin-top:6px">Scrivi quello che senti, anche se è confuso.</h2>';
+    d.q.forEach(function(q,k){h+='<label class="q">'+(k+1)+'. '+q+'</label><textarea data-a="'+k+'">'+esc(data.a[k])+'</textarea>'});
+    h+='<label class="q" style="font-family:var(--serif);font-size:22px;font-style:italic;color:var(--terra)">'+d.prompt+'</label><textarea data-p="1">'+esc(data.p)+'</textarea><div class="sp"></div><button class="btn" id="nx">Continua</button>';
+  }else if(cur==='extra'){
+    var x=d.extra;
+    h+='<div class="sp"></div><div class="eyebrow">Esercizio</div><h2 style="margin-top:6px">'+x.title+'</h2><p class="muted">'+x.note+'</p>';
+    x.fields.forEach(function(f,k){var compact=x.compact&&k<x.compact;
+      h+=compact?'<div style="display:flex;gap:10px;align-items:center;margin-top:10px"><span class="muted" style="width:22px">'+f+'.</span><input type="text" data-x="'+k+'" value="'+esc(data.x[k])+'"></div>'
+        :'<label class="q">'+f+'</label><textarea class="'+(x.long?'long':'')+'" data-x="'+k+'" style="'+(x.long?'':'min-height:64px')+'">'+esc(data.x[k])+'</textarea>'});
+    h+='<div class="sp"></div><button class="btn" id="nx">Continua</button>';
+  }else{
+    h+='<div class="sp"></div><div class="eyebrow">Il piccolo passo di oggi</div><h2 style="margin:6px 0 12px">'+d.step+'</h2>';
+    if(d.showStart&&S.start)h+='<div class="card"><div class="eyebrow">La tua prima fotografia</div><p class="small muted" style="margin:10px 0 2px">Mi sentivo</p><div>'+esc(S.start.w||'—')+'</div><p class="small muted" style="margin:10px 0 2px">Avevo bisogno di</p><div>'+esc(S.start.b||'—')+'</div></div>';
+    h+='<label class="check"><input type="checkbox" id="stp" '+(data.step?'checked':'')+'><span>Mi impegno a farlo oggi.</span></label><div class="sp2"></div><div class="remember"><b>DA RICORDARE</b><span>'+d.remember+'</span></div><div class="sp2"></div><button class="btn gold" id="nx">'+(isDone(d.n)?'Salva e torna al percorso':'Chiudo il giorno '+d.n)+'</button>';
+  }
+  h+='</div>';app.innerHTML=h;
+  document.getElementById('bk').onclick=function(){stopBreath();i===0?go({name:'home'}):go({name:'day',n:d.n,i:i-1})};
+  var nx=document.getElementById('nx');
+  nx.onclick=function(){stopBreath();
+    if(i<st.length-1)return go({name:'day',n:d.n,i:i+1});
+    var first=!data.done;if(first)data.done=today();save();
+    go(first?{name:'done',n:d.n}:{name:'home'})};
+  app.querySelectorAll('textarea,input[type=text]').forEach(function(el){el.oninput=function(){
+    if(el.dataset.a!=null)data.a[+el.dataset.a]=el.value;else if(el.dataset.p)data.p=el.value;else if(el.dataset.x!=null)data.x[+el.dataset.x]=el.value;save()}});
+  app.querySelectorAll('.pips button').forEach(function(b){b.onclick=function(){data.m[b.dataset.k]=+b.dataset.v;save();
+    b.parentNode.querySelectorAll('button').forEach(function(o){o.classList.toggle('on',o===b)})}});
+  var stp=document.getElementById('stp');if(stp)stp.onchange=function(){data.step=stp.checked;save()};
+  if(cur==='breath')startBreath(nx);
+}
+function meter(k,lab,lo,hi,data){var h='<div class="meter"><div class="lab"><span>'+lab+'</span><em>'+lo+' → '+hi+'</em></div><div class="pips">';
+  for(var v=1;v<=5;v++)h+='<button data-k="'+k+'" data-v="'+v+'" class="'+(data.m[k]===v?'on':'')+'">'+v+'</button>';return h+'</div></div>'}
+var bt=[];
+function stopBreath(){bt.forEach(function(t){clearInterval(t);clearTimeout(t)});bt=[]}
+function startBreath(nx){
+  var ring=document.getElementById('ring'),txt=document.getElementById('btxt'),sec=document.getElementById('sec'),left=60;
+  function cycle(){ring.className='ring in';txt.textContent='Inspira';bt.push(setTimeout(function(){ring.className='ring out';txt.textContent='Espira'},4000))}
+  bt.push(setTimeout(cycle,60));bt.push(setInterval(cycle,10000));
+  function finish(){stopBreath();nx.disabled=false;nx.textContent='Continua';txt.textContent=''}
+  bt.push(setInterval(function(){left--;if(sec)sec.textContent=left;if(left<=0)finish()},1000));
+  document.getElementById('skip').onclick=function(){finish();nx.click()};
+}
+
+function vDone(){
+  var d=DAYS[view.n-1], last=d.n===14, needPay=d.n===1&&!S.paid;
+  var h='<div class="sp2"></div><div class="fade center"><div style="font-size:44px;color:var(--gold)">✦</div><div class="eyebrow">Giorno '+d.n+' completato</div><h1 style="margin:10px 0">'+(last?'Ce l\'hai fatta, '+esc(S.name)+'.':'Hai aperto una porta.')+'</h1><p class="it">'+d.remember+'</p><div class="sp2"></div>';
+  if(last)h+='<button class="btn gold" data-go="finale">Firma la mia promessa</button>';
+  else if(needPay)h+='<div class="card" style="text-align:left"><div class="eyebrow">Il percorso continua</div><h3 style="margin:8px 0">Altre 13 porte ti aspettano.</h3><p class="muted small">Ritrovarmi, riconoscere il mio valore, i confini, il corpo, la voce, il tempo, il coraggio. Fino alla tua promessa.</p><button class="btn gold" id="pay">Sblocca i 14 giorni</button></div><div class="sp"></div><button class="btn link" data-go="home">Torna al percorso</button>';
+  else h+='<p class="muted">Domani ti aspetta: <b>'+DAYS[d.n].title+'</b>.</p><div class="sp"></div><button class="btn" data-go="home">Torna al percorso</button>';
+  app.innerHTML=h+'</div>';bind();var p=document.getElementById('pay');if(p)p.onclick=function(){paywall()};
+}
+
+/* ---------- paywall ---------- */
+function sheet(html,cb){var el=document.createElement('div');el.className='sheet';el.innerHTML='<div class="fade">'+html+'</div>';document.body.appendChild(el);
+  function close(a){el.remove();if(cb)cb(a)}
+  el.onclick=function(e){if(e.target===el)close('close')};
+  el.querySelectorAll('[data-x]').forEach(function(b){b.onclick=function(){close(b.dataset.x)}});return el}
+function paywall(codeOnly){
+  var ph=C.phase(), canBuy=ph!=='pre'||C.sellBeforePromo, h='';
+  if(!codeOnly){
+    h+='<div class="eyebrow">Tornare a me · percorso completo</div><h2 style="margin:8px 0">Sblocca i 14 giorni</h2><p class="muted">13 porte ancora da aprire, gli esercizi guidati, il tuo diario, la versione da stampare e la promessa finale da salvare. Accesso immediato, per sempre.</p>';
+    if(canBuy){h+='<div class="price">'+priceNow()+' €</div><p class="small muted">'+(ph==='promo'?'Prezzo di lancio, solo questo fine settimana. Da lunedì '+C.priceFull+' €.':'Pagamento unico. Nessun abbonamento.')+'</p><a class="btn gold" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+(C.checkoutUrl?'Acquista ora':'Scrivimi «'+C.dmKeyword+'» per acquistare')+'</a>'}
+    else h+='<div class="card"><b>Si apre sabato 21 novembre.</b><p class="small muted" style="margin:6px 0 0">Per 48 ore al prezzo di lancio di '+C.pricePromo+' € (poi '+C.priceFull+' €). Scrivi «'+C.dmKeyword+'» a Viola su Instagram per ricevere il link appena apre.</p></div><div class="sp"></div><a class="btn gold" href="'+C.dmUrl+'" target="_blank" rel="noopener">Avvisami su Instagram</a>';
+    h+='<div class="sp2"></div>';
+  }
+  h+='<label class="q" style="margin-top:0">Hai già acquistato? Inserisci il codice</label><input type="text" id="kc" autocapitalize="characters" placeholder="CODICE"><p class="small" id="kerr" style="color:#A33;min-height:20px;margin:6px 0"></p><button class="btn" id="kok">Sblocca</button><button class="btn link" data-x="close">Chiudi</button>';
+  var el=sheet(h);
+  el.querySelector('#kok').onclick=function(){tryCode(el.querySelector('#kc').value).then(function(ok){if(ok){el.remove();go({name:'home'})}else el.querySelector('#kerr').textContent='Codice non valido. Controlla il messaggio ricevuto dopo l\'acquisto.'})};
+}
+
+/* ---------- chart ---------- */
+function chart(){
+  var pts=DAYS.filter(function(d){return isDone(d.n)}).map(function(d){return{n:d.n,m:S.days[d.n].m||{}}});
+  var W=320,H=130,px=function(n){return 14+(n-1)*(W-28)/13},py=function(v){return H-14-(v-1)*(H-28)/4};
+  var series=[['e','#A8703F','Energia'],['s','#C9A46A','Spazio per me'],['c','#5E7A6B','Chiarezza']],svg='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Andamento di energia, spazio per me e chiarezza">';
+  for(var v=1;v<=5;v++)svg+='<line x1="14" x2="'+(W-14)+'" y1="'+py(v)+'" y2="'+py(v)+'" stroke="#EFE4D9"/>';
+  series.forEach(function(s){var p=pts.filter(function(o){return o.m[s[0]]});
+    svg+='<polyline fill="none" stroke="'+s[1]+'" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points="'+p.map(function(o){return px(o.n)+','+py(o.m[s[0]])}).join(' ')+'"/>';
+    p.forEach(function(o){svg+='<circle cx="'+px(o.n)+'" cy="'+py(o.m[s[0]])+'" r="3" fill="'+s[1]+'"/>'})});
+  return svg+'</svg><div class="legend">'+series.map(function(s){return '<span><i style="background:'+s[1]+'"></i>'+s[2]+'</span>'}).join('')+'<span style="margin-left:auto">giorno 1 → 14</span></div>';
+}
+
+/* ---------- diary / letter / reminders ---------- */
+function vDiary(){
+  var h=top('home')+'<div class="eyebrow">Il mio diario</div><h1 style="margin:6px 0 4px">Le parole di '+esc(S.name)+'</h1><p class="muted small">Tutto quello che hai scritto, in ordine. Puoi stamparlo o salvarlo in PDF.</p><button class="btn ghost noprint" id="pr">Stampa / salva in PDF</button>';
+  if(S.start)h+='<div class="entry"><div class="eyebrow">Prima fotografia</div><div class="ql">Mi sentivo</div><p>'+esc(S.start.w||'—')+'</p><div class="ql">Avevo bisogno di</div><p>'+esc(S.start.b||'—')+'</p><div class="ql">Volevo portare con me</div><p>'+esc(S.start.p||'—')+'</p></div>';
+  var any=false;
+  DAYS.forEach(function(d){var x=S.days[d.n];if(!x||!(x.done||x.started))return;any=true;
+    h+='<div class="entry"><div class="eyebrow">Giorno '+d.n+'</div><h3>'+d.title+'</h3>';
+    d.q.forEach(function(q,k){if(x.a[k])h+='<div class="ql">'+q+'</div><p>'+esc(x.a[k])+'</p>'});
+    if(x.p)h+='<div class="ql">'+d.prompt+'</div><p>'+esc(x.p)+'</p>';
+    if(d.extra)d.extra.fields.forEach(function(f,k){if(x.x[k])h+='<div class="ql">'+d.extra.title+' — '+f+'</div><p>'+esc(x.x[k])+'</p>'});
+    h+='</div>'});
+  if(!any)h+='<p class="muted">Il diario si riempie man mano che apri le porte.</p>';
+  app.innerHTML=h;bind();document.getElementById('pr').onclick=function(){window.print()};
+}
+function vLetter(){
+  app.innerHTML=top('home')+'<div class="eyebrow">Una lettera per te</div><h1 style="margin:6px 0 16px">Cara '+esc(S.name)+',</h1>'+window.TAM_LETTER.map(function(p,i,a){return '<p'+(i===a.length-1?' style="font-weight:600"':'')+'>'+p+'</p>'}).join('')+'<p class="it">Viola</p><div class="sp2"></div><div class="card"><div class="eyebrow">Prima del libro</div><h3 style="margin:8px 0">La storia deve ancora essere raccontata.</h3><p class="small muted">«Non è ancora troppo tardi»: il libro in cui Viola racconta la sua vita vera. Per sapere quando esce, resta con lei su Instagram.</p><a class="btn ghost" href="'+C.igUrl+'" target="_blank" rel="noopener">@'+C.igHandle+'</a></div>';bind();
+}
+function vReminders(){
+  app.innerHTML=top('home')+'<div class="eyebrow">Il mio promemoria</div><h2 style="margin:6px 0 18px">Quando tornerò a mettere tutto e tutti davanti a me</h2>'+window.TAM_REMINDERS.map(function(r){return '<div class="remember" style="margin-bottom:10px"><span>'+r+'</span></div>'}).join('')+'<p class="it center">Non è troppo tardi per tornare a me.</p>';bind();
+}
+
+/* ---------- finale + certificate ---------- */
+function vFinale(){
+  var p=(S.days[14]&&S.days[14].p)||'';
+  var first=S.days[1]&&S.days[1].m||{}, last=S.days[14]&&S.days[14].m||{};
+  function delta(k,l){if(!first[k]||!last[k])return '';return '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)"><span>'+l+'</span><b>'+first[k]+' → '+last[k]+'</b></div>'}
+  var dl=delta('e','Energia')+delta('s','Spazio per me')+delta('c','Chiarezza');
+  app.innerHTML=top('home')+'<div class="center"><div class="eyebrow">14 giorni</div><h1 style="margin:6px 0 10px">La mia promessa</h1><p class="muted">Salvala e tienila dove la vedi ogni giorno. Se ti va, condividila: potrebbe essere la porta di un\'altra donna.</p></div><div class="sp"></div><canvas id="cert" width="1080" height="1920"></canvas><div class="sp"></div>'+
+  '<label class="q">Da oggi voglio provare a:</label><textarea id="pp" maxlength="180">'+esc(p)+'</textarea><div class="sp"></div><button class="btn gold" id="sh">Salva / condividi l\'immagine</button>'+
+  (dl?'<div class="sp2"></div><div class="card"><div class="eyebrow">Dal giorno 1 al giorno 14</div><div class="sp"></div>'+dl+'</div>':'')+
+  '<div class="sp2"></div><div class="card"><div class="eyebrow">E adesso?</div><h3 style="margin:8px 0">La storia di Viola sta per essere raccontata.</h3><p class="small muted">«Non è ancora troppo tardi» è il libro da cui nasce questa voce. Resta con lei per sapere quando esce.</p><a class="btn ghost" href="'+C.igUrl+'" target="_blank" rel="noopener">@'+C.igHandle+'</a></div>'+safeFooter();
+  bind();
+  var pp=document.getElementById('pp');
+  function redraw(){drawCert(pp.value.trim())}
+  pp.oninput=function(){D(14).p=pp.value;save();redraw()};
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(redraw);redraw();
+  document.getElementById('sh').onclick=function(){document.getElementById('cert').toBlob(function(b){
+    var f=new File([b],'la-mia-promessa.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:'La mia promessa'}).catch(function(){})}
+    else{var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='la-mia-promessa.png';a.click()}})};
+}
+function wrap(ctx,text,maxW){var words=text.split(/\s+/),lines=[],l='';words.forEach(function(w){var t=l?l+' '+w:w;if(ctx.measureText(t).width>maxW&&l){lines.push(l);l=w}else l=t});if(l)lines.push(l);return lines}
+function drawCert(text){
+  var c=document.getElementById('cert');if(!c)return;var x=c.getContext('2d'),W=1080,H=1920;
+  var g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#2B1D16');g.addColorStop(.55,'#1F1612');g.addColorStop(1,'#3A2618');x.fillStyle=g;x.fillRect(0,0,W,H);
+  var r=x.createRadialGradient(W/2,430,20,W/2,430,700);r.addColorStop(0,'rgba(217,183,126,.28)');r.addColorStop(1,'rgba(217,183,126,0)');x.fillStyle=r;x.fillRect(0,0,W,H);
+  x.strokeStyle='rgba(201,164,106,.55)';x.lineWidth=2;x.strokeRect(54,54,W-108,H-108);
+  x.textAlign='center';x.fillStyle='#C9A46A';
+  x.font='500 30px "DM Sans",sans-serif';spaced(x,'NON È TROPPO TARDI',W/2,300,8);
+  x.font='60px serif';x.fillText('✦',W/2,410);
+  x.fillStyle='#fff';x.font='500 96px "Cormorant Garamond",Georgia,serif';x.fillText('La mia promessa',W/2,580);
+  x.fillStyle='#C9A46A';x.font='italic 44px "Cormorant Garamond",Georgia,serif';x.fillText('Da oggi voglio provare a',W/2,690);
+  x.fillStyle='#F4E9DC';var size=text.length>110?58:70;x.font='italic 500 '+size+'px "Cormorant Garamond",Georgia,serif';
+  var lines=wrap(x,text||'scegliere anche me.',W-240).slice(0,8),lh=size*1.28,y=850+(8-lines.length)*lh/5;
+  lines.forEach(function(l,i){x.fillText(l,W/2,y+i*lh)});
+  x.strokeStyle='rgba(201,164,106,.6)';x.beginPath();x.moveTo(W/2-150,1560);x.lineTo(W/2+150,1560);x.stroke();
+  x.fillStyle='#fff';x.font='italic 64px "Cormorant Garamond",Georgia,serif';x.fillText(S.name||'',W/2,1530);
+  x.fillStyle='#C9A46A';x.font='400 28px "DM Sans",sans-serif';x.fillText(new Date().toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'}),W/2,1610);
+  x.fillStyle='rgba(244,233,220,.75)';x.font='500 26px "DM Sans",sans-serif';spaced(x,'TORNARE A ME · @'+C.igHandle.toUpperCase(),W/2,1790,4);
+}
+function spaced(x,t,cx,y,sp){var w=0,i;for(i=0;i<t.length;i++)w+=x.measureText(t[i]).width+sp;var px=cx-w/2;x.save();x.textAlign='left';for(i=0;i<t.length;i++){x.fillText(t[i],px,y);px+=x.measureText(t[i]).width+sp}x.restore()}
+
+function backup(){var b=new Blob([JSON.stringify(S,null,1)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='tornare-a-me-'+today()+'.json';a.click()}
+
+/* ---------- boot ---------- */
+(function boot(){
+  try{var pre=JSON.parse(localStorage.getItem('tam_pre'));if(pre&&!S.days[1]){D(1).m=pre}}catch(e){}
+  var q=new URLSearchParams(location.search),k=q.get('k');
+  var start=function(){render()};
+  if(k){history.replaceState(null,'',location.pathname);tryCode(k).then(start,start)}else start();
+})();
+})();
+</script>
+</body>
+</html>

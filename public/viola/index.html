@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1F1612">
+<title>Tornare a me — 14 giorni per ricominciare a sceglierti · Viola</title>
+<meta name="description" content="Il percorso interattivo di Viola: 14 giorni, dieci minuti al giorno, per fermarti, ascoltarti e ricominciare a sceglierti. Il Giorno 1 è gratis.">
+<meta property="og:title" content="Tornare a me — 14 giorni per ricominciare a sceglierti">
+<meta property="og:description" content="Dieci minuti al giorno. Una porta alla volta. Il Giorno 1 è gratis.">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2E2420;--espresso:#1F1612;--cream:#FAF6F0;--sand:#EFE4D9;--line:#DCCBBB;--terra:#A8703F;--gold:#C9A46A;--muted:#7A6A60;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:84px}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;margin:0}
+h1{font-size:clamp(46px,11vw,84px)}h2{font-size:clamp(32px,7vw,48px)}h3{font-size:24px}
+.wrap{max-width:720px;margin:0 auto;padding:0 22px}
+section{padding:64px 0}
+.eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.it{font-family:var(--serif);font-style:italic}
+.muted{color:var(--muted)}.small{font-size:14px}.center{text-align:center}
+.btn{display:inline-block;border:0;border-radius:999px;padding:17px 30px;font:600 17px var(--sans);background:linear-gradient(135deg,#D9B77E,#B98B4E);color:#1F1612;text-decoration:none;cursor:pointer;text-align:center}
+.btn.dark{background:var(--espresso);color:#fff}
+.btn.line{background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff}
+.btn.block{display:block;width:100%}
+/* hero */
+.hero{min-height:92vh;display:flex;align-items:flex-end;color:#fff;background:linear-gradient(180deg,rgba(31,22,18,.35) 0%,rgba(31,22,18,.5) 40%,rgba(31,22,18,.96) 100%),url(img/cover.jpg) center top/cover;padding:40px 0 48px}
+.hero .eyebrow{color:var(--gold)}
+.hero h1{margin:14px 0 10px;letter-spacing:.01em}
+.hero .sub{font-family:var(--serif);font-style:italic;font-size:clamp(23px,5.2vw,32px);color:#E6C894;line-height:1.25;margin:0 0 16px}
+.hero p{color:#E9DDD0;max-width:520px;margin:0 0 26px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-size:13px;color:#D8C8B8}
+.trust span::before{content:"✦ ";color:var(--gold)}
+/* recognise */
+.rec li{list-style:none;font-family:var(--serif);font-size:25px;line-height:1.3;padding:16px 0;border-bottom:1px solid var(--line)}
+.rec{padding:0;margin:26px 0 0}
+.dark{background:var(--espresso);color:#F4E9DC}.dark .eyebrow{color:var(--gold)}.dark .muted{color:#BBA999}
+/* mini demo */
+.demo{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px 22px;color:var(--ink)}
+.meter{margin:20px 0}.meter .lab{display:flex;justify-content:space-between;font-weight:500;margin-bottom:9px}.meter .lab em{font-style:normal;color:var(--muted);font-size:13px}
+.pips{display:flex;gap:9px}.pips button{flex:1;height:46px;border-radius:12px;border:1px solid var(--line);background:#fff;font:600 15px var(--sans);color:var(--muted);cursor:pointer}
+.pips button.on{background:var(--terra);border-color:var(--terra);color:#fff}
+#demoOut{display:none;margin-top:20px;background:var(--sand);border-left:3px solid var(--terra);border-radius:12px;padding:16px 18px}
+#demoOut p{font-family:var(--serif);font-size:22px;line-height:1.3;margin:0 0 14px}
+/* features */
+.grid{display:grid;gap:14px;margin-top:28px}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+.feat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.feat .ic{font-size:22px;color:var(--terra)}.feat h3{margin:8px 0 6px}.feat p{margin:0;font-size:15px;color:var(--muted)}
+/* path */
+.wk{margin-top:34px}
+.day{display:flex;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(201,164,106,.25)}
+.day b{flex:none;width:30px;color:var(--gold);font-size:13px;font-weight:600}
+.day span{font-family:var(--serif);font-size:23px;line-height:1.2}
+.day em{margin-left:auto;font-style:normal;font-size:11px;letter-spacing:.14em;color:var(--gold);border:1px solid var(--gold);border-radius:99px;padding:2px 9px;flex:none}
+/* viola */
+.viola{display:grid;gap:26px;align-items:center}
+@media(min-width:640px){.viola{grid-template-columns:240px 1fr}}
+.viola img{border-radius:18px;aspect-ratio:3/4;object-fit:cover;object-position:center 20%;width:100%;max-width:300px}
+/* offer */
+.offer{background:#fff;border:1px solid var(--terra);border-radius:26px;padding:34px 24px;text-align:center;box-shadow:0 20px 60px rgba(168,112,63,.16)}
+.offer ul{list-style:none;padding:0;margin:22px auto;max-width:400px;text-align:left}
+.offer li{padding:8px 0 8px 28px;position:relative;font-size:16px}.offer li::before{content:"✓";position:absolute;left:2px;color:var(--terra);font-weight:700}
+.price{font-family:var(--serif);font-size:84px;line-height:1;margin:10px 0 18px}
+.count{display:flex;gap:10px;justify-content:center;margin:18px 0}
+.count div{background:var(--sand);border-radius:12px;padding:10px 0;width:66px}.count b{font-family:var(--serif);font-size:30px;display:block;line-height:1}.count span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+/* faq */
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--terra);font-size:22px;line-height:1}details[open] summary::after{content:"–"}
+details p{margin:12px 0 0;color:var(--muted)}
+footer{padding:36px 0 30px;font-size:13px;color:var(--muted)}
+footer a{color:inherit}
+/* sticky */
+.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(31,22,18,.97);color:#fff;padding:12px 18px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:14px;z-index:5}
+.sticky small{display:block;color:#C9B8A6;font-size:12px}.sticky b{font-family:var(--serif);font-size:21px;font-weight:500}
+.sticky .btn{padding:12px 20px;font-size:15px;flex:none}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Project Liberty · di Viola</div>
+    <h1>Tornare a me</h1>
+    <p class="sub">14 giorni, dieci minuti al giorno, per ricominciare a sceglierti.</p>
+    <p>Un percorso interattivo da fare sul telefono. Ogni giorno apri una porta: un respiro, tre domande, un piccolo passo. Niente formule magiche. Solo uno spazio finalmente tuo.</p>
+    <div class="cta-row">
+      <a class="btn" href="app.html">Inizia gratis il Giorno 1</a>
+      <a class="btn line" href="#offerta" data-offer-cta>Scopri il percorso</a>
+    </div>
+    <div class="trust"><span>Si apre subito, senza app da scaricare</span><span>Ciò che scrivi resta solo sul tuo telefono</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Forse ti riconosci</div>
+    <h2 style="margin-top:10px">Quante volte ti sei chiesta che cosa desideri davvero?</h2>
+    <p class="muted" style="margin-top:14px">Non che cosa serve alla tua famiglia. Non che cosa si aspettano da te. Proprio tu.</p>
+    <ul class="rec">
+      <li>Ti occupi di tutti, e quando arriva sera a te non resta niente.</li>
+      <li>Dici «sì» mentre dentro stai dicendo «no».</li>
+      <li>Hai messo via un desiderio pensando: «ormai è tardi».</li>
+      <li>Senti che è arrivato il tuo momento, ma non sai da dove ricominciare.</li>
+    </ul>
+    <p class="it" style="font-size:28px;color:var(--terra);margin:30px 0 0">Non è egoismo fermarti e ascoltarti.</p>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="eyebrow">Provalo adesso · 20 secondi</div>
+    <h2 style="margin:10px 0 22px">Come stai, oggi? Davvero.</h2>
+    <div class="demo">
+      <p class="muted small" style="margin:0">Da 1 a 5, senza pensarci troppo. È così che inizia ogni giorno del percorso.</p>
+      <div class="meter"><div class="lab"><span>Energia</span><em>scarica → piena</em></div><div class="pips" data-k="e"></div></div>
+      <div class="meter"><div class="lab"><span>Spazio per me</span><em>nessuno → tanto</em></div><div class="pips" data-k="s"></div></div>
+      <div class="meter"><div class="lab"><span>Chiarezza</span><em>confusa → lucida</em></div><div class="pips" data-k="c"></div></div>
+      <div id="demoOut"><p id="demoTxt"></p><a class="btn dark block" href="app.html">Continua con il Giorno 1 — gratis</a></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Che cosa trovi dentro</div>
+    <h2 style="margin-top:10px">Un percorso da attraversare, sul telefono o su carta.</h2>
+    <div class="grid">
+      <div class="feat"><div class="ic">✦</div><h3>14 porte, una al giorno</h3><p>Ogni giorno un tema: guardarti, ritrovarti, i confini, il corpo, la voce, il tempo, il coraggio. Dieci minuti, non di più.</p></div>
+      <div class="feat"><div class="ic">◌</div><h3>Un minuto di respiro guidato</h3><p>Prima di scrivere ti fermi. Un cerchio ti accompagna: inspiri, espiri, e arrivi alle domande con la testa più libera.</p></div>
+      <div class="feat"><div class="ic">✎</div><h3>Il tuo diario privato</h3><p>Le tue risposte si salvano da sole e restano solo sul tuo telefono. Puoi rileggerle, stamparle o salvarle in PDF.</p></div>
+      <div class="feat"><div class="ic">↗</div><h3>Vedi come cambi</h3><p>Energia, spazio per te, chiarezza: giorno dopo giorno un grafico ti mostra il tuo andamento.</p></div>
+      <div class="feat"><div class="ic">◈</div><h3>Esercizi che diventano gesti</h3><p>La lista dei desideri dimenticati, la frase pronta per dire di no, l'appuntamento con te stessa, il piano in 48 ore.</p></div>
+      <div class="feat"><div class="ic">▤</div><h3>Anche su carta</h3><p>Preferisci la penna? Tutto il percorso è anche in versione da stampare: 28 pagine in A4, con lo spazio per scrivere.</p></div>
+      <div class="feat"><div class="ic">❋</div><h3>La tua promessa, da tenere</h3><p>Al giorno 14 la tua promessa diventa un'immagine con il tuo nome: da salvare come sfondo o condividere.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="eyebrow">Il percorso</div>
+    <h2 style="margin-top:10px">Non devi risolvere tutto. Ogni giorno apre soltanto una porta.</h2>
+    <div id="path"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap viola">
+    <img src="img/viola.jpg" alt="Viola" loading="lazy">
+    <div>
+      <div class="eyebrow">Una lettera per te</div>
+      <h2 style="margin:10px 0 16px">«Dedicare del tempo a te stessa non è una colpa.»</h2>
+      <p>Non so quale storia tu abbia attraversato. Non so quante volte tu abbia dovuto ricominciare. Ma non devi aspettare che tutti siano felici, che ogni problema sia risolto o che qualcuno ti dica che è arrivato il tuo turno.</p>
+      <p>Puoi iniziare da una piccola attenzione. Da una domanda che non ti facevi da tempo.</p>
+      <p class="it" style="font-size:30px;color:var(--terra);margin:8px 0 0">Viola</p>
+    </div>
+  </div>
+</section>
+
+<section id="offerta" style="padding-top:20px">
+  <div class="wrap">
+    <div class="offer">
+      <div class="eyebrow">Tornare a me · percorso completo</div>
+      <h2 style="margin:10px 0 0">14 giorni per ricominciare a sceglierti</h2>
+      <ul>
+        <li>14 giornate guidate, 10 minuti al giorno</li>
+        <li>Respiro guidato ed esercizi interattivi</li>
+        <li>Diario privato, stampabile in PDF</li>
+        <li>Versione da stampare in A4, da compilare a penna</li>
+        <li>Il grafico del tuo cambiamento</li>
+        <li>La tua promessa finale da salvare e condividere</li>
+        <li>Accesso immediato, senza scadenza, pagamento unico</li>
+      </ul>
+      <div id="offerBox"></div>
+      <p class="small muted" style="margin:18px 0 0">Oppure <a href="app.html" style="color:var(--terra)">prova prima il Giorno 1, gratis</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Domande frequenti</div>
+    <h2 style="margin:10px 0 14px">Prima di cominciare</h2>
+    <details><summary>Come funziona, in pratica?</summary><p>Si apre dal telefono, come una pagina web: non devi scaricare nessuna app. Dopo l'acquisto ricevi un link personale e un codice. Ogni giorno apri una porta e in dieci minuti hai finito.</p></details>
+    <details><summary>Non sono brava con la tecnologia. Riesco a usarlo?</summary><p>Sì. Tocchi un pulsante, leggi, scrivi. Se sai usare WhatsApp, sai usare questo percorso. Prova il Giorno 1 gratis e lo vedi da sola.</p></details>
+    <details><summary>Chi legge quello che scrivo?</summary><p>Nessuno. Le tue risposte restano salvate solo sul tuo dispositivo: non vengono inviate a Viola né a nessun altro. Per questo ti consigliamo di usare sempre lo stesso telefono e di salvare ogni tanto una copia dal menu.</p></details>
+    <details><summary>E se salto un giorno?</summary><p>Riprendi da dove eri. Non c'è scadenza e nessuno ti corre dietro. Puoi anche rifare il percorso tutte le volte che vuoi.</p></details>
+    <details><summary>Cambierà la mia vita in 14 giorni?</summary><p>No, e non te lo promettiamo. In 14 giorni puoi riconoscere ciò che stai trascurando e scegliere i primi passi realistici per tornare a darti spazio. Il resto lo fai tu, con i tuoi tempi.</p></details>
+    <details><summary>È una terapia?</summary><p>No. È uno spazio di riflessione personale e non sostituisce un supporto medico, psicologico o terapeutico. Se una situazione o una relazione ti fa sentire in pericolo, chiedi aiuto: in Italia 1522 (gratuito, 24 ore su 24), in Svizzera 143, per le emergenze 112.</p></details>
+    <details><summary>Posso avere un rimborso?</summary><p>È un contenuto digitale con accesso immediato: confermando l'acquisto chiedi di accedere subito e rinunci al diritto di recesso di 14 giorni. Proprio per questo il Giorno 1 è gratuito: prova prima, decidi dopo.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Tornare a me · Project Liberty · <a href="#" id="ig">@violaliberamente</a></p>
+    <p id="legal"></p>
+    <p>Percorso di riflessione personale. Non costituisce né sostituisce consulenza medica, psicologica o terapeutica.</p>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"></div>
+
+<script src="config.js"></script>
+<script src="days.js"></script>
+<script>
+(function(){
+var C=window.TAM;
+document.getElementById('ig').href=C.igUrl;
+document.getElementById('legal').textContent=C.legal.seller+' · P. IVA '+C.legal.vat+' · '+C.legal.email+' · Privacy · Condizioni di vendita';
+
+/* percorso */
+var p='';window.TAM_WEEKS.forEach(function(w){p+='<div class="wk"><div class="eyebrow">Settimana '+w.n+' · '+w.title+'</div>';
+  window.TAM_DAYS.filter(function(d){return Math.ceil(d.n/7)===w.n}).forEach(function(d){p+='<div class="day"><b>'+('0'+d.n).slice(-2)+'</b><span>'+d.title+'</span>'+(d.n===1?'<em>GRATIS</em>':'')+'</div>'});p+='</div>'});
+document.getElementById('path').innerHTML=p;
+
+/* mini demo */
+var m={};
+document.querySelectorAll('.pips').forEach(function(box){for(var v=1;v<=5;v++){var b=document.createElement('button');b.textContent=v;b.dataset.v=v;box.appendChild(b)}
+  box.onclick=function(e){var b=e.target.closest('button');if(!b)return;m[box.dataset.k]=+b.dataset.v;box.querySelectorAll('button').forEach(function(o){o.classList.toggle('on',o===b)});demo()}});
+function demo(){if(!(m.e&&m.s&&m.c))return;try{localStorage.setItem('tam_pre',JSON.stringify(m))}catch(e){}
+  var low=Object.keys(m).sort(function(a,b){return m[a]-m[b]})[0],avg=(m.e+m.s+m.c)/3,t;
+  if(avg>=4)t='Oggi stai bene. È il momento migliore per chiederti che cosa vuoi proteggere.';
+  else if(low==='s')t='Lo spazio per te è quello che manca di più. È esattamente da lì che parte il Giorno 1.';
+  else if(low==='e')t='Sei stanca. Non devi fare di più: devi cominciare a fermarti. Dieci minuti, solo per te.';
+  else t='C\'è confusione, ed è normale. Prima di cambiare qualcosa, serve capire dove sei.';
+  document.getElementById('demoTxt').textContent=t;document.getElementById('demoOut').style.display='block'}
+
+/* offerta + sticky per fase */
+var box=document.getElementById('offerBox'),st=document.getElementById('sticky');
+function pad(n){return('0'+n).slice(-2)}
+function cdHtml(){
+  var ph=C.phase(),target=ph==='pre'?new Date(C.promoStart):ph==='promo'?new Date(C.promoEnd):null;if(!target)return '';
+  var s=Math.max(0,Math.floor((target-new Date())/1000)),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),mi=Math.floor(s%3600/60),se=s%60;
+  return '<div><b>'+pad(d)+'</b><span>giorni</span></div><div><b>'+pad(h)+'</b><span>ore</span></div><div><b>'+pad(mi)+'</b><span>min</span></div><div><b>'+pad(se)+'</b><span>sec</span></div>'}
+function draw(){
+  var ph=C.phase(),canBuy=ph!=='pre'||C.sellBeforePromo,buyLabel=C.checkoutUrl?'Inizia il percorso':'Scrivi «'+C.dmKeyword+'» a Viola per acquistare';
+  var cd='<div class="count" id="cd"></div>';
+  if(ph==='promo'){
+    box.innerHTML='<div class="eyebrow">Prezzo di lancio · solo questo fine settimana</div><div class="price">'+C.pricePromo+' €</div><p class="small muted" style="margin:0">Da lunedì il prezzo sarà '+C.priceFull+' €. Il prezzo di lancio termina tra:</p>'+cd+'<a class="btn block" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+buyLabel+'</a>';
+    st.innerHTML='<div><b>'+C.pricePromo+' €</b><small>Prezzo di lancio fino a domenica</small></div><a class="btn" href="#offerta">Inizia ora</a>';
+  }else if(canBuy){
+    box.innerHTML='<div class="price">'+C.priceFull+' €</div><p class="small muted" style="margin:0 0 18px">Pagamento unico. Nessun abbonamento.</p><a class="btn block" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+buyLabel+'</a>';
+    st.innerHTML='<div><b>'+C.priceFull+' €</b><small>14 giorni · accesso immediato</small></div><a class="btn" href="#offerta">Inizia ora</a>';
+  }else{
+    box.innerHTML='<div class="eyebrow">Si apre sabato 21 novembre</div><div class="price">'+C.pricePromo+' €</div><p class="small muted" style="margin:0">Prezzo di lancio per sole 48 ore, sabato e domenica. Da lunedì '+C.priceFull+' €.</p>'+cd+'<a class="btn block" href="'+C.dmUrl+'" target="_blank" rel="noopener">Scrivi «'+C.dmKeyword+'» a Viola: ti avvisa lei</a>';
+    st.innerHTML='<div><b>Giorno 1 gratis</b><small>Percorso completo da sabato a '+C.pricePromo+' €</small></div><a class="btn" href="app.html">Inizia</a>';
+  }
+}
+var last='';function tick(){var ph=C.phase();if(ph!==last){draw();last=ph}var c=document.getElementById('cd');if(c)c.innerHTML=cdHtml()}
+tick();setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>
