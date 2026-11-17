@@ -14,7 +14,8 @@ window.TAM = {
   promoStart: "2026-11-21T00:00:00+01:00",
   promoEnd: "2026-11-22T23:59:59+01:00",
   pricePromo: "9,90",
-  priceFull: "14,90",
+  priceFull: "9,90",
+  // Se pricePromo è uguale a priceFull non c'è promozione: niente "prezzo di lancio" né countdown di fine offerta.
   // false = prima di sabato non si vende: si regala il Giorno 1 e si raccoglie la lista d'attesa.
   sellBeforePromo: false,
 
@@ -38,5 +39,6 @@ window.TAM.phase = function (now) {
   if (t <= new Date(this.promoEnd).getTime()) return "promo";
   return "post";
 };
-window.TAM.checkout = function () { return this.phase() === "promo" ? this.checkoutUrlPromo : this.checkoutUrl; };
+window.TAM.hasPromo = function () { return this.pricePromo !== this.priceFull; };
+window.TAM.checkout = function () { return (this.phase() === "promo" && this.hasPromo() && this.checkoutUrlPromo) || this.checkoutUrl; };
 window.TAM.buyUrl = function () { return this.checkout() || this.dmUrl; };

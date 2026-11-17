@@ -245,14 +245,14 @@ function cdHtml(){
 function draw(){
   var ph=C.phase(),canBuy=ph!=='pre'||C.sellBeforePromo,buyLabel=C.checkout()?'Inizia il percorso':'Scrivi «'+C.dmKeyword+'» a Viola per acquistare';
   var cd='<div class="count" id="cd"></div>';
-  if(ph==='promo'){
+  if(ph==='promo'&&C.hasPromo()){
     box.innerHTML='<div class="eyebrow">Prezzo di lancio · solo questo fine settimana</div><div class="price">'+C.pricePromo+' €</div><p class="small muted" style="margin:0">Da lunedì il prezzo sarà '+C.priceFull+' €. Il prezzo di lancio termina tra:</p>'+cd+'<a class="btn block" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+buyLabel+'</a>';
     st.innerHTML='<div><b>'+C.pricePromo+' €</b><small>Prezzo di lancio fino a domenica</small></div><a class="btn" href="#offerta">Inizia ora</a>';
   }else if(canBuy){
     box.innerHTML='<div class="price">'+C.priceFull+' €</div><p class="small muted" style="margin:0 0 18px">Pagamento unico. Nessun abbonamento.</p><a class="btn block" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+buyLabel+'</a>';
     st.innerHTML='<div><b>'+C.priceFull+' €</b><small>14 giorni · accesso immediato</small></div><a class="btn" href="#offerta">Inizia ora</a>';
   }else{
-    box.innerHTML='<div class="eyebrow">Si apre sabato 21 novembre</div><div class="price">'+C.pricePromo+' €</div><p class="small muted" style="margin:0">Prezzo di lancio per sole 48 ore, sabato e domenica. Da lunedì '+C.priceFull+' €.</p>'+cd+'<a class="btn block" href="'+C.dmUrl+'" target="_blank" rel="noopener">Scrivi «'+C.dmKeyword+'» a Viola: ti avvisa lei</a>';
+    box.innerHTML='<div class="eyebrow">Si apre sabato 21 novembre</div><div class="price">'+C.pricePromo+' €</div><p class="small muted" style="margin:0">'+(C.hasPromo()?'Prezzo di lancio per sole 48 ore, sabato e domenica. Da lunedì '+C.priceFull+' €.':'Pagamento unico, nessun abbonamento. Il percorso si apre tra:')+'</p>'+cd+'<a class="btn block" href="'+C.dmUrl+'" target="_blank" rel="noopener">Scrivi «'+C.dmKeyword+'» a Viola: ti avvisa lei</a>';
     st.innerHTML='<div><b>Giorno 1 gratis</b><small>Percorso completo da sabato a '+C.pricePromo+' €</small></div><a class="btn" href="app.html">Inizia</a>';
   }
 }
