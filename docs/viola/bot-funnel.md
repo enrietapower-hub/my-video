@@ -12,7 +12,7 @@ Ciao {nome} 🤍 sono l'assistente di Viola.
 «Tornare a me» è il suo percorso di 14 giorni: dieci minuti al giorno, dal telefono, per fermarti e ricominciare a sceglierti.
 Il Giorno 1 è gratis. Vuoi che ti mandi il link?
 
-→ sì: Eccolo: {LINK_LANDING}
+→ sì: Eccolo: https://tornare-a-me-viola.netlify.app
 Si apre subito, non devi scaricare niente. Quello che scrivi resta solo sul tuo telefono.
 
 ## 2. Follow-up (24 ore dopo il link, una sola volta)
@@ -26,11 +26,11 @@ Dopo il pagamento ricevi subito il link personale per sbloccare tutti i 14 giorn
 Ultime ore al prezzo di lancio: da domani «Tornare a me» torna a 14,90 €. Se senti che è il momento: {LINK_CHECKOUT}
 
 ## 5. Dopo l'acquisto (consegna)
-Grazie {nome} 🤍 ecco il tuo accesso: {LINK_APP}?k={CODICE}
+Grazie {nome} 🤍 ecco il tuo accesso: https://tornare-a-me-viola.netlify.app/grazie.html
 Apri il link dallo stesso telefono su cui hai fatto il Giorno 1: ritrovi quello che hai già scritto.
 
 ## Obiezioni
-- «Quanto costa?» → 14,90 €, pagamento unico. Sabato e domenica 9,90 €. Il Giorno 1 è gratis: {LINK_LANDING}
+- «Quanto costa?» → 14,90 €, pagamento unico. Sabato e domenica 9,90 €. Il Giorno 1 è gratis: https://tornare-a-me-viola.netlify.app
 - «Non sono pratica» → Se usi WhatsApp, sai usarlo. Provalo gratis e lo vedi subito.
 - «È un abbonamento?» → No, paghi una volta e resta tuo.
 - «Chi legge quello che scrivo?» → Nessuno. Resta solo sul tuo telefono.
