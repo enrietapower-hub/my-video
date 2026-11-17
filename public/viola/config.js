@@ -1,7 +1,10 @@
 /* Tornare a me — configurazione commerciale. Si cambia tutto da qui. */
 window.TAM = {
-  // Link del checkout (Stripe Payment Link, Shopify, Gumroad…). Vuoto = i pulsanti "Acquista" aprono il DM Instagram.
-  checkoutUrl: "",
+  // Stripe Payment Link. Due link perché ogni link ha un prezzo fisso:
+  // checkoutUrlPromo = 9,90 € (sabato e domenica), checkoutUrl = prezzo pieno (da lunedì).
+  // Vuoti = i pulsanti "Acquista" aprono il DM Instagram.
+  checkoutUrlPromo: "",
+  checkoutUrl: "https://buy.stripe.com/28E6oG8ZRb1R9S48oufYY00",
   igHandle: "violaliberamente",
   igUrl: "https://www.instagram.com/violaliberamente/",
   dmUrl: "https://ig.me/m/violaliberamente",
@@ -11,7 +14,8 @@ window.TAM = {
   promoStart: "2026-11-21T00:00:00+01:00",
   promoEnd: "2026-11-22T23:59:59+01:00",
   pricePromo: "9,90",
-  priceFull: "14,90",
+  priceFull: "9,90",
+  // Se pricePromo è uguale a priceFull non c'è promozione: niente "prezzo di lancio" né countdown di fine offerta.
   // false = prima di sabato non si vende: si regala il Giorno 1 e si raccoglie la lista d'attesa.
   sellBeforePromo: false,
 
@@ -19,7 +23,14 @@ window.TAM = {
   accessHash: "4e049ff633a98688bb0440b604c20cfb288bee12f5f5ac7b189b69e4f8814e72",
 
   // Dati legali da completare prima di vendere.
-  legal: { seller: "[RAGIONE SOCIALE / NOME E COGNOME]", vat: "[P. IVA]", email: "[EMAIL ASSISTENZA]" }
+  legal: {
+    seller: "[RAGIONE SOCIALE / NOME E COGNOME]",
+    address: "[INDIRIZZO DELLA SEDE]",
+    vat: "[P. IVA]",
+    email: "[EMAIL ASSISTENZA]",
+    botProvider: "[FORNITORE DELL'ASSISTENTE AUTOMATICO]",
+    updated: "16 novembre 2026"
+  }
 };
 
 window.TAM.phase = function (now) {
@@ -28,4 +39,6 @@ window.TAM.phase = function (now) {
   if (t <= new Date(this.promoEnd).getTime()) return "promo";
   return "post";
 };
-window.TAM.buyUrl = function () { return this.checkoutUrl || this.dmUrl; };
+window.TAM.hasPromo = function () { return this.pricePromo !== this.priceFull; };
+window.TAM.checkout = function () { return (this.phase() === "promo" && this.hasPromo() && this.checkoutUrlPromo) || this.checkoutUrl; };
+window.TAM.buyUrl = function () { return this.checkout() || this.dmUrl; };

@@ -10,9 +10,7 @@
 <meta property="og:description" content="Dieci minuti al giorno. Una porta alla volta. Il Giorno 1 è gratis.">
 <meta property="og:image" content="img/og.jpg">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 <style>
 :root{--ink:#2E2420;--espresso:#1F1612;--cream:#FAF6F0;--sand:#EFE4D9;--line:#DCCBBB;--terra:#A8703F;--gold:#C9A46A;--muted:#7A6A60;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
 *{box-sizing:border-box}
@@ -179,7 +177,7 @@ footer a{color:inherit}
         <li>Versione da stampare in A4, da compilare a penna</li>
         <li>Il grafico del tuo cambiamento</li>
         <li>La tua promessa finale da salvare e condividere</li>
-        <li>Accesso immediato, senza scadenza, pagamento unico</li>
+        <li>Accesso immediato, pagamento unico, nessun abbonamento</li>
       </ul>
       <div id="offerBox"></div>
       <p class="small muted" style="margin:18px 0 0">Oppure <a href="app.html" style="color:var(--terra)">prova prima il Giorno 1, gratis</a>.</p>
@@ -205,6 +203,7 @@ footer a{color:inherit}
   <div class="wrap">
     <p>Tornare a me · Project Liberty · <a href="#" id="ig">@violaliberamente</a></p>
     <p id="legal"></p>
+    <p><a href="privacy.html">Privacy</a> · <a href="condizioni.html">Condizioni di vendita</a></p>
     <p>Percorso di riflessione personale. Non costituisce né sostituisce consulenza medica, psicologica o terapeutica.</p>
   </div>
 </footer>
@@ -217,7 +216,7 @@ footer a{color:inherit}
 (function(){
 var C=window.TAM;
 document.getElementById('ig').href=C.igUrl;
-document.getElementById('legal').textContent=C.legal.seller+' · P. IVA '+C.legal.vat+' · '+C.legal.email+' · Privacy · Condizioni di vendita';
+document.getElementById('legal').textContent=C.legal.seller+' · P. IVA '+C.legal.vat+' · '+C.legal.email;
 
 /* percorso */
 var p='';window.TAM_WEEKS.forEach(function(w){p+='<div class="wk"><div class="eyebrow">Settimana '+w.n+' · '+w.title+'</div>';
@@ -244,16 +243,16 @@ function cdHtml(){
   var s=Math.max(0,Math.floor((target-new Date())/1000)),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),mi=Math.floor(s%3600/60),se=s%60;
   return '<div><b>'+pad(d)+'</b><span>giorni</span></div><div><b>'+pad(h)+'</b><span>ore</span></div><div><b>'+pad(mi)+'</b><span>min</span></div><div><b>'+pad(se)+'</b><span>sec</span></div>'}
 function draw(){
-  var ph=C.phase(),canBuy=ph!=='pre'||C.sellBeforePromo,buyLabel=C.checkoutUrl?'Inizia il percorso':'Scrivi «'+C.dmKeyword+'» a Viola per acquistare';
+  var ph=C.phase(),canBuy=ph!=='pre'||C.sellBeforePromo,buyLabel=C.checkout()?'Inizia il percorso':'Scrivi «'+C.dmKeyword+'» a Viola per acquistare';
   var cd='<div class="count" id="cd"></div>';
-  if(ph==='promo'){
+  if(ph==='promo'&&C.hasPromo()){
     box.innerHTML='<div class="eyebrow">Prezzo di lancio · solo questo fine settimana</div><div class="price">'+C.pricePromo+' €</div><p class="small muted" style="margin:0">Da lunedì il prezzo sarà '+C.priceFull+' €. Il prezzo di lancio termina tra:</p>'+cd+'<a class="btn block" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+buyLabel+'</a>';
     st.innerHTML='<div><b>'+C.pricePromo+' €</b><small>Prezzo di lancio fino a domenica</small></div><a class="btn" href="#offerta">Inizia ora</a>';
   }else if(canBuy){
     box.innerHTML='<div class="price">'+C.priceFull+' €</div><p class="small muted" style="margin:0 0 18px">Pagamento unico. Nessun abbonamento.</p><a class="btn block" href="'+C.buyUrl()+'" target="_blank" rel="noopener">'+buyLabel+'</a>';
     st.innerHTML='<div><b>'+C.priceFull+' €</b><small>14 giorni · accesso immediato</small></div><a class="btn" href="#offerta">Inizia ora</a>';
   }else{
-    box.innerHTML='<div class="eyebrow">Si apre sabato 21 novembre</div><div class="price">'+C.pricePromo+' €</div><p class="small muted" style="margin:0">Prezzo di lancio per sole 48 ore, sabato e domenica. Da lunedì '+C.priceFull+' €.</p>'+cd+'<a class="btn block" href="'+C.dmUrl+'" target="_blank" rel="noopener">Scrivi «'+C.dmKeyword+'» a Viola: ti avvisa lei</a>';
+    box.innerHTML='<div class="eyebrow">Si apre sabato 21 novembre</div><div class="price">'+C.pricePromo+' €</div><p class="small muted" style="margin:0">'+(C.hasPromo()?'Prezzo di lancio per sole 48 ore, sabato e domenica. Da lunedì '+C.priceFull+' €.':'Pagamento unico, nessun abbonamento. Il percorso si apre tra:')+'</p>'+cd+'<a class="btn block" href="'+C.dmUrl+'" target="_blank" rel="noopener">Scrivi «'+C.dmKeyword+'» a Viola: ti avvisa lei</a>';
     st.innerHTML='<div><b>Giorno 1 gratis</b><small>Percorso completo da sabato a '+C.pricePromo+' €</small></div><a class="btn" href="app.html">Inizia</a>';
   }
 }
