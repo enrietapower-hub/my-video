@@ -4,7 +4,7 @@ window.TAM = {
   // checkoutUrlPromo = 9,90 € (sabato e domenica), checkoutUrl = prezzo pieno (da lunedì).
   // Vuoti = i pulsanti "Acquista" aprono il DM Instagram.
   checkoutUrlPromo: "",
-  checkoutUrl: "",
+  checkoutUrl: "https://buy.stripe.com/28E6oG8ZRb1R9S48oufYY00",
   igHandle: "violaliberamente",
   igUrl: "https://www.instagram.com/violaliberamente/",
   dmUrl: "https://ig.me/m/violaliberamente",
